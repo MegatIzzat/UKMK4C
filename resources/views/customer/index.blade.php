@@ -110,30 +110,16 @@
 
 	  <!-- Content Row -->
 	  <div class="row">
-		<!-- Sidebar Column -->
-
-
-
-		<div class="col-lg-3 mb-4">
-		  <div class="list-group">
-			<a href="index.html" class="list-group-item">Home</a>
-			<a href="about.html" class="list-group-item">About</a>
-			<a href="services.html" class="list-group-item">Services</a>
-			<a href="contact.html" class="list-group-item">Contact</a>
-		  </div>
-		</div>
 		<!-- Content Column -->
-
-		<!-- @foreach($product as $p) -->
-			<div class="col-lg-9 mb-4">
-		  		<div class="col-lg-4 col-md-6 mb-4">
+				@foreach($product as $p)
+		  		<div class="col-md-3">
 					<div class="card h-100">
-						<a href="#"><img class="card-img-top" src="{{asset('img/.jpg')}}" alt="Product-img"></a>
+						<a href="#"><img class="card-img-top" src="{{asset('img/'.$p->product_img)}}" alt="Product-img"></a>
 							<div class="card-body">
 								<h4 class="card-title">
-									<a href="#">Product Name<!-- {{$p->product_name}} --></a>
+									<a href="#">{{$p->product_name}}</a>
 								</h4>
-								<h5>RM <!-- {{$p->product_price}} --></h5>
+								<h5>RM {{$p->product_price}}</h5>
 							</div>
 							<div class="card-footer">
 								<small class="text-muted">&#9733; &#9733; &#9733; &#9733; &#9734;</small>
@@ -141,23 +127,11 @@
 							</div>
 					</div>
 				</div>
-			</div>
-		<!-- @endforeach -->
-
-		
-	  </div>
-	  <!-- /.row -->
+				@endforeach
+		</div>		
 
 	</div>
-	<!-- /.container -->
-
-	<!-- Footer -->
-	<footer class="py-5 bg-dark">
-	  <div class="container">
-		<p class="m-0 text-center text-white">Copyright &copy; Your Website 2017</p>
-	  </div>
-	  <!-- /.container -->
-	</footer>
+	<!-- /.container --><br><center>{{$product->links()}}</center><br><br>
 
 	<!-- Bootstrap core JavaScript -->
 	<script src="{{asset('user/js/jquery.min.js')}}"></script>
