@@ -85,7 +85,7 @@
                     $('#products-list').append(product);
                 }else{ //if user updated an existing record
                     $("#product" + product_id).replaceWith( product );
-                    $('#frmProducts').trigger("reset");
+                    
                 }
                 $('#frmProducts').trigger("reset");
                 $('#myModal').modal('hide')

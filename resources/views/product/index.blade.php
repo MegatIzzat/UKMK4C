@@ -24,7 +24,7 @@
          </thead>
          <tbody id="products-list" name="products-list">
            @foreach ($products as $product)
-            <tr id="product{{$product->id}}">
+            <tr id="product{{$product->product_id}}">
              <td>{{$product->product_id}}</td>
              <td>{{$product->product_name}}</td>
              <td>{{$product->product_price}}</td>
@@ -32,8 +32,8 @@
              <td>{{$product->product_img}}</td>
              <td>{{$product->product_rating}}</td>
               <td>
-              <button class="btn btn-warning btn-detail open_modal" value="{{$product->id}}">Edit</button>
-              <button class="btn btn-danger btn-delete delete-product" value="{{$product->id}}">Delete</button>
+              <button class="btn btn-warning btn-detail open_modal" value="{{$product->product_id}}">Edit</button>
+              <button class="btn btn-danger btn-delete delete-product" value="{{$product->product_id}}">Delete</button>
               </td>
             </tr>
             @endforeach
@@ -49,9 +49,14 @@
                 <h4 class="modal-title" id="myModalLabel">Product</h4>
             </div>
             <div class="modal-body">
+            <ul>
+              @foreach($errors->all() as $key)
+              <li>{{ $key }}</li>
+              @endforeach
+            </ul>
             <form id="frmProducts" name="frmProducts" class="form-horizontal" novalidate="">
               <div class="form-group error">
-                 <label for="inputName" class="col-sm-3 control-label">ID</label>
+                 <label for="inputID" class="col-sm-3 control-label">ID</label>
                    <div class="col-sm-9">
                     <input type="text" class="form-control has-error" id="product_id" name="id" placeholder="Product ID" value="">
                    </div>
@@ -63,25 +68,25 @@
                    </div>
                    </div>
                  <div class="form-group">
-                 <label for="inputDetail" class="col-sm-3 control-label">Price</label>
+                 <label for="inputPrice" class="col-sm-3 control-label">Price</label>
                     <div class="col-sm-9">
                     <input type="number" class="form-control" id="product_price" name="price" placeholder="Product Price" value="">
                     </div>
                 </div>
                 <div class="form-group">
-                 <label for="inputDetail" class="col-sm-3 control-label">Category</label>
+                 <label for="inputCategory" class="col-sm-3 control-label">Category</label>
                     <div class="col-sm-9">
                     <input type="text" class="form-control" id="category_id" name="category" placeholder="Product Category" value="">
                     </div>
                 </div>
                 <div class="form-group">
-                 <label for="inputDetail" class="col-sm-3 control-label">Image</label>
+                 <label for="inputImage" class="col-sm-3 control-label">Image</label>
                     <div class="col-sm-9">
                     <input type="text" class="form-control" id="product_img" name="img" placeholder="Product Image" value="">
                     </div>
                 </div>
                 <div class="form-group">
-                 <label for="inputDetail" class="col-sm-3 control-label">Rating</label>
+                 <label for="inputRating" class="col-sm-3 control-label">Rating</label>
                     <div class="col-sm-9">
                     <input type="text" class="form-control" id="product_rating" name="rating" placeholder="Product Rating" value="">
                     </div>
