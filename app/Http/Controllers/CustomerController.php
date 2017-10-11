@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Cart;
+use App\Category;
 use Session;
 
 class CustomerController extends Controller
@@ -18,7 +19,8 @@ class CustomerController extends Controller
     {
         //
         $product = Product::paginate(6);
-        return view('customer.index',compact('product'));
+        $category = Category::get();
+        return view('customer.index',compact('product','category'));
     }
 
     /**
