@@ -54,7 +54,6 @@ Route::get('/','CustomerController@index')->name('index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-<<<<<<< HEAD
 
 
 /*------------------------ PRODUCT -----------------------------*/
@@ -86,7 +85,7 @@ Route::delete('productajaxCRUD/{product_id?}',function($product_id){
     $product = App\Product::destroy($product_id);
     return response()->json($product);
 });
-=======
+
 Route::get('add-to-cart/{product_id}', [
 	'uses' => 'CustomerController@AddToCart',
 	'as' => 'product.addToCart'
@@ -101,4 +100,3 @@ Route::get('/', [
 	'uses' => 'CustomerController@index',
 	'as' => 'customer.index'
 ]);
->>>>>>> Illi
