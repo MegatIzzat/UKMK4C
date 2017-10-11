@@ -56,7 +56,7 @@
             </ul>
             <form id="frmProducts" name="frmProducts" class="form-horizontal" novalidate="">
               <div class="form-group error">
-                 <label for="inputID" class="col-sm-3 control-label">ID</label>
+                 <label for="inputId" class="col-sm-3 control-label">ID</label>
                    <div class="col-sm-9">
                     <input type="text" class="form-control has-error" id="product_id" name="id" placeholder="Product ID" value="">
                    </div>
@@ -88,7 +88,7 @@
                 <div class="form-group">
                  <label for="inputRating" class="col-sm-3 control-label">Rating</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" id="product_rating" name="rating" placeholder="Product Rating" value="">
+                    <input type="number" class="form-control" id="product_rating" name="rating" min="0" max="5" step="0.5" placeholder="Product Rating" value="">
                     </div>
                 </div>
             </form>

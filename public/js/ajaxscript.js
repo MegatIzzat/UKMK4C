@@ -36,8 +36,7 @@
             url: url + '/' + product_id,
             success: function (data) {
                 console.log(data);
-                $("#product_id" + product_id).remove();
-                $('#frmProducts').trigger("reset");
+                $("#product" + product_id).remove();
             },
             error: function (data) {
                 console.log('Error:', data);
