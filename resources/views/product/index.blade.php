@@ -60,7 +60,6 @@
                  <label for="inputId" class="col-sm-3 control-label">ID</label>
                    <div class="col-sm-9">
                     <input type="text" class="form-control has-error" id="product_id" name="id" placeholder="Product ID" value="">
-                    {{-- <input type="text" class="form-control has-error" id="product_id" name="id" placeholder="Product ID" readonly value="{{uniqid('K', true)}}"> --}}
                    </div>
                    </div>
                 <div class="form-group error">
@@ -107,5 +106,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="{{asset('js/ajaxscript.js')}}"></script>
+    <script src="{{asset('js/jquery.confirm.js')}}"></script>
 </body>
 </html>
