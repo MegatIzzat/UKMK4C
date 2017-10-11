@@ -41,6 +41,7 @@ Route::group(['prefix'=>'/', 'middleware' => 'auth','as'=>'cust.', 'name'=>'cust
 	Route::get('edit/{id}', 'AdminController@edit')->name('edit');
 	Route::put('update/{id}','AdminController@update')->name('update');
 	Route::delete('delete/{id}', 'AdminController@destroy')->name('delete');
+
 });
 
 /*------------------------ AUTH -------------------------------*/
@@ -49,6 +50,21 @@ Auth::routes();
 /*------------------------ HOME -------------------------------*/
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/','CustomerController@index')->name('index');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('add-to-cart/{product_id}', [
+	'uses' => 'CustomerController@AddToCart',
+	'as' => 'product.addToCart'
+]);
+
+Route::get('/cart', [
+	'uses' => 'CustomerController@getCart',
+	'as' => 'product.Cart'
+]);
+
+Route::get('/', [
+	'uses' => 'CustomerController@index',
+	'as' => 'customer.index'
+]);

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Product;
+use App\Cart;
+use Session;
 
 class CustomerController extends Controller
 {
@@ -83,5 +85,25 @@ class CustomerController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function AddToCart(Request $request, $product_id){
+        $product = Product::find($product_id);
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->add($product, $product->product_id);
+
+        $request->session()->put('cart', $cart);
+        // dd($request->session()->get('cart'));
+        return redirect()->route('customer.index');
+    }
+
+    public function getCart(){
+        if (!Session::has('cart')){
+            return view('customer.cart',['products' => null]);
+        }
+        $oldCart = Session::get('cart');
+        $cart = new Cart($oldCart);
+        return view('customer.cart',['products'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
     }
 }

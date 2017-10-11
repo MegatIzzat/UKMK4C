@@ -1,0 +1,12 @@
+.thumbnail{
+	height:300px;
+	padding: 4%;
+}
+
+.thumbnail > .caption {
+	
+}
+.thumbnail > .footer {
+	margin-bottom: 0px;
+	float:bottom;
+}
