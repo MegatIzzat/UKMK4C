@@ -10,6 +10,11 @@
  <button id="btn_add" name="btn_add" class="btn btn-success pull-right">Add New Product</button>
     </div>
       <div class="panel-body"> 
+        <ul>
+          @foreach($errors->all() as $key)
+            <li>{{ $key }}</li>
+          @endforeach
+        </ul>
        <table class="table">
         <thead>
           <tr>
@@ -49,16 +54,13 @@
                 <h4 class="modal-title" id="myModalLabel">Product</h4>
             </div>
             <div class="modal-body">
-            <ul>
-              @foreach($errors->all() as $key)
-              <li>{{ $key }}</li>
-              @endforeach
-            </ul>
+            
             <form id="frmProducts" name="frmProducts" class="form-horizontal" novalidate="">
               <div class="form-group error">
                  <label for="inputId" class="col-sm-3 control-label">ID</label>
                    <div class="col-sm-9">
                     <input type="text" class="form-control has-error" id="product_id" name="id" placeholder="Product ID" value="">
+                    {{-- <input type="text" class="form-control has-error" id="product_id" name="id" placeholder="Product ID" readonly value="{{uniqid('K', true)}}"> --}}
                    </div>
                    </div>
                 <div class="form-group error">
