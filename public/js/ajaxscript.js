@@ -1,13 +1,15 @@
 
     var url = "http://127.0.0.1:8000/productajaxCRUD";
     //display modal form for product editing
+
     $(document).on('click','.open_modal',function(){
         var product_id = $(this).val();
        
         $.get(url + '/' + product_id, function (data) {
             //success data
             console.log(data);
-            $('#product_id').val(data.product_id);
+            $('#product_id').val(data.product_id).prop("disabled", true);
+            // $('#product_id').val(data.product_id);
             $('#product_name').val(data.product_name);
             $('#product_price').val(data.product_price);
             $('#category_id').val(data.category_id);
@@ -19,6 +21,7 @@
     });
     //display modal form for creating new product
     $('#btn_add').click(function(){
+        $('#product_id').prop("disabled", false);
         $('#btn-save').val("add");
         $('#frmProducts').trigger("reset");
         $('#myModal').modal('show');

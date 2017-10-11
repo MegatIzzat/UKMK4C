@@ -27,10 +27,10 @@
             <tr id="product{{$product->product_id}}">
              <td>{{$product->product_id}}</td>
              <td>{{$product->product_name}}</td>
-             <td>{{$product->product_price}}</td>
+             <td>RM {{number_format($product->product_price, 2)}}</td>
              <td>{{$product->category_id}}</td>
              <td>{{$product->product_img}}</td>
-             <td>{{$product->product_rating}}</td>
+             <td>{{number_format($product->product_rating, 1)}}</td>
               <td>
               <button class="btn btn-warning btn-detail open_modal" value="{{$product->product_id}}">Edit</button>
               <button class="btn btn-danger btn-delete delete-product" value="{{$product->product_id}}">Delete</button>
@@ -70,7 +70,7 @@
                  <div class="form-group">
                  <label for="inputPrice" class="col-sm-3 control-label">Price</label>
                     <div class="col-sm-9">
-                    <input type="number" class="form-control" id="product_price" name="price" placeholder="Product Price" value="">
+                    <input type="number" class="form-control" id="product_price" name="price" min="0" step="0.1" placeholder="Product Price" value="">
                     </div>
                 </div>
                 <div class="form-group">
