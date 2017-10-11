@@ -1,13 +1,13 @@
 <html>
   <head>
-   <title>Laravel CRUD Application using Ajax without Reloading Page</title>  
+   <title>Product Management K4C</title>  
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> 
   </head>
 <body>
 <div class="container">
 <div class="panel panel-primary">
- <div class="panel-heading">Laravel CRUD Application using Ajax without Reloading Page
- <button id="btn_add" name="btn_add" class="btn btn-default pull-right">Add New Product</button>
+ <div class="panel-heading">Product Management
+ <button id="btn_add" name="btn_add" class="btn btn-success pull-right">Add New Product</button>
     </div>
       <div class="panel-body"> 
        <table class="table">

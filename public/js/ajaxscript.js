@@ -37,10 +37,12 @@
             success: function (data) {
                 console.log(data);
                 $("#product_id" + product_id).remove();
+                $('#frmProducts').trigger("reset");
             },
             error: function (data) {
                 console.log('Error:', data);
             }
+
         });
     });
     //create new product / update existing product
@@ -62,7 +64,7 @@
         //used to determine the http verb to use [add=POST], [update=PUT]
         var state = $('#btn-save').val();
         var type = "POST"; //for creating new resource
-        var product_id = $('#product_id').val();;
+        var product_id = $('#product_id').val();
         var my_url = url;
         if (state == "update"){
             type = "PUT"; //for updating existing resource
@@ -83,6 +85,7 @@
                     $('#products-list').append(product);
                 }else{ //if user updated an existing record
                     $("#product" + product_id).replaceWith( product );
+                    $('#frmProducts').trigger("reset");
                 }
                 $('#frmProducts').trigger("reset");
                 $('#myModal').modal('hide')
