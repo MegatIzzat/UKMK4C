@@ -59,6 +59,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 /*------------------------ PRODUCT -----------------------------*/
 
 use Illuminate\Http\Request;
+
 Route::get('productajaxCRUD', function () {
     $products = App\Product::all();
     return view('product.index')->with('products',$products);
