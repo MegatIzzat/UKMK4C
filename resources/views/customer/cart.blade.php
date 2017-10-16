@@ -14,7 +14,7 @@
 								<strong>{{ $product['item']['product_name'] }}</strong>
 							</div>
 							<div class="col-md-2 col-xs-2 col-sm-2">
-								<span class="label label-success">RM {{ $product['price'] }}</span>
+								<span class="label label-success">RM {{ number_format($product['price'], 2) }}</span>
 							</div>
 							
 							<div class="btn-group">
@@ -31,7 +31,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<strong>Total : RM {{ $totalPrice }}</strong>
+				<strong>Total : RM {{ number_format($totalPrice, 2) }}</strong>
 			</div>
 		</div>
 		<hr>
