@@ -123,3 +123,19 @@ Route::get('/', [
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/*-------------------------------- TOP UP -------------------------------------*/
+
+Route::get('topup', function(){
+	$users = App\User::all();
+	$customer = App\Customer::all();
+	return view('staff.topup', compact('users'))->with('customer',$customer);
+
+});
+
+// Route::put('productajaxCRUD/{cust_id?}',function(Request $request,$cust_id){
+//     $customer = App\Customer::find($cust_id);
+//     $customer->cust_balance= $request::put('cust_balance');
+//     $product->save();
+//     return response()->json($customer);
+// });

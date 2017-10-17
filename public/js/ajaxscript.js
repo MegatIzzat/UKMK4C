@@ -47,13 +47,13 @@
                 success: function (data) {
                     console.log(data);
                     $("#product" + product_id).remove();
+                    alert("Product successfully deleted");
                 },
                 error: function (data) {
                     console.log('Error:', data);
                 }
     
             });
-            alert("Product successfully deleted");
             },
             cancel: function(button) {
             // nothing to do
