@@ -16,8 +16,6 @@ class Customer extends Migration
         //
         Schema::create('customer', function(Blueprint $table){
             $table->string('cust_id',5);
-            $table->string('cust_name');
-            $table->string('cust_pass');
             $table->float('cust_balance',5,2);
 
             $table->primary('cust_id');

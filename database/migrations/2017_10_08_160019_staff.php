@@ -16,8 +16,6 @@ class Staff extends Migration
         //
         Schema::create('staff', function(Blueprint $table){
             $table->string('staff_id',5);
-            $table->string('staff_name');
-            $table->string('staff_pass');
             $table->string('staff_level',30);
 
             $table->primary('staff_id');
