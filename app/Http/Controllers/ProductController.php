@@ -6,13 +6,16 @@ use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
 
+
 class ProductController extends Controller
 {
 
     public function index()
     {
     	$products = Product::all();
-    	return view('product.index')->with('products',$products);
+        $category=Category::all();
+        return view('product.index', compact('category'))->with('products',$products);
+    	// return view('product.index')->with('products',$products);
     }
 
     public function show($product_id)
