@@ -64,7 +64,7 @@
 								<a href="#"><img src="{{asset('img/'.$p->product_id.'.jpg')}}" alt="product-img"></a>
 								<div class="caption">
 									<h4><a href="#">{{$p->product_name}}</a></h4>
-									<h5>RM {{$p->product_price}}</h5>
+									<h5>RM {{ number_format($p->product_price,2)}}</h5>
 								</div>
 								<div class="footer">
 								
