@@ -1,5 +1,5 @@
 
-    var url = "http://127.0.0.1:8000/productajaxCRUD";
+    var url = "http://127.0.0.1:8000/productmanagement";
     //display modal form for product editing
 
     $(document).on('click','.open_modal',function(){
