@@ -9,6 +9,9 @@
 				<ul class="list-group">
 					@foreach($products as $product)
 						<li class="list-group-item">
+							<div class="col-md-2 col-sm-4 col-sm-4">
+								<img class="img-responsive" src="{{asset('img/'.$product['item']['product_id'].'.jpg')}}">
+							</div>
 							<span class="badge">{{ $product['qty'] }}</span>
 							<div class="col-md-5 col-sm-4 col-xs-4">
 								<strong>{{ $product['item']['product_name'] }}</strong>
