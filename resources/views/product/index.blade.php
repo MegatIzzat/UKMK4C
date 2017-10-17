@@ -2,6 +2,7 @@
   <head>
    <title>Product Management K4C</title>  
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> 
+    <link href="css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
   </head>
 <body>
 <div class="container">
@@ -89,7 +90,8 @@
                 <div class="form-group">
                  <label for="inputRating" class="col-sm-3 control-label">Rating</label>
                     <div class="col-sm-9">
-                    <input type="number" class="form-control" id="product_rating" name="rating" min="0" max="5" step="0.5" placeholder="Product Rating" value="">
+                    <input type="number" class="rating" id="product_rating" name="rating" data-min=0 data-max=5 data-step=0.5 data-size="xs"
+                    title="" >
                     </div>
                 </div>
             </form>
@@ -107,5 +109,6 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="{{asset('js/ajaxscript.js')}}"></script>
     <script src="{{asset('js/jquery.confirm.js')}}"></script>
+    <script src="{{asset('js/star-rating.js')}}"></script>
 </body>
 </html>
