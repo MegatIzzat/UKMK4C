@@ -14,7 +14,7 @@
             $('#product_price').val(data.product_price);
             $('#category_id').val(data.category_id);
             $('#product_img').val(data.product_img);
-            $('#product_rating').val(data.product_rating).prop("displayOnly", true);
+            $('#product_rating').val(data.product_rating);
             $('#btn-save').val("update");
             $('#myModal').modal('show');
         }) 
