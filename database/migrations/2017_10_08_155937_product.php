@@ -21,8 +21,6 @@ class Product extends Migration
             $table->string('category_id',5);
             $table->string('product_img');
             $table->float('product_rating',2,1);
-            $table->rememberToken();
-            $table->timestamps();
 
             $table->primary('product_id');
             $table->foreign('category_id')->references('category_id')->on('category');
