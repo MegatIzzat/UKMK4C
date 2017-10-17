@@ -78,7 +78,13 @@
                 <div class="form-group">
                  <label for="inputCategory" class="col-sm-3 control-label">Category</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" id="category_id" name="category" placeholder="Product Category" value="">
+                      <select class="form-control" id="category_id" name="category">
+                        <option value="0" disabled="true" selected="true">--Select--</option>
+                        @foreach($category as $cat)
+                          <option value="{{$cat->category_id}}">{{$cat->category_name}}</option>
+                        @endforeach
+                      </select>
+                    {{-- <input type="text" class="form-control" id="category_id" name="category" placeholder="Product Category" value=""> --}}
                     </div>
                 </div>
                 <div class="form-group">
