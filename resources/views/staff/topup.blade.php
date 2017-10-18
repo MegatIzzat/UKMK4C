@@ -93,7 +93,14 @@
         });
     </script>
 
-    <script type="text/javascript">
+    <script>
+        $(document).on('click','.btn-success',function(){
+            var cust_id = $('#cust_id').val();
+            console.log(cust_id); 
+        });
+    </script>
+
+    {{-- <script type="text/javascript">
         $(document).on('click','.btn-success',function(){
         var cust_id = $('#cust_id').val();
     
@@ -130,6 +137,6 @@
         
     });
     </script>
-
+ --}}
 </body>
 </html>
