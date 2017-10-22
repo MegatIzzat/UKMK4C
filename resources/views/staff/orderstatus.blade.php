@@ -18,23 +18,25 @@
         <thead>
           <tr>
             <th>Order ID</th>
-            <th>Customer ID</th>
-            <th>Staff ID</th>
+            <th>Product ID</th>
+            <th>Quantity</th>
+            <th>Total price</th>
             <th>Order Status</th>
           </tr>
          </thead>
 
 
-         <tbody id="orders-list" name="orders-list">
-           @foreach ($orders as $order)
-           @if($order->order_status=='In Progress')
-            <tr id="order{{$order->order_id}}">
-             <td>{{$order->order_id}}</td>
-            <td>{{$order->cust_id}}</td>
-             <td>{{$order->staff_id}}</td>
-             <td>{{$order->order_status}}</td>
+         <tbody id="orderlines-list" name="orderlines-list">
+           @foreach ($orderlines as $orderline)
+           @if($orderline->order_status=='In Progress')
+            <tr id="orderline{{$orderline->order_id}}">
+             <td>{{$orderline->order_id}}</td>
+            <td>{{$orderline->product_id}}</td>
+             <td>{{$orderline->quantity}}</td>
+             <td>{{$orderline->total_price}}</td>
+             <td>{{$orderline->order_status}}</td>
               <td>
-              <button class="btn btn-warning btn-detail open_modal" value="{{$order->order_id}}">Complete</button>
+              <button class="btn btn-warning btn-detail open_modal" value="{{$orderline->order_id}}">Complete</button>
               </td>
             </tr>
             @endif

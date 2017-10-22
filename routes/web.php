@@ -110,6 +110,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 //use Illuminate\Http\Request;
 
 Route::get('orderstatus', function () {
-     $orders = App\Order::all();
-    return view('staff.orderstatus')->with('orders',$orders);
+     $orderlines = App\Orderline::all();
+    return view('staff.orderstatus')->with('orderlines',$orderlines);
 });

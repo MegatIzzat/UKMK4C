@@ -17,7 +17,7 @@ class OrderlineSeeder extends Seeder
                     'order_id' => 'B0001',
                     'product_id' => 'P0002',
                     'quantity' => '1',
-                    'order_date' => '2017-10-09 19:21:02',
+                    'order_status' => 'Completed',
                     'total_price' => '9.00',
                 ],
 
@@ -25,7 +25,7 @@ class OrderlineSeeder extends Seeder
                     'order_id' => 'B0002',
                     'product_id' => 'P0004',
                     'quantity' => '1',
-                    'order_date' => '2017-10-09 17:53:42',
+                    'order_status' => 'Completed',
                     'total_price' => '5.00',
                 ],
 
@@ -33,7 +33,7 @@ class OrderlineSeeder extends Seeder
                     'order_id' => 'B0002',
                     'product_id' => 'P0011',
                     'quantity' => '1',
-                    'order_date' => '2017-10-09 17:53:42',
+                    'order_status' => 'Completed',
                     'total_price' => '1.80',
                 ],
 
@@ -41,7 +41,7 @@ class OrderlineSeeder extends Seeder
                     'order_id' => 'B0003',
                     'product_id' => 'P0009',
                     'quantity' => '1',
-                    'order_date' => '2017-10-09 21:05:04',
+                    'order_status' => 'In Progress',
                     'total_price' => '3.50',
                 ],
 
@@ -49,7 +49,7 @@ class OrderlineSeeder extends Seeder
                     'order_id' => 'B0003',
                     'product_id' => 'P0018',
                     'quantity' => '1',
-                    'order_date' => '2017-10-09 21:05:04',
+                    'order_status' => 'In Progress',
                     'total_price' => '1.30',
                 ]
 

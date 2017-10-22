@@ -18,7 +18,7 @@ class Order extends Migration
             $table->string('order_id',5);
             $table->string('cust_id',5);
             $table->string('staff_id',5);
-            $table->string('order_status');
+            $table->timestamp('order_date');
 
             $table->primary('order_id');
             $table->foreign('cust_id')->references('cust_id')->on('customer');
