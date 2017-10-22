@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     //
+    public $incrementing = false;
 	protected $table = 'order';
 	protected $fillable = ['order_id','cust_id','staff_id','order_status'];
 

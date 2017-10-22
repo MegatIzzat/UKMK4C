@@ -105,3 +105,11 @@ Route::get('/', [
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/*------------------------ STAFF -----------------------------*/
+//use Illuminate\Http\Request;
+
+Route::get('orderstatus', function () {
+     $orders = App\Order::all();
+    return view('staff.orderstatus')->with('orders',$orders);
+});
