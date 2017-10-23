@@ -43,15 +43,8 @@ class OrderlineSeeder extends Seeder
                     'quantity' => '1',
                     'order_status' => 'In Progress',
                     'total_price' => '3.50',
-                ],
-
-                [
-                    'order_id' => 'B0003',
-                    'product_id' => 'P0018',
-                    'quantity' => '1',
-                    'order_status' => 'In Progress',
-                    'total_price' => '1.30',
                 ]
+
 
         ]);    }
 }

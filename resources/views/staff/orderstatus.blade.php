@@ -1,46 +1,56 @@
 <html>
-  <head>
-   <title>Orderlist Management K4C</title>  
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> 
-  </head>
+<head>
+ <title>Orderlist Management K4C</title>  
+ <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> 
+</head>
 <body>
-<div class="container">
-<div class="panel panel-primary">
- <div class="panel-heading">Order In Progress
-    </div>
-      <div class="panel-body"> 
-        <ul>
-          @foreach($errors->all() as $key)
-            <li>{{ $key }}</li>
-          @endforeach
-        </ul>
-       <table class="table">
+  <div class="container">
+    <div class="panel panel-primary">
+     <div class="panel-heading">Order In Progress
+     </div>
+     <div class="panel-body"> 
+      <ul>
+        @foreach($errors->all() as $key)
+        <li>{{ $key }}</li>
+        @endforeach
+      </ul>
+
+
+
+      <table class="table">
         <thead>
           <tr>
             <th>Order ID</th>
             <th>Product ID</th>
             <th>Quantity</th>
+            <th>Order Status</th>
           </tr>
-         </thead>
+        </thead>
 
+        @foreach($orderline as $key => $p)
+        <tr>
+          <td>{{$p->order_id}}</td>
+          <td>{{$p->product_id}}</td>
+          <td>{{$p->quantity}}</td>
 
-         <tbody id="orderlines-list" name="orderlines-list">
-           @foreach ($orderlines as $orderline)
-           @if($orderline->order_status=='In Progress')
-            <tr id="orderline{{$orderline->order_id}}">
-             <td>{{$orderline->order_id}}</td>
-             <td>{{$orderline->product_id}}</td>
-             <td>{{$orderline->quantity}}</td>
-              <td>
-              <button class="btn btn-success btn-detail open_modal" value="{{$orderline->order_id}}">Complete</button>
-              </td>
-            </tr>
-            @endif
-            @endforeach
-        </tbody>
-        </table>
-       </div>
-       </div>
+          @if($p->order_status=='In Progress')
+          <td>
+            <form method="POST" action="{{ url('orderstatus.update', $p->order_id) }}">
+              {{ csrf_field() }}
+              {{ method_field('DELETE') }}
+              <a  href="{{ url('orderstatus/update/'.$p->order_id) }}" class="btn btn-success btn-sm" role="button"> Complete </a>
+            </form>
+          </td>
+          @else
+          <td>{{$p->order_status}}</td>
+          @endif
+
+        </tr>
+        @endforeach
+      </table>
+
+    </div>
+  </div>
 
    <!--  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
@@ -98,10 +108,10 @@
       </div>
   </div>
 </div> -->
-    <meta name="_token" content="{!! csrf_token() !!}" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <script src="{{asset('js/ajaxscript.js')}}"></script>
-    <script src="{{asset('js/jquery.confirm.js')}}"></script>
+<meta name="_token" content="{!! csrf_token() !!}" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="{{asset('js/ajaxscript.js')}}"></script>
+<script src="{{asset('js/jquery.confirm.js')}}"></script>
 </body>
 </html>

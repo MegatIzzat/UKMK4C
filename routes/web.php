@@ -109,7 +109,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 /*------------------------ STAFF -----------------------------*/
 //use Illuminate\Http\Request;
 
-Route::get('orderstatus', function () {
-     $orderlines = App\Orderline::all();
-    return view('staff.orderstatus')->with('orderlines',$orderlines);
+Route::group(['prefix'=>'/orderstatus/', 'name'=>'orderstatus' ], function(){
+
+	Route::get('', 'OrderlineController@index')->name('index');
+	Route::put('update/{id}','OrderlineController@update')->name('update');
+
+
 });
