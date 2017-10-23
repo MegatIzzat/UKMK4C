@@ -6,7 +6,7 @@
 <body>
 <div class="container">
 <div class="panel panel-primary">
- <div class="panel-heading">Order Status
+ <div class="panel-heading">Order In Progress
     </div>
       <div class="panel-body"> 
         <ul>
@@ -20,8 +20,6 @@
             <th>Order ID</th>
             <th>Product ID</th>
             <th>Quantity</th>
-            <th>Total price</th>
-            <th>Order Status</th>
           </tr>
          </thead>
 
@@ -31,12 +29,10 @@
            @if($orderline->order_status=='In Progress')
             <tr id="orderline{{$orderline->order_id}}">
              <td>{{$orderline->order_id}}</td>
-            <td>{{$orderline->product_id}}</td>
+             <td>{{$orderline->product_id}}</td>
              <td>{{$orderline->quantity}}</td>
-             <td>{{$orderline->total_price}}</td>
-             <td>{{$orderline->order_status}}</td>
               <td>
-              <button class="btn btn-warning btn-detail open_modal" value="{{$orderline->order_id}}">Complete</button>
+              <button class="btn btn-success btn-detail open_modal" value="{{$orderline->order_id}}">Complete</button>
               </td>
             </tr>
             @endif
