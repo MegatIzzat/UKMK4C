@@ -20,6 +20,13 @@ class OrderlineSeeder extends Seeder
                 ],
 
                 [
+                    'order_id' => 'B0001',
+                    'product_id' => 'P0017',
+                    'quantity' => '1',
+                ],
+
+
+                [
                     'order_id' => 'B0002',
                     'product_id' => 'P0004',
                     'quantity' => '1',
@@ -28,6 +35,18 @@ class OrderlineSeeder extends Seeder
                 [
                     'order_id' => 'B0003',
                     'product_id' => 'P0009',
+                    'quantity' => '1',
+                ],
+
+                [
+                    'order_id' => 'B0003',
+                    'product_id' => 'P0011',
+                    'quantity' => '1',
+                ],
+
+                [
+                    'order_id' => 'B0003',
+                    'product_id' => 'P0019',
                     'quantity' => '1',
                 ]
 

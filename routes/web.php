@@ -149,7 +149,7 @@ Route::put('topup/{cust_id?}', function(Request $request,$cust_id){
 Route::group(['prefix'=>'/orderstatus/', 'name'=>'orderstatus' ], function(){
 
 	Route::get('', 'OrderController@index')->name('index');
-	Route::put('update/{id}','OrderController@update')->name('update');
+	Route::get('update/{id}','OrderController@update')->name('update');
 
 
 });

@@ -33,13 +33,9 @@
         <tr>
           <td>{{$p->order_id}}</td>
           
-          @if($p->order_status=='In Progress')
+          @if($p->order_status!='Completed')
           <td>
-            <form method="POST" action="{{ url('orderstatus.update', $p->order_id) }}">
-              {{ csrf_field() }}
-              {{ method_field('DELETE') }}
-              <a  href="{{ url('orderstatus/update/'.$p->order_id) }}" class="btn btn-success btn-sm" role="button"> Complete </a>
-            </form>
+              <a  href="{{url('/orderstatus/update/'.$p->order_id) }}" class="btn btn-success btn-sm" role="button"> Complete </a>
           </td>
           @else
           <td>{{$p->order_status}}</td>
