@@ -24,14 +24,20 @@
             <th>Product ID</th>
             <th>Quantity</th>
             <th>Order Status</th>
+            <th>Order Date</th>
           </tr>
         </thead>
 
         @foreach($orderline as $key => $p)
+
         <tr>
           <td>{{$p->order_id}}</td>
           <td>{{$p->product_id}}</td>
           <td>{{$p->quantity}}</td>
+
+          
+
+
 
           @if($p->order_status=='In Progress')
           <td>
@@ -44,6 +50,13 @@
           @else
           <td>{{$p->order_status}}</td>
           @endif
+
+           @foreach($order as $key=>$q)
+
+                    <td>{{$q->order_date}}</td>
+            @endforeach
+
+
 
         </tr>
         @endforeach

@@ -15,10 +15,10 @@ class Orderline extends Migration
     {
         //
         Schema::create('orderline', function(Blueprint $table){
-            $table->string('order_id',5);
+            $table->increments('orderline_id',10);
+            $table->string('order_id',10);
             $table->string('product_id',5);
             $table->integer('quantity');
-            $table->float('total_price',5,2);
             $table->string('order_status');
 
 

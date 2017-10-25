@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
     {
          App\User::insert([
          		[
-                    'user_id' => 'S0001',
+                    'user_id' => 'admin',
                     'name' => 'Fattah Amin',
                     'email' => 'fattah@gmail.com',
                     'password' => '1234',

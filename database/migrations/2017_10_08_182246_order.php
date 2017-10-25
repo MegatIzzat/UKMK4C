@@ -15,9 +15,11 @@ class Order extends Migration
     {
         //
         Schema::create('order', function(Blueprint $table){
-            $table->string('order_id',5);
+            $table->string('order_id',10);
             $table->string('cust_id',5);
+            $table->float('total_price',5,2);
             $table->timestamp('order_date');
+            $table->timestamp('order_modified');
 
             $table->primary('order_id');
             $table->foreign('cust_id')->references('cust_id')->on('customer');
