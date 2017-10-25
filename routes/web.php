@@ -112,7 +112,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix'=>'/orderstatus/', 'name'=>'orderstatus' ], function(){
 
 	Route::get('', 'OrderController@index')->name('index');
-	Route::put('update/{id}','OrderController@update')->name('update');
+	Route::get('update/{id}','OrderController@update')->name('update');
 
 
 });

@@ -17,17 +17,17 @@ class OrderController extends Controller
 		$order = Order::get();
 		$orderline = Orderline::get();
 		$product = Product::get();
+
     	return view('staff.orderstatus',compact('order','orderline','product'));
 	}
 
-	public function update(Request $request, $id)
+	public function update($id)
     {
-        //
-        Order::findOrFail($id)->update($request->all());
-        $order->order_status = 'Complete';
-    	$order->update($request->all);
+        $order = Order::find($id);
+        $order->order_status = 'Completed';
+        $order->save();
 
-        return redirect()->route('orderstatus.index');
+        return redirect('/orderstatus');
     }
 
 }
