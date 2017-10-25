@@ -126,7 +126,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /*-------------------------------- TOP UP -------------------------------------*/
 
-Route::get('topup', function(){
+Route::post('topup', function(){
 	$users = App\User::all();
 	$customer = App\Customer::all();
 	return view('staff.topup', compact('users'))->with('customer',$customer);
