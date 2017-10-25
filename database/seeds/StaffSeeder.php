@@ -14,7 +14,7 @@ class StaffSeeder extends Seeder
         App\Staff::insert([
 
                 [
-                    'staff_id' => 'S0001',                
+                    'staff_id' => 'admin',                
                     'staff_level' => 'Manager',
                 ],
 

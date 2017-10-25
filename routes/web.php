@@ -141,4 +141,13 @@ Route::put('topup/{cust_id?}', function(Request $request,$cust_id){
 	$customer->save();
 	return response()->json($customer);
 
+/*------------------------ STAFF -----------------------------*/
+//use Illuminate\Http\Request;
+
+Route::group(['prefix'=>'/orderstatus/', 'name'=>'orderstatus' ], function(){
+
+	Route::get('', 'OrderController@index')->name('index');
+	Route::put('update/{id}','OrderController@update')->name('update');
+
+
 });
