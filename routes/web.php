@@ -117,7 +117,7 @@ Route::get('/cart', [
 
 Route::get('/', [
 	'uses' => 'CustomerController@index',
-	'as' => 'customer.index'
+	'as' => 'cust.index'
 ]);
 
 Auth::routes();

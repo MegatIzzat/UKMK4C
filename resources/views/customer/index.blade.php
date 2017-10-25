@@ -6,8 +6,12 @@
 
 <!-- Page Content -->
 	<div class="container">
+		
+
 	  <!-- Content Row -->
 		<div class="row">
+			<!-- Alert -->
+				@include('error.flash-message')
 
 			<div class="col-md-3">
 				<div class="list-group">

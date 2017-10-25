@@ -29,7 +29,7 @@ class CustomerController extends Controller
 
         $request->session()->put('cart', $cart);
         // dd($request->session()->get('cart'));
-        return redirect()->route('customer.index');
+        return redirect()->route('cust.index')->with('success','Item has been added to cart!');
     }
 
     public function getCart(){
@@ -42,48 +42,49 @@ class CustomerController extends Controller
     }
 
     public function checkout(Request $request, $user){
-        $customer = Customer::find($user);  
-
-        if (!Session::has('cart')){
-            return view('customer.cart',['products' => null]);
-        }
+        $customer = Customer::find($user); 
+        $category = Category::get(); 
 
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
 
         $totalPrice=$cart->totalPrice;
         $balance = $customer->cust_balance;
-        $balance -=  $cart->totalPrice;
 
-        $order_id = 'OD'. substr(uniqid(),2,8);
-        $order_status = 'In Progress';
-        $order_date = date('d-m-y h:i:s A');
-
-        Order::create([
-            'order_id' => $order_id,
-            'cust_id' => $user,
-            'order_date' => $order_date,
-            'order_status' => $order_status
-        ]);
-
-        if (Session::has('cart')){
-            foreach ($cart->items as $products) {
-                Orderline::create([
-                'order_id' => $order_id,
-                'product_id' => $products['item']['product_id'], 
-                'quantity' => $products['qty'],
-                'total_price' => $totalPrice
-                ]);
-            }
+        if($balance<$totalPrice){
+            return redirect()->route('cust.index')->with('error','Sorry, you have insufficient balance. Please topup at the store.');
         }
-        
+        else{
+            $balance -=  $cart->totalPrice;
 
-        Customer::findOrFail($user)->update([
-            'cust_balance' => $balance
-        ]);
-        
-        Session::forget('cart');
-        return view('customer.index', ['products'=>$cart->items],compact('customer','balance','totalPrice'));
+            $order_id = 'OD'. substr(uniqid(),2,8);
+            $order_status = 'In Progress';
+            $order_date = date('d-m-y h:i:s A');
 
+            Order::create([
+                'order_id' => $order_id,
+                'cust_id' => $user,
+                'order_date' => $order_date,
+                'order_status' => $order_status,
+                'total_price' => $totalPrice
+            ]);
+
+            if (Session::has('cart')){
+                foreach ($cart->items as $products) {
+                    Orderline::create([
+                    'order_id' => $order_id,
+                    'product_id' => $products['item']['product_id'], 
+                    'quantity' => $products['qty']
+                    ]);
+                }
+            }
+            
+            Customer::findOrFail($user)->update([
+                'cust_balance' => $balance
+            ]);
+            
+            Session::forget('cart');
+            return redirect()->route('cust.index')->with('success','Order has been successfully made!');
+        }
     }
 }

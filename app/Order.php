@@ -12,5 +12,13 @@ class Order extends Model
 	public const CREATED_AT = 'order_date';
 	public const UPDATED_AT = 'order_modified';
 	public $timestamp = false;
+
+	public function Customer(){
+		return $this->belongTo('App\Customer');
+	}
+
+	public function Orderline(){
+		return $this->hasMany('App\Orderline');
+	}
 }
 
