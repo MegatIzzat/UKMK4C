@@ -12,6 +12,8 @@ class Product extends Model
     protected $fillable = ['product_id','product_name','product_price','category_id','product_img','product_rating'];
     protected $primaryKey = 'product_id';
 
+    public $timestamps = false;
+
     public function Category(){
     	return $this->belongsTo('App\CategoryModel','category_id');
     }

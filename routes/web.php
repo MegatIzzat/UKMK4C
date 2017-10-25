@@ -137,9 +137,11 @@ Route::get('topup/{cust_id?}',function($cust_id){
 
 Route::put('topup/{cust_id?}', function(Request $request,$cust_id){
 	$customer = App\Customer::find($cust_id);
-	$customer->cust_balance= $request->cust_balance;
+	$customer->cust_balance += $request->cust_balance;
 	$customer->save();
 	return response()->json($customer);
+});
+
 
 /*------------------------ STAFF -----------------------------*/
 //use Illuminate\Http\Request;
