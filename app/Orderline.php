@@ -9,7 +9,7 @@ class Orderline extends Model
     //
     public $incrementing = false;
     protected $table = 'orderline';
-    protected $fillable = ['order_id','product_id','quantity','total_price','order_status'];
+    protected $fillable = ['order_id','product_id','quantity'];
 
     public function Order(){
     	return $this->hasMany('App\Order','order_id');

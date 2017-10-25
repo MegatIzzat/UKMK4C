@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class Order extends Migration
 {
     /**
@@ -16,16 +14,15 @@ class Order extends Migration
         //
         Schema::create('order', function(Blueprint $table){
             $table->string('order_id',10);
-            $table->string('cust_id',5);
+            $table->string('cust_id',7);
             $table->float('total_price',5,2);
-            $table->timestamp('order_date');
-            $table->timestamp('order_modified');
-
+            $table->string('order_status');
+            $table->timestamp('order_date')->nullable();
+            $table->timestamp('order_modified')->nullable();
             $table->primary('order_id');
             $table->foreign('cust_id')->references('cust_id')->on('customer');
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -35,7 +32,5 @@ class Order extends Migration
     {
         //
                 Schema::dropIfExists('order');
-
     }
 }
-
