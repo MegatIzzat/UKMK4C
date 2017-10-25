@@ -19,7 +19,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '4.00',
                     'category_id' => 'K0001',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
 
                 [
@@ -28,7 +27,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '4.50',
                     'category_id' => 'K0001',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
 
                 [
@@ -37,7 +35,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '4.50',
                     'category_id' => 'K0001',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
 
                 [
@@ -46,7 +43,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '5.00',
                     'category_id' => 'K0001',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
 
                 [
@@ -55,7 +51,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '4.50',
                     'category_id' => 'K0001',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
 
                 [
@@ -64,7 +59,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '4.00',
                     'category_id' => 'K0002',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
 
                 [
@@ -73,7 +67,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '4.00',
                     'category_id' => 'K0002',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
 
                 [
@@ -82,7 +75,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '3.50',
                     'category_id' => 'K0002',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
 
                 [
@@ -91,7 +83,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '3.50',
                     'category_id' => 'K0002',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
 
                 [
@@ -100,7 +91,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '4.00',
                     'category_id' => 'K0002',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
 
                 [
@@ -109,7 +99,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '1.80',
                     'category_id' => 'K0003',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
 
                 [
@@ -118,7 +107,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '1.20',
                     'category_id' => 'K0003',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
 
                 [
@@ -127,7 +115,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '1.50',
                     'category_id' => 'K0003',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
 
                 [
@@ -136,7 +123,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '1.60',
                     'category_id' => 'K0003',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
 
                 [
@@ -145,7 +131,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '2.20',
                     'category_id' => 'K0003',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
 
                 [
@@ -154,7 +139,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '1.20',
                     'category_id' => 'K0004',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
 
                 [
@@ -163,7 +147,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '1.00',
                     'category_id' => 'K0004',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
 
                 [
@@ -172,7 +155,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '1.30',
                     'category_id' => 'K0004',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
 
                 [
@@ -181,7 +163,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '1.00',
                     'category_id' => 'K0004',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
 
                 [
@@ -190,7 +171,6 @@ class ProductSeeder extends Seeder
                     'product_price' => '1.50',
                     'category_id' => 'K0004',
                     'product_img' => '',
-                    'product_rating' => '0.0',
                 ],
         ]);    
     }

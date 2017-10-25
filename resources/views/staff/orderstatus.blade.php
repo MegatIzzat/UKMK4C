@@ -33,7 +33,7 @@
         <tr>
           <td>{{$p->order_id}}</td>
           
-          @if($p->order_status=='In Progress')
+          @if($p->order_status!='Completed')
           <td>
               <a  href="{{url('/orderstatus/update/'.$p->order_id) }}" class="btn btn-success btn-sm" role="button"> Complete </a>
           </td>
