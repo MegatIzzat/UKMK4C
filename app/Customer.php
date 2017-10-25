@@ -11,6 +11,8 @@ class Customer extends Model
     protected $fillable = ['cust_id','cust_name','cust_pass','cust_balance'];
     protected $primaryKey = 'cust_id';
 
+    public $timestamp = false;
+
     public function Topup(){
     	return $this->hasMany('App\Topup','cust_id');
     }

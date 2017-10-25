@@ -115,7 +115,7 @@
         my_url += '/' + cust_id;
 
         $.confirm({
-            text: my_url,
+            text: "<strong>Customer ID: " + cust_id + "<br />" +"Amount to Top Up: RM" + cust_balance + "</strong>" + "<br /> <br /> Are you sure you want to proceed?",
             title: "Confirmation required",
             confirm: function(button) {
               
