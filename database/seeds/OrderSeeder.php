@@ -16,22 +16,26 @@ class OrderSeeder extends Seeder
                 [
                     'order_id' => 'B0001',
                     'cust_id' => 'C0001',
-                    'staff_id' => 'S0002',
+                    'total_price' => '5.50',
                     'order_status' => 'Completed',
+                    'order_date' => '2017-10-09 19:21:02',
+
                 ],
 
                 [
                     'order_id' => 'B0002',
                     'cust_id' => 'C0002',
-                    'staff_id' => 'S0003',
-                    'order_status' => 'Completed',
+                    'total_price' => '5.00',
+                    'order_status' => 'In Progress',
+                    'order_date' => '2017-10-09 20:53:42',
                 ],
 
                 [
                     'order_id' => 'B0003',
                     'cust_id' => 'C0003',
-                    'staff_id' => 'S0003',
+                    'total_price' => '6.30',
                     'order_status' => 'In Progress',
+                    'order_date' => '2017-10-09 21:05:04',
                 ]
 
         ]);    }

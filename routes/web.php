@@ -35,13 +35,13 @@ Route::group(['prefix'=>'/staff', 'middleware' => 'auth','as'=>'staff.', 'name'=
 
 /*------------------------ CUSTOMER -------------------------------*/
 
-Route::group(['prefix'=>'/', 'middleware' => 'auth','as'=>'cust.', 'name'=>'cust' ], function(){
-	Route::get('create', 'AdminController@create')->name('create');
-	Route::post('store', 'AdminController@store')->name('store');
-	Route::get('edit/{id}', 'AdminController@edit')->name('edit');
-	Route::put('update/{id}','AdminController@update')->name('update');
-	Route::delete('delete/{id}', 'AdminController@destroy')->name('delete');
+Route::group(['prefix'=>'/', 'as'=>'cust.', 'name'=>'cust' ], function(){
+	
 
+});
+
+Route::group(['prefix'=>'/', 'middleware' => 'auth','as'=>'cust.', 'name'=>'cust' ], function(){
+	Route::get('checkout/{user}', 'CustomerController@checkout')->name('checkout');
 });
 
 /*------------------------ AUTH -------------------------------*/
@@ -117,9 +117,39 @@ Route::get('/cart', [
 
 Route::get('/', [
 	'uses' => 'CustomerController@index',
-	'as' => 'customer.index'
+	'as' => 'cust.index'
 ]);
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+/*-------------------------------- TOP UP -------------------------------------*/
+
+Route::get('topup', function(){
+	return view('staff.topup');
+});
+
+Route::get('topup/{cust_id?}',function($cust_id){
+    $customer = App\Customer::find($cust_id);
+    return response()->json($customer);
+});
+
+Route::put('topup/{cust_id?}', function(Request $request,$cust_id){
+	$customer = App\Customer::find($cust_id);
+	$customer->cust_balance += $request->cust_balance;
+	$customer->save();
+	return response()->json($customer);
+});
+
+
+/*------------------------ STAFF -----------------------------*/
+//use Illuminate\Http\Request;
+
+Route::group(['prefix'=>'/orderstatus/', 'name'=>'orderstatus' ], function(){
+
+	Route::get('', 'OrderController@index')->name('index');
+	Route::get('update/{id}','OrderController@update')->name('update');
+
+
+});

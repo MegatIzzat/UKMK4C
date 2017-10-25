@@ -1,9 +1,7 @@
 <?php
-
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
-
 class Orderline extends Migration
 {
     /**
@@ -15,17 +13,17 @@ class Orderline extends Migration
     {
         //
         Schema::create('orderline', function(Blueprint $table){
-            $table->string('order_id',5);
+            $table->increments('id');
+            $table->string('order_id',10);
             $table->string('product_id',5);
             $table->integer('quantity');
-            $table->timestamp('order_date');
-            $table->float('total_price',5,2);
+
+            $table->timestamps();
 
             $table->foreign('order_id')->references('order_id')->on('order');
             $table->foreign('product_id')->references('product_id')->on('product');
         });
     }
-
     /**
      * Reverse the migrations.
      *
@@ -35,6 +33,5 @@ class Orderline extends Migration
     {
         //
                 Schema::dropIfExists('orderline');
-
     }
 }

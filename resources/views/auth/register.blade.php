@@ -4,12 +4,31 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+            <ul>
+                @foreach($errors->all() as $key)
+                    <li>{{ $key }}</li>
+                @endforeach
+            </ul>
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
 
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
+
+                        <div class="form-group{{ $errors->has('user_id') ? ' has-error' : '' }}">
+                            <label for="user_id" class="col-md-4 control-label">User ID</label>
+
+                            <div class="col-md-6">
+                                <input id="user_id" type="text" class="form-control" name="user_id" value="{{ old('user_id') }}" required autofocus>
+
+                                @if ($errors->has('user_id'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('user_id') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Name</label>
@@ -58,6 +77,19 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="balance" class="col-md-4 control-label">Amount Topup</label>
+
+                            <div class="col-md-6">
+                                <select id="balance" class="form-control" name="balance" required>
+                                    <option value="5" >RM 5.00</option>
+                                    <option value="10">RM 10.00</option>
+                                    <option value="15">RM 15.00</option>
+                                    <option value="20">RM 20.00</option>
+                                </select>
                             </div>
                         </div>
 

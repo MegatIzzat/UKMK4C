@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "318d9a90838b7e88b88de024fd74d2a7",
+    "content-hash": "13c2ca05ded213b95e05fe429f47bb70",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -409,12 +409,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-star-rating.git",
-                "reference": "ca43ee3316b268e1853613c7dbf0b1458ffe734f"
+                "reference": "540f57cc24ebde2027ad6d05466e97ef48ec622e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-star-rating/zipball/ca43ee3316b268e1853613c7dbf0b1458ffe734f",
-                "reference": "ca43ee3316b268e1853613c7dbf0b1458ffe734f",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-star-rating/zipball/540f57cc24ebde2027ad6d05466e97ef48ec622e",
+                "reference": "540f57cc24ebde2027ad6d05466e97ef48ec622e",
                 "shasum": ""
             },
             "type": "library",
@@ -445,7 +445,7 @@
                 "star",
                 "svg"
             ],
-            "time": "2017-09-06T17:23:12+00:00"
+            "time": "2017-10-20T17:21:00+00:00"
         },
         {
             "name": "laravel/framework",
