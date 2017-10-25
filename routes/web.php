@@ -126,16 +126,19 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 /*-------------------------------- TOP UP -------------------------------------*/
 
-Route::post('topup', function(){
-	$users = App\User::all();
-	$customer = App\Customer::all();
-	return view('staff.topup', compact('users'))->with('customer',$customer);
-
+Route::get('topup', function(){
+	return view('staff.topup');
 });
 
-// Route::put('productajaxCRUD/{cust_id?}',function(Request $request,$cust_id){
-//     $customer = App\Customer::find($cust_id);
-//     $customer->cust_balance= $request::put('cust_balance');
-//     $product->save();
-//     return response()->json($customer);
-// });
+Route::get('topup/{cust_id?}',function($cust_id){
+    $customer = App\Customer::find($cust_id);
+    return response()->json($customer);
+});
+
+Route::put('topup/{cust_id?}', function(Request $request,$cust_id){
+	$customer = App\Customer::find($cust_id);
+	$customer->cust_balance= $request->cust_balance;
+	$customer->save();
+	return response()->json($customer);
+
+});

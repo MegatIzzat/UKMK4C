@@ -26,42 +26,42 @@
                         <div id="topupvalue" class="btn-group-vertical btn-lg" data-toggle="buttons">
                             <div class="col-md-12 btn-group-justified">
                             <label class="btn btn-primary gradient">
-                              <input type="radio" name="topup" id="rm5" value="5"> RM 5
+                              <input type="radio" name="topupvalue" value="5"> RM 5
                             </label>
                             <label class="btn btn-primary gradient">
-                              <input type="radio" name="topup" id="rm10" value="10"> RM 10
-                            </label>
-                            </div>
-                            <div class="col-md-12 btn-group-justified">
-                            <label class="btn btn-primary gradient">
-                              <input type="radio" name="topup" id="rm15" value="15"> RM 15
-                            </label>
-                            <label class="btn btn-primary gradient">
-                              <input type="radio" name="topup" id="rm20" value="20"> RM 20
+                              <input type="radio" name="topupvalue" value="10"> RM 10
                             </label>
                             </div>
                             <div class="col-md-12 btn-group-justified">
                             <label class="btn btn-primary gradient">
-                              <input type="radio" name="topup" id="rm25" value="25"> RM 25
+                              <input type="radio" name="topupvalue" value="15"> RM 15
                             </label>
                             <label class="btn btn-primary gradient">
-                              <input type="radio" name="topup" id="rm30" value="30"> RM 30
-                            </label>
-                            </div>
-                            <div class="col-md-12 btn-group-justified">
-                            <label class="btn btn-primary gradient">
-                              <input type="radio" name="topup" id="rm35" value="35"> RM 35
-                            </label>
-                            <label class="btn btn-primary gradient">
-                              <input type="radio" name="topup" id="rm40" value="40"> RM 40
+                              <input type="radio" name="topupvalue" value="20"> RM 20
                             </label>
                             </div>
                             <div class="col-md-12 btn-group-justified">
                             <label class="btn btn-primary gradient">
-                              <input type="radio" name="topup" id="rm45" value="45"> RM 45
+                              <input type="radio" name="topupvalue" value="25"> RM 25
                             </label>
                             <label class="btn btn-primary gradient">
-                              <input type="radio" name="topup" id="rm50" value="50"> RM 50
+                              <input type="radio" name="topupvalue" value="30"> RM 30
+                            </label>
+                            </div>
+                            <div class="col-md-12 btn-group-justified">
+                            <label class="btn btn-primary gradient">
+                              <input type="radio" name="topupvalue" value="35"> RM 35
+                            </label>
+                            <label class="btn btn-primary gradient">
+                              <input type="radio" name="topupvalue" value="40"> RM 40
+                            </label>
+                            </div>
+                            <div class="col-md-12 btn-group-justified">
+                            <label class="btn btn-primary gradient">
+                              <input type="radio" name="topupvalue" value="45"> RM 45
+                            </label>
+                            <label class="btn btn-primary gradient">
+                              <input type="radio" name="topupvalue" value="50"> RM 50
                             </label>
                             </div>
                         </div>
@@ -84,51 +84,59 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="{{asset('js/jquery.confirm.js')}}"></script>
 
-    <script type="text/javascript">
-        $("#topupvalue :input").change(function() {
-            var data = { topup: $('#topupvalue').val(), }
-            var id= $(this).attr('id');
-            var value= $(this).attr('value');
-            console.log(id, value); 
-        });
-    </script>
 
-    <script>
+    {{-- <script>
         $(document).on('click','.btn-success',function(){
             var cust_id = $('#cust_id').val();
             console.log(cust_id); 
         });
-    </script>
+    </script> --}}
 
-    {{-- <script type="text/javascript">
+    <script type="text/javascript">
+
+        var url = "http://127.0.0.1:8000/topup";
         $(document).on('click','.btn-success',function(){
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        })
+
+        var formData = {
+            cust_id: $('#cust_id').val(),
+            cust_balance: $("input[name=topupvalue]:checked").val(),
+        }
+
         var cust_id = $('#cust_id').val();
-    
+        var cust_balance = $("input[name=topupvalue]:checked").val();
+
+        var my_url = url;
+        my_url += '/' + cust_id;
+
         $.confirm({
-            text: cust_id,
+            text: my_url,
             title: "Confirmation required",
             confirm: function(button) {
               
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                }
-            })
+            console.log(cust_balance);
             $.ajax({
                 type: "PUT",
+                url: my_url,
+                data: formData,
+                dataType: 'json',
                 success: function (data) {
                     console.log(data);
-                    cust_balance.replaceWith(value + cust_balance );
                 },
                 error: function (data) {
                     console.log('Error:', data);
                 }
-    
+            
             });
             alert("Top Up Successful");
+            location.reload();
             },
             cancel: function(button) {
-            // nothing to do
             },
             confirmButton: "Yes, proceed",
             confirmButtonClass: "btn-danger",
@@ -137,6 +145,6 @@
         
     });
     </script>
- --}}
+
 </body>
 </html>
