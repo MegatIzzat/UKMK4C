@@ -12,15 +12,19 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(CategorySeeder::class);
-        $this->call(ProductSeeder::class);
         $this->call(CustomerSeeder::class);
+        $this->call(ProductSeeder::class);
         $this->call(StaffSeeder::class);
-        $this->call(TopupSeeder::class);
+        $this->call(TopupSeeder::class);    
         $this->call(OrderSeeder::class);
         $this->call(FeedbackSeeder::class);
         $this->call(OrderlineSeeder::class);
         $this->call(AdvertisementSeeder::class);
+<<<<<<< HEAD
         $this->call(UserSeeder::class);
 
+=======
+        
+>>>>>>> Megat-2
     }
 }
