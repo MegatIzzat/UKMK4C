@@ -8,18 +8,19 @@ class Order extends Model
 {
     //
 	protected $table = 'order';
-	protected $fillable = ['order_id','cust_id','staff_id','order_status'];
+	protected $primaryKey = 'order_id';
+	protected $fillable = ['order_id','cust_id','order_status'];
+	public const CREATED_AT = 'order_date';
+	public const UPDATED_AT = 'order_modified';
+
+	public $timestamp = false;
 
 	public function Customer(){
-		return $this->belongTo('App\Customer','cust_id');
-	}
-
-	public function Staff(){
-		return $this->belongTo('App\Staff','staff_id');
+		return $this->belongTo('App\Customer');
 	}
 
 	public function Orderline(){
-		return $this->belongTo('App\Orderline','order_id');
+		return $this->hasMany('App\Orderline');
 	}
 
 }

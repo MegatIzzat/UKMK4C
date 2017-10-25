@@ -26,19 +26,19 @@
                     <span class="icon-bar"></span>
                 </button>
     
-                 <a class="navbar-brand" href="/"><strong>Kiosk4Community</strong></a>
+                 <a class="navbar-brand" href="home.php"><strong>Kiosk4Community</strong></a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="/">Home</a></li>
+                    <li><a href="home.php">Home</a></li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu 
                             <span class="caret"></span>
                         </a>
                         
                         <ul class="dropdown-menu">
-                            <li><a href="/">Products</a></li>
+                            <li><a href="products.php">Products</a></li>
                             <li><a href="customers.php">Customers</a></li>
                             <li><a href="staffs.php">Staffs</a></li>
                             <li><a href="orders.php">Orders</a></li>

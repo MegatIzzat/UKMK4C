@@ -1,4 +1,4 @@
-@extends('app')
+@extends('layouts.app')
 
 @section('title','Cart')
 
@@ -6,8 +6,8 @@
 	@if(Session::has('cart'))
 		<div class="row">
 			<div class="col-md-8 col-md-offset-2 ">
-				<table class="table table-responsive table-hover table-condensed table-bordered">
-					<thead>
+				<table class="table table-responsive table-hover table-condensed">
+					
 						<tr>
 							<th></th>
 							<th class="text-center">Name</th>
@@ -15,7 +15,7 @@
 							<th class="text-center">Price</th>
 							<th></th>
 						</tr>
-					</thead>
+					
 					@foreach($products as $product)
 						<tr>
 							<td width="150">
@@ -45,7 +45,7 @@
 					<tr>
 						<td colspan="3" class="text-center">Grand Total</td>
 						<td class="text-center"><strong>RM {{ number_format($totalPrice, 2) }}</strong></td>
-						<td><button type="button" class="btn btn-success">Checkout</button></td>
+						<td><a role="button" class="btn btn-success" href="{{route('cust.checkout',['user' => Auth::user()->user_id] )}}">Checkout</a></td>
 					</tr>
 				</table>
 				

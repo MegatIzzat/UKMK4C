@@ -16,21 +16,18 @@ class OrderSeeder extends Seeder
                 [
                     'order_id' => 'B0001',
                     'cust_id' => 'C0001',
-                    'staff_id' => 'S0002',
                     'order_status' => 'Completed',
                 ],
 
                 [
                     'order_id' => 'B0002',
                     'cust_id' => 'C0002',
-                    'staff_id' => 'S0003',
                     'order_status' => 'Completed',
                 ],
 
                 [
                     'order_id' => 'B0003',
                     'cust_id' => 'C0003',
-                    'staff_id' => 'S0003',
                     'order_status' => 'In Progress',
                 ]
 

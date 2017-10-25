@@ -35,13 +35,13 @@ Route::group(['prefix'=>'/staff', 'middleware' => 'auth','as'=>'staff.', 'name'=
 
 /*------------------------ CUSTOMER -------------------------------*/
 
-Route::group(['prefix'=>'/', 'middleware' => 'auth','as'=>'cust.', 'name'=>'cust' ], function(){
-	Route::get('create', 'AdminController@create')->name('create');
-	Route::post('store', 'AdminController@store')->name('store');
-	Route::get('edit/{id}', 'AdminController@edit')->name('edit');
-	Route::put('update/{id}','AdminController@update')->name('update');
-	Route::delete('delete/{id}', 'AdminController@destroy')->name('delete');
+Route::group(['prefix'=>'/', 'as'=>'cust.', 'name'=>'cust' ], function(){
+	
 
+});
+
+Route::group(['prefix'=>'/', 'middleware' => 'auth','as'=>'cust.', 'name'=>'cust' ], function(){
+	Route::get('checkout/{user}', 'CustomerController@checkout')->name('checkout');
 });
 
 /*------------------------ AUTH -------------------------------*/
