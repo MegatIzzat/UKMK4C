@@ -68,7 +68,17 @@
 								<a href="#"><img src="{{asset('img/'.$p->product_id.'.jpg')}}" alt="product-img"></a>
 								<div class="caption">
 									<h4><a href="#">{{$p->product_name}}</a></h4>
-									<h5>RM {{ number_format($p->product_price, 2)}}</h5>
+									<h4><strong>RM {{ number_format($p->product_price, 2)}}</strong></h4>
+								</div>
+								<div class="ratings">
+									<p class="pull-right">Rated {{$p->Rating()->count()}} times</p>
+									<p>
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star"></span>
+									</p>
 								</div>
 								<div class="footer">
 								

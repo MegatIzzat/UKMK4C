@@ -9,6 +9,7 @@ use App\Order;
 use App\Orderline;
 use App\Customer;
 use App\Category;
+use App\Rating;
 use Session;
 
 class CustomerController extends Controller
@@ -18,7 +19,8 @@ class CustomerController extends Controller
         //
         $product = Product::paginate(6);
         $category = Category::get();
-        return view('customer.index',compact('product','category'));
+        $rating = Rating::get();
+        return view('customer.index',compact('product','category', 'rating'));
     }
 
     public function AddToCart(Request $request, $product_id){
