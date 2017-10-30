@@ -1,6 +1,6 @@
-@extends('layout.app')
+@extends('layouts.app')
 
-@section('title','View Order')
+@section('title','Manage Profile')
 
 @section('content')
 	

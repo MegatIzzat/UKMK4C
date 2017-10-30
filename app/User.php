@@ -15,8 +15,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'user_id', 'name', 'email', 'password',
+        'user_id','name', 'email', 'password',
     ];
+
+    protected $primaryKey = 'user_id';
+    public $incrementing = false;
 
     /**
      * The attributes that should be hidden for arrays.
@@ -26,4 +29,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function Customer(){
+        return $this->hasOne('App\Customer','user_id','cust_id');
+    }
 }

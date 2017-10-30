@@ -127,7 +127,8 @@
                     
                 }
                 $('#frmProducts').trigger("reset");
-                $('#myModal').modal('hide')
+                $('#myModal').modal('hide');
+                location.reload();
             },
             error: function (data) {
                 console.log('Error:', data);

@@ -15,7 +15,7 @@ class Customer extends Migration
     {
         //
         Schema::create('customer', function(Blueprint $table){
-            $table->string('cust_id',5);
+            $table->string('cust_id',7);
             $table->float('cust_balance',5,2);
             $table->rememberToken();
             $table->timestamps();
