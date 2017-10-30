@@ -96,7 +96,7 @@
                 <div class="form-group">
                  <label for="inputRating" class="col-sm-3 control-label">Rating (Default)</label>
                     <div class="col-sm-9">
-                    <input type="number" class="rating-loading" id="product_rating" name="rating" data-min=0 data-max=5 data-step=0.5 data-size="xs" value="0.0">
+                    <input type="number" class="rating rating-loading" id="product_rating" name="rating" data-min=0 data-max=5 data-step=0.5 data-size="xs" value="0.0" readonly="">
                     </div>
                 </div>
             </form>
@@ -115,12 +115,6 @@
     <script src="{{asset('js/ajaxscript.js')}}"></script>
     <script src="{{asset('js/jquery.confirm.js')}}"></script>
     <script src="{{asset('js/star-rating.js')}}"></script>
-
-    <script>
-      $(document).on('ready', function(){
-          $('#product_rating').rating({displayOnly: true, step: 0.5});
-      });
-    </script>
 
 </body>
 </html>
