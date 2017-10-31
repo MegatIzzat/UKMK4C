@@ -10,7 +10,7 @@ class Order extends Model
 
 	protected $fillable = ['order_id','cust_id','total_price','order_status'];
 	public const CREATED_AT = 'order_date';
-	public const UPDATED_AT = 'order_modified';
+	public const UPDATED_AT = 'order_completed';
 	public $timestamp = false;
 }
 
