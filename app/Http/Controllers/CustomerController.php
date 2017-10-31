@@ -89,4 +89,14 @@ class CustomerController extends Controller
             return redirect()->route('cust.index')->with('success','Order has been successfully made!');
         }
     }
+    public function sendRating(Request $request, $product_id){
+        // $product = Product::find($product_id);
+        Rating::create([
+            'product_id' => $product_id,
+            'product_rating' => $request->input(),
+        ]);
+
+
+        return redirect()->route('ratetest')->with('success','Thank you for rating!');
+    }
 }
