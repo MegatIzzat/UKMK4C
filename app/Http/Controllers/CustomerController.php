@@ -19,7 +19,6 @@ class CustomerController extends Controller
         //
         $product = Product::paginate(6);
         $category = Category::get();
-        $rating = Rating::get();
         return view('customer.index',compact('product','category', 'rating'));
     }
 
@@ -89,8 +88,11 @@ class CustomerController extends Controller
             return redirect()->route('cust.index')->with('success','Order has been successfully made!');
         }
     }
+    
     public function sendRating(Request $request){
         $rating = Rating::create($request->input());
         return response()->json($rating);
     }
+
+
 }

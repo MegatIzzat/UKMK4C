@@ -115,7 +115,8 @@ Route::get('rating', function(){
 
 Route::get('rating/{product_id}',function($product_id){
     $rating = App\Rating::where('product_id', $product_id)->get();
-    return response()->json($rating);
+    $r = number_format(DB::table('rating')->where('product_id', $product_id)->average('product_rating'),2);
+    return response()->json($r);
 });
 
 Route::post('rating/{product_id}', [

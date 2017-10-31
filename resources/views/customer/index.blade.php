@@ -73,11 +73,7 @@
 								<div class="ratings">
 									<p class="pull-right">Rated {{$p->Rating()->count()}} times</p>
 									<p>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
-										<span class="glyphicon glyphicon-star"></span>
+										<span class="glyphicon glyphicon-star">{{$p->product_rating}}</span>
 									</p>
 								</div>
 								<div class="footer">

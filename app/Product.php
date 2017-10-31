@@ -21,4 +21,5 @@ class Product extends Model
     public function Rating(){
         return $this->hasMany('App\Rating','product_id');
     }
+
 }
