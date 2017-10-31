@@ -56,17 +56,17 @@
             </div>
             <div class="modal-body">
             
-            <form id="frmProducts" name="frmProducts" class="form-horizontal" novalidate="">
-              <div class="form-group error">
+            <form id="frmProducts" name="frmProducts" class="form-horizontal">
+              <div class="form-group">
                  <label for="inputId" class="col-sm-3 control-label">ID</label>
                    <div class="col-sm-9">
-                    <input type="text" class="form-control has-error" id="product_id" name="id" placeholder="Product ID" value="">
+                    <input type="text" class="form-control" id="product_id" name="id" placeholder="Product ID" value="">
                    </div>
                    </div>
-                <div class="form-group error">
+                <div class="form-group">
                  <label for="inputName" class="col-sm-3 control-label">Name</label>
                    <div class="col-sm-9">
-                    <input type="text" class="form-control has-error" id="product_name" name="name" placeholder="Product Name" value="">
+                    <input type="text" class="form-control" id="product_name" name="name" placeholder="Product Name" value="">
                    </div>
                    </div>
                  <div class="form-group">

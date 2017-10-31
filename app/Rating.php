@@ -11,6 +11,8 @@ class Rating extends Model
     protected $table = 'rating';
     protected $fillable = ['rating_id','product_id','product_rating'];
 
+    public $timestamps = false;
+
     public function Product(){
     	return $this->belongsTo('App\ProductModel','product_id');
     }

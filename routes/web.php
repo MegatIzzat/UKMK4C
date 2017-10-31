@@ -101,24 +101,26 @@ Route::delete('/productmanagement/{product_id?}', 'ProductController@destroy')->
 //     return response()->json($product);
 // });
 use App\Product;
-use App\Category;
 use App\Rating;
+use App\Order;
+use App\Orderline;
 
-Route::get('ratetest', function(){
-	$product = Product::paginate(9);
-    $category = Category::get();
-    $rating = Rating::get();
-	return view('customer.orderstatus',compact('product','category', 'rating'));
+Route::get('rating', function(){
+    $order = Order::get();
+	$orderline = Orderline::get();
+	$product = Product::get();
+
+    return view('customer.rating',compact('order','orderline','product'));
 });
 
-Route::get('ratetest/{product_id}',function($product_id){
+Route::get('rating/{product_id}',function($product_id){
     $rating = App\Rating::where('product_id', $product_id)->get();
     return response()->json($rating);
 });
 
-Route::post('ratetest/{product_id}', [
+Route::post('rating/{product_id}', [
 	'uses' => 'CustomerController@sendRating',
-	'as' => 'product.sendRating'
+	'as' => 'customer.sendRating'
 ]);
 
 /*------------------------ CART -----------------------------*/
