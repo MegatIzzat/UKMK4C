@@ -24,12 +24,14 @@ Route::group(['prefix'=>'/manager', 'middleware' => 'auth','as'=>'manager.', 'na
 
 /*------------------------ STAFF -------------------------------*/
 
-Route::group(['prefix'=>'/staff','as'=>'staff.', 'name'=>'staff' ], function(){
-	
+Route::group(['prefix'=>'/staff', 'middleware' => 'auth','as'=>'staff.', 'name'=>'staff' ], function(){
+	Route::get('/','StaffController@index')->name('index');
+	Route::get('create', 'StaffController@create')->name('create');
+	Route::post('store', 'AStaffController@store')->name('store');
+	Route::get('edit/{id}', 'StaffController@edit')->name('edit');
+	Route::put('update/{id}','StaffController@update')->name('update');
+	Route::delete('delete/{id}', 'StaffController@destroy')->name('delete');
 });
-
-Route::get('/advertisement','AdverController@index');
-Route::post('/advertisement','AdverController@create');
 
 /*------------------------ CUSTOMER -------------------------------*/
 
