@@ -61,44 +61,6 @@
     </div>
   </div>
 
-  <div class="container">
-    <div class="panel panel-primary">
-     <div class="panel-heading">Order Detail
-     </div>
-     <div class="panel-body"> 
-      <ul>
-        @foreach($errors->all() as $key)
-        <li>{{ $key }}</li>
-        @endforeach
-      </ul>
-
-
-
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>Product ID</th>
-            <th>Quantity</th>
-
-          </tr>
-        </thead>
-
-        @foreach($orderline as $key => $p)
-
-        <tr>
-          <td>{{$p->order_id}}</td>
-          <td>{{$p->product_id}}</td>
-          <td>{{$p->quantity}}</td>
-
-        </tr>
-        @endforeach
-      </table>
-
-    </div>
-  </div>
-</div>
-
 <meta name="_token" content="{!! csrf_token() !!}" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
