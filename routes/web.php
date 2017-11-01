@@ -27,7 +27,7 @@ Route::group(['prefix'=>'/manager', 'middleware' => 'auth','as'=>'manager.', 'na
 Route::group(['prefix'=>'/staff', 'middleware' => 'auth','as'=>'staff.', 'name'=>'staff' ], function(){
 	Route::get('/','StaffController@index')->name('index');
 	Route::get('create', 'StaffController@create')->name('create');
-	Route::post('store', 'AStaffController@store')->name('store');
+	Route::post('store', 'StaffController@store')->name('store');
 	Route::get('edit/{id}', 'StaffController@edit')->name('edit');
 	Route::put('update/{id}','StaffController@update')->name('update');
 	Route::delete('delete/{id}', 'StaffController@destroy')->name('delete');
@@ -42,6 +42,7 @@ Route::group(['prefix'=>'/', 'as'=>'cust.', 'name'=>'cust' ], function(){
 
 Route::group(['prefix'=>'/', 'middleware' => 'auth','as'=>'cust.', 'name'=>'cust' ], function(){
 	Route::get('checkout/{user}', 'CustomerController@checkout')->name('checkout');
+	
 });
 
 /*------------------------ AUTH -------------------------------*/
@@ -150,6 +151,16 @@ Route::group(['prefix'=>'/orderstatus/', 'name'=>'orderstatus' ], function(){
 
 	Route::get('', 'OrderController@index')->name('index');
 	Route::get('update/{id}','OrderController@update')->name('update');
+});
 
+/*--------------------------profile*/
 
+Route::group(['prefix'=>'/profile/', 'name'=>'profile', 'as'=>'profile.' ], function(){
+	
+	Route::get('create', 'ProfileController@create')->name('create');
+	Route::post('store', 'ProfileController@store')->name('store');
+	Route::get('edit/{id}', 'ProfileController@edit')->name('edit');
+	Route::get('','ProfileController@index')->name('index');
+	Route::get('show/{user}', 'ProfileController@show')->name('show');
+    Route::put('update/{user}','ProfileController@update')->name('update');
 });
