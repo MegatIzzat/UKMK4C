@@ -1,15 +1,19 @@
-@extends('layouts.app')
-
-@section('title','Advertisement')
-
-@section('content')
+<html>
+  <head>
+   <title>K4C | Advertisement</title>  
+    <!-- Bootstrap -->
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('css/customize.css')}}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+  </head>
 	<div class="container">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="col-md-6">
 				<h3>Advertisement</h3>
 			</div>
 			<div class="col-md-3 col-md-offset-3">
-				<a class="form-control btn btn-success" id="btn_add" name="btn_add" role="button" data-toggle="modal" data-target="#myModal">New Advertisement</a>
+				<a class="btn btn-success pull-right" id="btn_add" name="btn_add" role="button">New Advertisement</a>
 			</div><br><br>
 			
 			<hr><hr>
@@ -28,6 +32,7 @@
 						<td>{{$adv->advertisement_id}}</td>
 						<td>{{$adv->advertisement_name}}</td>
 						<td>{{$adv->advertisement_img}}</td>
+						<td>{{$adv->staff_id}}</td>
 						<td width="150">
 							<button class="btn btn-warning btn-xs btn-detail" value="{{$adv->advertisement_id}}">
 								Update
@@ -42,19 +47,19 @@
 	</div>
 
 		<!-- Modal -->
-	<div id="myModal" class="modal fade" role="dialog">
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg">
 
 		<!-- Modal content-->
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
-				<h4 class="modal-title">Create Advertisement</h4>
+				<h4 class="modal-title" id="myModalLabel">Create Advertisement</h4>
 			</div>
 			<div class="modal-body">
-				<form class="form-horizontal" id="frmAdver">
+				<form class="form-horizontal" id="frmAdver" name="frmAdver" novalidate="">
 					<div class="form-group">
-						<label class="col-md-4 control-label">Advertisement ID</label>
+						<label for="inputID" class="col-md-4 control-label">Advertisement ID</label>
 						<div class="col-md-6">
 							<input id="advertisement_id" type="text" name="advid" class="form-control" placeholder="Advertisement ID">
 						</div>
@@ -73,6 +78,8 @@
 							<input id="advertisement_img" type="text" name="advimg" class="form-control" placeholder="Advertisement Image">
 						</div>
 					</div>
+
+					<input type="hidden" id="staff_id" name="staffid" value="{{Auth::user()->user_id}}">
 				</form>
 				
 
@@ -86,6 +93,12 @@
 		</div>
 	</div>
 
-	<script type="text/javascript" src="{{asset('js/adver.js')}}"></script>
+	
 
-@endsection
+    <meta name="_token" content="{!! csrf_token() !!}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="{{asset('js/adver.js')}}"></script>
+    <script src="{{asset('js/jquery.confirm.js')}}"></script>
+</body>
+</html>

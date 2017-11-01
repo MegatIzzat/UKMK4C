@@ -25,8 +25,11 @@ Route::group(['prefix'=>'/manager', 'middleware' => 'auth','as'=>'manager.', 'na
 /*------------------------ STAFF -------------------------------*/
 
 Route::group(['prefix'=>'/staff','as'=>'staff.', 'name'=>'staff' ], function(){
-	Route::get('/advertisement','AdverController@index')->name('adverindex');
+	
 });
+
+Route::get('/advertisement','AdverController@index');
+Route::post('/advertisement','AdverController@create');
 
 /*------------------------ CUSTOMER -------------------------------*/
 
