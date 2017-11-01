@@ -80,6 +80,7 @@
             {{round(abs($to_time - $from_time) / 60). " minutes"}}
           </td>
 
+          @if($p->order_feedback==null)
           <form class="form-horizontal" method="POST" action="{{ route('customer.sendFeedback',$p->order_id)}}">
           {{csrf_field()}}
           {{ method_field('PUT') }}
@@ -90,6 +91,9 @@
           </td>
         </form>
 
+        @else
+        <td>{{$p->order_feedback}}</td>
+          @endif
         </tr>
         @endif
         @endif
