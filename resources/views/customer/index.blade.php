@@ -72,12 +72,11 @@
 								</div>
 								<div class="ratings">
 									<p>
-										<input id="input-3" name="input-3" value="{{$p->product_rating}}" class="rating" data-size="xs" data-show-clear="false" data-show-caption="false" readonly>
+										<input id="input-3" name="input-3" value="{{$p->product_rating}}" class="rating" data-size="xs" data-show-clear="false" data-show-caption="true" readonly>
 									</p>
-									<p class="pull-left">Rated {{$p->Rating()->count()}} times</p>
 								</div>
 								<div class="footer">
-								
+									<p class="pull-left">Rated {{$p->Rating()->count()}} times</p>
 									<a href="{{route('product.addToCart',['product_id' => $p->product_id])}}" class="btn btn-success pull-right" role="button">Add to Cart</a>
 								
 									

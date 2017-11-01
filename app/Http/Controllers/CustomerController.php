@@ -11,6 +11,7 @@ use App\Customer;
 use App\Category;
 use App\Rating;
 use Session;
+use Auth;
 
 class CustomerController extends Controller
 {
@@ -90,6 +91,8 @@ class CustomerController extends Controller
     }
     
     public function sendRating(Request $request, $product_id){
+        // $this->user_id = Auth::user()->user_id;
+        // $rating = $this->notSpam()->approved();
         $rating = Rating::create($request->input());
         $r = number_format(\DB::table('rating')->where('product_id', $product_id)->average('product_rating'),2);
         $product = \DB::table('product')->where('product_id', $product_id)->update(['product_rating' => $r]);

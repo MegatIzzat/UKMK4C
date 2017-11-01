@@ -82,7 +82,7 @@
               <div class="form-group">
                  <label for="inputName" class="col-sm-3 control-label">Product Name</label>
                    <div class="col-sm-9">
-                    <label id="product_name"></label>
+                    <p id="product_name"></p>
                    </div>
                  </div>
                 <div class="form-group">
