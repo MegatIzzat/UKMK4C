@@ -108,4 +108,11 @@ class CustomerController extends Controller
         return response()->json($product);
     }
 
+    public function sendFeedback(Request $request, $id)
+    {
+        //
+        Order::findOrFail($id)->update($request->all());
+        return redirect('/orderhistory');
+    }
+
 }

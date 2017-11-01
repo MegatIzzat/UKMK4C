@@ -123,6 +123,11 @@ Route::post('orderhistory/{product_id}', [
 	'as' => 'customer.sendRating'
 ]);
 
+Route::group(['prefix'=>'/orderhistory/', 'as'=>'customer.', 'name'=>'customer' ], function(){
+			Route::put('sendFeedback/{id}','CustomerController@sendFeedback')->name('sendFeedback');
+	});
+
+
 /*------------------------ CART -----------------------------*/
 
 

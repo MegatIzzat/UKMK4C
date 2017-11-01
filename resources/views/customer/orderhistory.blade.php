@@ -80,12 +80,15 @@
             {{round(abs($to_time - $from_time) / 60). " minutes"}}
           </td>
 
-
+          <form class="form-horizontal" method="POST" action="{{ route('customer.sendFeedback',$p->order_id)}}">
+          {{csrf_field()}}
+          {{ method_field('PUT') }}
           <td>
-            <textarea id="myDIV" style="width:100%" rows="3"></textarea>
+            <textarea name="order_feedback" style="width:100%" rows="3"></textarea>
             <br>
-            <a class="btn btn-success btn-sm"  role="button" style="width:100%">Send Feedback</a>
+            <button style="width:100%" class="btn btn-success" type="submit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Send Feedback</button>
           </td>
+        </form>
 
         </tr>
         @endif
