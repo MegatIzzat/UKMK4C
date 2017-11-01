@@ -151,5 +151,11 @@ Route::group(['prefix'=>'/orderstatus/', 'name'=>'orderstatus' ], function(){
 	Route::get('', 'OrderController@index')->name('index');
 	Route::get('update/{id}','OrderController@update')->name('update');
 
+});
+
+Route::group(['prefix'=>'/feedback/', 'name'=>'feedback' ], function(){
+
+	Route::get('', 'FeedbackController@index')->name('index');
+	//Route::get('update/{id}','OrderController@update')->name('update');
 
 });
