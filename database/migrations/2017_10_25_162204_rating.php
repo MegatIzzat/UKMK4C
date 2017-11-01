@@ -15,6 +15,7 @@ class Rating extends Migration
     {
         //
         Schema::create('rating', function(Blueprint $table){
+            $table->increments('rating_id');
             $table->string('product_id',5);
             $table->float('product_rating',2,1);
                         

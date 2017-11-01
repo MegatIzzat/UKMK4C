@@ -4,23 +4,6 @@
 
 @section('content')
 
-	@if(Session::has('cart'))
-		<strong>RM {{ number_format($totalPrice, 2) }}</strong>
-
-	
-
-	{{$customer->cust_balance}}
-
-		@if($customer->cust_balance < $totalPrice)
-			NOT ENOUGH 
-		@else
-			ENOUGH
-		@endif
-	
-
-	{{$balance}}
-
-	<hr>
 	<div class="container-fluid">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="col-md-3">

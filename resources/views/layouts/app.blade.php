@@ -11,8 +11,12 @@
     <!-- Bootstrap -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/customize.css')}}" rel="stylesheet">
+    <link href="/css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+  </head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="{{asset('js/star-rating.js')}}"></script>
+  
 </head>
 <body>
 

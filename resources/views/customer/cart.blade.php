@@ -45,7 +45,12 @@
 					<tr>
 						<td colspan="3" class="text-center">Grand Total</td>
 						<td class="text-center"><strong>RM {{ number_format($totalPrice, 2) }}</strong></td>
-						<td><a role="button" class="btn btn-success" href="{{route('cust.checkout',['user' => Auth::user()->user_id] )}}">Checkout</a></td>
+
+						@guest
+                        	<td><a role="button" class="btn btn-success" href="{{route('login')}}">Checkout</a></td>
+                    	@else
+							<td><a role="button" class="btn btn-success" href="{{route('cust.checkout',['user' => Auth::user()->user_id] )}}">Checkout</a></td>
+						@endguest
 					</tr>
 				</table>
 				

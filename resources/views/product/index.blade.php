@@ -56,17 +56,17 @@
             </div>
             <div class="modal-body">
             
-            <form id="frmProducts" name="frmProducts" class="form-horizontal" novalidate="">
-              <div class="form-group error">
+            <form id="frmProducts" name="frmProducts" class="form-horizontal">
+              <div class="form-group">
                  <label for="inputId" class="col-sm-3 control-label">ID</label>
                    <div class="col-sm-9">
-                    <input type="text" class="form-control has-error" id="product_id" name="id" placeholder="Product ID" value="">
+                    <input type="text" class="form-control" id="product_id" name="id" placeholder="Product ID" value="">
                    </div>
                    </div>
-                <div class="form-group error">
+                <div class="form-group">
                  <label for="inputName" class="col-sm-3 control-label">Name</label>
                    <div class="col-sm-9">
-                    <input type="text" class="form-control has-error" id="product_name" name="name" placeholder="Product Name" value="">
+                    <input type="text" class="form-control" id="product_name" name="name" placeholder="Product Name" value="">
                    </div>
                    </div>
                  <div class="form-group">
@@ -96,15 +96,14 @@
                 <div class="form-group">
                  <label for="inputRating" class="col-sm-3 control-label">Rating</label>
                     <div class="col-sm-9">
-                    <input type="number" class="rating" id="product_rating" name="rating" data-min=0 data-max=5 data-step=0.5 data-size="xs"
-                    title="" >
+                    <input type="number" class="form-control" id="product_rating" name="rating" readonly="">
                     </div>
                 </div>
             </form>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
-            <input type="hidden" id="product_id" name="product_id" value="0">
+            {{-- <input type="hidden" id="product_id" name="product_id" value="0"> --}}
             </div>
         </div>
       </div>
@@ -116,5 +115,6 @@
     <script src="{{asset('js/ajaxscript.js')}}"></script>
     <script src="{{asset('js/jquery.confirm.js')}}"></script>
     <script src="{{asset('js/star-rating.js')}}"></script>
+
 </body>
 </html>

@@ -44,6 +44,9 @@ Route::group(['prefix'=>'/', 'middleware' => 'auth','as'=>'cust.', 'name'=>'cust
 	Route::get('checkout/{user}', 'CustomerController@checkout')->name('checkout');
 });
 
+// Route::group(['prefix'=>'/feedback', 'name'=>'feedback' ], function(){
+// 	Route::get('', 'FeedbackController@index')->name('index');
+// });
 /*------------------------ AUTH -------------------------------*/
 Auth::routes();
 
@@ -100,7 +103,25 @@ Route::delete('/productmanagement/{product_id?}', 'ProductController@destroy')->
 //     $product = App\Product::destroy($product_id);
 //     return response()->json($product);
 // });
+use App\Product;
+use App\Rating;
+use App\Order;
+use App\Orderline;
 
+Route::get('orderhistory', [
+	'uses' => 'CustomerController@orderHistory',
+	'as' => 'customer.orderHistory'
+]);
+
+Route::get('orderhistory/{product_id}',function($product_id){
+    $rating = App\Rating::where('product_id', $product_id)->get();
+    return response()->json($r);
+});
+
+Route::post('orderhistory/{product_id}', [
+	'uses' => 'CustomerController@sendRating',
+	'as' => 'customer.sendRating'
+]);
 
 /*------------------------ CART -----------------------------*/
 
@@ -117,7 +138,7 @@ Route::get('/cart', [
 
 Route::get('/', [
 	'uses' => 'CustomerController@index',
-	'as' => 'customer.index'
+	'as' => 'cust.index'
 ]);
 
 Auth::routes();
