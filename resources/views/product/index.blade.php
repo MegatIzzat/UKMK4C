@@ -94,16 +94,16 @@
                     </div>
                 </div>
                 <div class="form-group">
-                 <label for="inputRating" class="col-sm-3 control-label">Rating (Default)</label>
+                 <label for="inputRating" class="col-sm-3 control-label">Rating</label>
                     <div class="col-sm-9">
-                    <input type="number" class="rating rating-loading" id="product_rating" name="rating" data-min=0 data-max=5 data-step=0.5 data-size="xs" value="0.0" readonly="">
+                    <input type="number" class="form-control" id="product_rating" name="rating" readonly="">
                     </div>
                 </div>
             </form>
             </div>
             <div class="modal-footer">
             <button type="button" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
-            <input type="hidden" id="product_id" name="product_id" value="0">
+            {{-- <input type="hidden" id="product_id" name="product_id" value="0"> --}}
             </div>
         </div>
       </div>
