@@ -25,6 +25,7 @@
         $('#btn-save').val("add");
         $('#frmProducts').trigger("reset");
         $('#myModal').modal('show');
+        $('#product_rating').val('0');
     });
 
     // delete product and remove it from list
@@ -64,26 +65,7 @@
         });
         
     });
-    // $(document).on('click','.delete-product',function(){
-    //     var product_id = $(this).val();
-    //      $.ajaxSetup({
-    //         headers: {
-    //             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-    //         }
-    //     })
-    //     $.ajax({
-    //         type: "DELETE",
-    //         url: url + '/' + product_id,
-    //         success: function (data) {
-    //             console.log(data);
-    //             $("#product" + product_id).remove();
-    //         },
-    //         error: function (data) {
-    //             console.log('Error:', data);
-    //         }
 
-    //     });
-    // });
     //create new product / update existing product
     $("#btn-save").click(function (e) {
         $.ajaxSetup({

@@ -44,9 +44,6 @@ Route::group(['prefix'=>'/', 'middleware' => 'auth','as'=>'cust.', 'name'=>'cust
 	Route::get('checkout/{user}', 'CustomerController@checkout')->name('checkout');
 });
 
-// Route::group(['prefix'=>'/feedback', 'name'=>'feedback' ], function(){
-// 	Route::get('', 'FeedbackController@index')->name('index');
-// });
 /*------------------------ AUTH -------------------------------*/
 Auth::routes();
 
@@ -68,41 +65,11 @@ Route::get('/productmanagement', 'ProductController@index')->name('index');
 Route::get('/productmanagement/{product_id?}', 'ProductController@show')->name('show');
 
 Route::post('/productmanagement', 'ProductController@create')->name('create');
-// Route::post('/productmanagement', 'ProductController@store')->name('store');
 
 Route::put('/productmanagement/{product_id?}', 'ProductController@update')->name('update');
 
 Route::delete('/productmanagement/{product_id?}', 'ProductController@destroy')->name('delete');
 
-// Route::get('form-validation', 'HomeController@formValidation');
-// Route::post('form-validation', 'HomeController@formValidationPost');
-
-// Route::get('productajaxCRUD', function () {
-//     $products = App\Product::all();
-//     return view('product.index')->with('products',$products);
-// });
-// Route::get('productajaxCRUD/{product_id?}',function($product_id){
-//     $product = App\Product::find($product_id);
-//     return response()->json($product);
-// });
-// Route::post('productajaxCRUD',function(Request $request){   
-//     $product = App\Product::create($request->input());
-//     return response()->json($product);
-// });
-// Route::put('productajaxCRUD/{product_id?}',function(Request $request,$product_id){
-//     $product = App\Product::find($product_id);
-//     $product->product_name = $request->product_name;
-//     $product->product_price= $request->product_price;
-//     $product->category_id= $request->category_id;
-//     $product->product_img= $request->product_img;
-//     $product->product_rating= $request->product_rating;
-//     $product->save();
-//     return response()->json($product);
-// });
-// Route::delete('productajaxCRUD/{product_id?}',function($product_id){
-//     $product = App\Product::destroy($product_id);
-//     return response()->json($product);
-// });
 use App\Product;
 use App\Rating;
 use App\Order;
@@ -177,5 +144,14 @@ Route::group(['prefix'=>'/orderstatus/', 'name'=>'orderstatus' ], function(){
 	Route::get('', 'OrderController@index')->name('index');
 	Route::get('update/{id}','OrderController@update')->name('update');
 
-
 });
+
+
+/*------------------------ ADVERTISEMENT -----------------------------*/
+
+Route::get('/advertisement','AdverController@index');
+Route::post('/advertisement','AdverController@create');
+Route::get('/advertisement/{advertisement_id}', 'AdverController@show');
+Route::put('/advertisement/{advertisement_id}', 'AdverController@update');
+Route::delete('/advertisement/{advertisement_id}', 'AdverController@destroy');
+
