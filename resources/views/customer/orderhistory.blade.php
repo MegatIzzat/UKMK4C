@@ -34,7 +34,7 @@
         </thead>
 
         @foreach($order as $key => $p)
-        @if($p->cust_id=='C0001')
+        @if($p->cust_id=='C0003')
         @if($p->order_status=='Completed')
         <tr>
           <td>
