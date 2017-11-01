@@ -11,6 +11,7 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
+        $currtime=\Carbon\Carbon::now()->toDateTimeString();//Get current time in GMT +8 ->setTimezone('Asia/Kuala_Lumpur')
         App\Order::insert([
 
                 [
@@ -18,7 +19,7 @@ class OrderSeeder extends Seeder
                     'cust_id' => 'C0001',
                     'total_price' => '5.50',
                     'order_status' => 'Completed',
-                    'order_date' => '2017-10-09 19:21:02',
+                    'order_date' => '2017-10-31 19:21:02',
 
                 ],
 
@@ -27,7 +28,7 @@ class OrderSeeder extends Seeder
                     'cust_id' => 'C0002',
                     'total_price' => '5.00',
                     'order_status' => 'In Progress',
-                    'order_date' => '2017-10-09 20:53:42',
+                    'order_date' => '2017-10-31 19:51:02',
                 ],
 
                 [
@@ -35,7 +36,15 @@ class OrderSeeder extends Seeder
                     'cust_id' => 'C0003',
                     'total_price' => '6.30',
                     'order_status' => 'In Progress',
-                    'order_date' => '2017-10-09 21:05:04',
+                    'order_date' => $currtime,
+                ],
+
+                [
+                    'order_id' => 'B0004',
+                    'cust_id' => 'C0002',
+                    'total_price' => '11.10',
+                    'order_status' => 'In Progress',
+                    'order_date' => $currtime,
                 ]
 
         ]);    }

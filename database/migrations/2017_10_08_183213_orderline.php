@@ -18,8 +18,6 @@ class Orderline extends Migration
             $table->string('product_id',5);
             $table->integer('quantity');
 
-            $table->timestamps();
-
             $table->foreign('order_id')->references('order_id')->on('order');
             $table->foreign('product_id')->references('product_id')->on('product');
         });

@@ -1,14 +1,12 @@
-
-
 <html>
 <head>
- <title>Order History K4C</title>  
+ <title>Feedback K4C</title>  
  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> 
 </head>
 <body>
   <div class="container">
     <div class="panel panel-primary">
-     <div class="panel-heading">Order History
+     <div class="panel-heading">Feedback
      </div>
      <div class="panel-body"> 
       <ul>
@@ -22,7 +20,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th>Order Date</th>
+            <th>Order Time</th>
             <th>Order ID</th>
             <th>Product Purchased</th>
             <th>Paid</th>
@@ -34,9 +32,13 @@
         </thead>
 
         @foreach($order as $key => $p)
-        @if($p->cust_id=='C0003')
+        @if($p->cust_id=='C0002')
+        @if($p->order_status=='Completed')
         <tr>
-          <td>{{$p->order_date}}</td>
+          <td>
+            <?php echo date('d-M-Y', strtotime($p->order_date.' + 8 hours')); ?><br>
+            <?php echo date('h:i A', strtotime($p->order_date.' + 8 hours')); ?>
+            </td><!-- Display in Malaysia time -->
           <td>{{$p->order_id}}</td>
           
 
@@ -74,13 +76,15 @@
             ?>
           </td>
 
+
           <td>
-            <textarea rows="3"></textarea>
+            <textarea style="width:100%" rows="3"></textarea>
             <br>
-            <a class="btn btn-success btn-sm" role="button" href="">Send Feedback</a>
+            <a class="btn btn-success btn-sm" role="button" style="width:100%" href="">Send Feedback</a>
           </td>
 
         </tr>
+        @endif
         @endif
         @endforeach
       </table>
