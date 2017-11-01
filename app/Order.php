@@ -8,7 +8,7 @@ class Order extends Model
 	protected $table = 'order';
 	protected $primaryKey = 'order_id';
 
-	protected $fillable = ['order_id','cust_id','total_price','order_status'];
+	protected $fillable = ['order_id','cust_id','total_price','order_status','order_feedback'];
 	public const CREATED_AT = 'order_date';
 	public const UPDATED_AT = 'order_completed';
 	public $timestamp = false;

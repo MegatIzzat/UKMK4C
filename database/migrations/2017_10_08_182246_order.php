@@ -19,6 +19,7 @@ class Order extends Migration
             $table->string('order_status');
             $table->timestamp('order_date')->nullable();
             $table->timestamp('order_completed')->nullable();
+            $table->string('order_feedback')->nullable();
 
             $table->primary('order_id');
             $table->foreign('cust_id')->references('cust_id')->on('customer');

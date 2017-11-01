@@ -74,14 +74,14 @@
           <td>
             <?php
             $to_time = strtotime($p->order_date);
-            $from_time = strtotime($p->order_completed); 
+            $from_time = strtotime($p->order_completed);
             ?>
             {{round(abs($to_time - $from_time) / 60). " minutes"}}
           </td>
 
 
           <td>
-            <textarea id="myDIV" style="width:100%" rows="3"></textarea>
+            <textarea style="width:100%" rows="2"></textarea>
             <br>
             <a class="btn btn-success btn-sm"  role="button" style="width:100%">Send Feedback</a>
           </td>
