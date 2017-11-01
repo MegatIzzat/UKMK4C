@@ -10,7 +10,6 @@ use App\Orderline;
 use App\Customer;
 use App\Category;
 use App\Rating;
-use App\Feedback;
 use Session;
 use Auth;
 
@@ -94,11 +93,10 @@ class CustomerController extends Controller
     public function orderHistory()
     {
         $order = Order::get();
-        $feedback = Feedback::get();
         $orderline = Orderline::get();
         $product = Product::get();
 
-        return view('customer.orderhistory',compact('order','feedback','orderline','product'));
+        return view('customer.orderhistory',compact('order','orderline','product'));
     }
 
     public function sendRating(Request $request, $product_id){
