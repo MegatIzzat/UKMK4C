@@ -1,12 +1,12 @@
 <html>
 <head>
- <title>Feedback K4C</title>  
+ <title>Order History K4C</title>  
  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> 
 </head>
 <body>
   <div class="container">
     <div class="panel panel-primary">
-     <div class="panel-heading">Feedback
+     <div class="panel-heading">Order History
      </div>
      <div class="panel-body"> 
       <ul>
@@ -23,6 +23,7 @@
             <th>Order Time</th>
             <th>Order ID</th>
             <th>Product Purchased</th>
+            <th>Rating</th>         
             <th>Paid</th>
             <th>Waiting Time</th>
             <th>Feedback</th>
@@ -36,35 +37,37 @@
         @if($p->order_status=='Completed')
         <tr>
           <td>
-            <?php echo date('d-M-Y', strtotime($p->order_date.' + 8 hours')); ?><br>
-            <?php echo date('h:i A', strtotime($p->order_date.' + 8 hours')); ?>
-            </td><!-- Display in Malaysia time -->
+            {{date('d-M-Y', strtotime($p->order_date.' + 8 hours'))}}<br>
+            {{date('h:i A', strtotime($p->order_date.' + 8 hours'))}}
+          </td><!-- Display in Malaysia time -->
           <td>{{$p->order_id}}</td>
           
-
-
+          <td>
+            <div class="row">
+              @foreach($orderline as $key => $q)
+              @if($p->order_id == $q->order_id)
+              @foreach($product as $key => $r)
+              @if($q->product_id == $r->product_id)
+              <div>{{$r->product_name}}</div>
+              @endif
+              @endforeach
+              @endif
+              @endforeach
+            </div>
+          </td>
 
           <td>
-            <?php $x=0; ?>  
-            @foreach($orderline as $key => $q)
-            @if($p->order_id == $q->order_id)
-            @foreach($product as $key => $r)
-
-            @if($q->product_id == $r->product_id)
-            <?php $x+=1; ?>
-            @if($x>1)
-            ,
-            @endif
-            {{$r->product_name}}
-
-            @endif
-
-            @endforeach
-
-            @endif
-
-            @endforeach
+              @foreach($orderline as $key => $q)
+              @if($p->order_id == $q->order_id)
+              @foreach($product as $key => $r)
+              @if($q->product_id == $r->product_id)
+              <div><button class="btn btn-success btn-xs">Rate</button></div>
+              @endif
+              @endforeach
+              @endif
+              @endforeach
           </td>
+
 
           <td>RM {{number_format($p->total_price, 2)}}</td>
 
@@ -78,9 +81,9 @@
 
 
           <td>
-            <textarea style="width:100%" rows="3"></textarea>
+            <textarea id="myDIV" style="width:100%" rows="3"></textarea>
             <br>
-            <a class="btn btn-success btn-sm" role="button" style="width:100%" href="">Send Feedback</a>
+            <a class="btn btn-success btn-sm"  role="button" style="width:100%">Send Feedback</a>
           </td>
 
         </tr>
