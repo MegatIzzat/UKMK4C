@@ -56,7 +56,7 @@
             </div>
             <div class="modal-body">
             
-            <form id="frmProducts" name="frmProducts" class="form-horizontal">
+            <form id="frmProducts" name="frmProducts" class="form-horizontal" enctype="multipart/form-data">
               <div class="form-group">
                  <label for="inputId" class="col-sm-3 control-label">ID</label>
                    <div class="col-sm-9">
@@ -90,7 +90,7 @@
                 <div class="form-group">
                  <label for="inputImage" class="col-sm-3 control-label">Image</label>
                     <div class="col-sm-9">
-                    <input type="text" class="form-control" id="product_img" name="img" placeholder="Product Image" value="">
+                    <input type="file" class="form-control" id="product_img" name="product_img" placeholder="Please upload your image">
                     </div>
                 </div>
                 <div class="form-group">

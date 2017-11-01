@@ -99,6 +99,8 @@
             url: my_url,
             data: formData,
             dataType: 'json',
+            contentType: false,
+            processData: false,
             success: function (data) {
                 console.log(data);
                 var product = '<tr id="product' + data.product_id + '"><td>' + data.product_id + '</td><td>' + data.product_name + '</td><td>' + data.product_price + '</td><td>' + data.category_id + '</td><td>' + data.product_img + '</td><td>' + data.product_rating + '</td>' ;
