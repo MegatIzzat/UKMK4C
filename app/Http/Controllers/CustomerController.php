@@ -10,6 +10,7 @@ use App\Orderline;
 use App\Customer;
 use App\Category;
 use App\Rating;
+use App\Feedback;
 use Session;
 use Auth;
 
@@ -90,6 +91,16 @@ class CustomerController extends Controller
         }
     }
     
+    public function orderHistory()
+    {
+        $order = Order::get();
+        $feedback = Feedback::get();
+        $orderline = Orderline::get();
+        $product = Product::get();
+
+        return view('customer.orderhistory',compact('order','feedback','orderline','product'));
+    }
+
     public function sendRating(Request $request, $product_id){
         // $this->user_id = Auth::user()->user_id;
         // $rating = $this->notSpam()->approved();
@@ -99,11 +110,4 @@ class CustomerController extends Controller
         return response()->json($product);
     }
 
-    public function getRating(){
-    $order = Order::get();
-    $orderline = Orderline::get();
-    $product = Product::get();
-
-    return view('customer.rating',compact('order','orderline','product'));
-    }
 }
