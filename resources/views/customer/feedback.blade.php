@@ -74,9 +74,9 @@
           <td>
             <?php
             $to_time = strtotime($p->order_date);
-            $from_time = strtotime($p->order_completed);
-            echo round(abs($to_time - $from_time) / 60). " minutes"; 
+            $from_time = strtotime($p->order_completed); 
             ?>
+            {{round(abs($to_time - $from_time) / 60). " minutes"}}
           </td>
 
 
