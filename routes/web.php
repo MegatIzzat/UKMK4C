@@ -105,17 +105,13 @@ use App\Rating;
 use App\Order;
 use App\Orderline;
 
-Route::get('rating', function(){
-    $order = Order::get();
-	$orderline = Orderline::get();
-	$product = Product::get();
-
-    return view('customer.rating',compact('order','orderline','product'));
-});
+Route::get('rating', [
+	'uses' => 'CustomerController@getRating',
+	'as' => 'customer.getRating'
+]);
 
 Route::get('rating/{product_id}',function($product_id){
     $rating = App\Rating::where('product_id', $product_id)->get();
-    $r = number_format(DB::table('rating')->where('product_id', $product_id)->average('product_rating'),2);
     return response()->json($r);
 });
 

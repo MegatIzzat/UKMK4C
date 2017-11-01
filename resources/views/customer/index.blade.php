@@ -71,14 +71,14 @@
 									<h4><strong>RM {{ number_format($p->product_price, 2)}}</strong></h4>
 								</div>
 								<div class="ratings">
-									<p class="pull-right">Rated {{$p->Rating()->count()}} times</p>
 									<p>
-										<span class="glyphicon glyphicon-star">{{$p->product_rating}}</span>
+										<input id="input-3" name="input-3" value="{{$p->product_rating}}" class="rating" data-size="xs" data-show-clear="false" data-show-caption="false" readonly>
 									</p>
+									<p class="pull-left">Rated {{$p->Rating()->count()}} times</p>
 								</div>
 								<div class="footer">
 								
-									<a href="{{route('product.addToCart',['product_id' => $p->product_id])}}" class="btn btn-success" role="button">Add to Cart</a>
+									<a href="{{route('product.addToCart',['product_id' => $p->product_id])}}" class="btn btn-success pull-right" role="button">Add to Cart</a>
 								
 									
 								</div>
@@ -89,6 +89,7 @@
 		</div>		
 	</div>
 	<!-- /.container -->
+	
 
 	
 

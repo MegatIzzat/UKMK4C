@@ -89,10 +89,18 @@ class CustomerController extends Controller
         }
     }
     
-    public function sendRating(Request $request){
+    public function sendRating(Request $request, $product_id){
         $rating = Rating::create($request->input());
-        return response()->json($rating);
+        $r = number_format(\DB::table('rating')->where('product_id', $product_id)->average('product_rating'),2);
+        $product = \DB::table('product')->where('product_id', $product_id)->update(['product_rating' => $r]);
+        return response()->json($product);
     }
 
+    public function getRating(){
+    $order = Order::get();
+    $orderline = Orderline::get();
+    $product = Product::get();
 
+    return view('customer.rating',compact('order','orderline','product'));
+    }
 }

@@ -42,9 +42,13 @@
               @foreach($product as $key => $r)
                 @if($q->product_id == $r->product_id)
 	                <td>{{$r->product_name}}</td>
-	                <td>
-	                  <div class="btn btn-primary btn-md" id="btn-rating" role="button" data-id="{{$q->product_id}}" data-value="{{$r->product_name}}"> Rate </a>
-	              	</td>
+	                @if($p->order_status=='Completed')
+                  <td>
+                    <div class="btn btn-primary btn-md" id="btn-rating" role="button" data-id="{{$q->product_id}}" data-value="{{$r->product_name}}"> Rate </a>
+                  </td>
+          @else
+          <td></td>
+          @endif
                 @endif
               @endforeach
               <td>{{$q->quantity}}</td>
@@ -152,7 +156,8 @@
                     console.log(data);
                     $('#product_rating').rating('reset');
                     alert("Thank you for your rating!");
-                    location.reload();
+                    $('#rateModal').modal('hide');
+                    // $('.btn-primary').remove();
                 },
                 error: function (data) {
                     console.log('Error:', data);
