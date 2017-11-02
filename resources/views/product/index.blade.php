@@ -87,11 +87,8 @@
                     {{-- <input type="text" class="form-control" id="category_id" name="category" placeholder="Product Category" value=""> --}}
                     </div>
                 </div>
-                <div class="form-group">
-                 <label for="inputImage" class="col-sm-3 control-label">Image</label>
-                    <div class="col-sm-9">
-                    <input type="file" class="form-control" id="product_img" name="product_img" placeholder="Please upload your image">
-                    </div>
+                <div>
+                    <input type="hidden" class="form-control" id="product_img" name="product_img">
                 </div>
                 <div class="form-group">
                  <label for="inputRating" class="col-sm-3 control-label">Rating</label>

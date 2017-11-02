@@ -19,7 +19,7 @@ class Product extends Migration
             $table->string('product_name',30);
             $table->float('product_price',4,2);
             $table->string('category_id',5);
-            $table->string('product_img');
+            $table->string('product_img')->nullable();
             $table->float('product_rating',2,1);
 
             $table->primary('product_id');
