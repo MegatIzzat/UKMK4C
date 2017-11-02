@@ -94,7 +94,7 @@
 
     <script type="text/javascript">
 
-        var url = "http://127.0.0.1:8000/topup";
+        var url = "ukmk4c.000webhostapp.com/topup";
         $(document).on('click','.btn-success',function(){
 
         $.ajaxSetup({

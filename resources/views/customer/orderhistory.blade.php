@@ -154,7 +154,7 @@
 </html>
 
 <script>
-  var url = "http://127.0.0.1:8000/orderhistory";
+  var url = "ukmk4c.000webhostapp.com/orderhistory";
 
   $('.btn-primary').click(function (e) {
     e.preventDefault();
