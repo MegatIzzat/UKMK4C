@@ -95,6 +95,11 @@ Route::group(['prefix'=>'/orderhistory/', 'as'=>'customer.', 'name'=>'customer' 
 			Route::put('sendFeedback/{id}','CustomerController@sendFeedback')->name('sendFeedback');
 	});
 
+Route::get('viewfeedback', [
+	'uses' => 'ManagerController@viewFeedback',
+	'as' => 'manager.viewFeedback'
+]);
+
 
 /*------------------------ CART -----------------------------*/
 
@@ -146,12 +151,6 @@ Route::group(['prefix'=>'/orderstatus/', 'name'=>'orderstatus' ], function(){
 	Route::get('update/{id}','OrderController@update')->name('update');
 });
 
-});
-
-Route::group(['prefix'=>'/feedback/', 'name'=>'feedback' ], function(){
-
-	Route::get('', 'FeedbackController@index')->name('index');
-	//Route::get('update/{id}','OrderController@update')->name('update');
 
 
 
