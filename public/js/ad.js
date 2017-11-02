@@ -1,5 +1,5 @@
 
-    var url = "ukmk4c.000webhostapp.com/advertisement";
+    var url = "http://127.0.0.1:8000/advertisement";
     //display modal form for advertisement editing
 
     $(document).on('click','.open_modal',function(){
