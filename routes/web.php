@@ -100,6 +100,11 @@ Route::group(['prefix'=>'/orderhistory/', 'as'=>'customer.', 'name'=>'customer' 
 			Route::put('sendFeedback/{id}','CustomerController@sendFeedback')->name('sendFeedback');
 	});
 
+Route::get('viewfeedback', [
+	'uses' => 'ManagerController@viewFeedback',
+	'as' => 'manager.viewFeedback'
+]);
+
 
 /*------------------------ CART -----------------------------*/
 

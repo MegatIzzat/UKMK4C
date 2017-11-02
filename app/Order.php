@@ -21,4 +21,3 @@ class Order extends Model
 		return $this->hasMany('App\Orderline');
 	}
 }
-
