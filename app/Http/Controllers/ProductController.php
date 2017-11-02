@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
-
+use Validator;
 
 class ProductController extends Controller
 {
@@ -27,37 +27,25 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
-    	$product = Product::create($request->input());
+      //   $validator = Validator::make($request->all(), [
+      //   'product_img' => 'required|image|max:2048',
+      //   ]);
+
+      //   if ($validator->passes()) {
+      //   $input = $request->all();
+      //   $input['product_img'] = time().'.'.$request->product_img->getClientOriginalExtension();
+      //   $request->product_img->move(public_path('img'), $input['product_img']);
+
+      //   Product::create($input);
+
+      //   return response()->json(['success'=>'done']);
+      //   }
+
+      // return response()->json(['error'=>$validator->errors()->all()]);
+    	
+        $product = Product::create($request->input());
     	return response()->json($product);
     }
-
-    // public function store(Request $request)
-    // {
-    //     $this->validate($request,[
-    //             'product_id' => 'required|max:5|unique:product',
-    //             'product_name' => 'required|max:30',
-    //             'product_price' => 'required',
-    //             'category_id' => 'required|max:5',
-    //             'product_img' => 'required',
-    //             'product_rating' => 'required',
-    //         ],[
-    //             'product_id.required' => ' The product ID field is required.',
-    //             'product_id.max' => ' The product ID may not be greater than 5 characters.',
-    //             'product_name.required' => ' The product name field is required.',
-    //             'product_name.max' => ' The last name may not be greater than 30 characters.',
-    //             'product_price.required' => ' The product price field is required.',
-    //             'category_id.required' => ' The category ID field is required.',
-    //             'category_id.max' => ' The category ID may not be greater than 5 characters.',
-    //             'product_img.required' => ' The product image field is required.',
-    //             'product_rating.required' => ' The product rating field is required.',
-
-    //         ]);
-
-    //     dd('Product added successfully.');
-
-    //     $product = Product::create($request->input());
-    //     return response()->json($product);
-    // }
 
     public function update(Request $request,$product_id)
     {

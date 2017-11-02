@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Order;
 use App\Orderline;
 use App\Product;
-use Validator;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -25,6 +25,7 @@ class OrderController extends Controller
     {
         $order = Order::find($id);
         $order->order_status = 'Completed';
+        $order->order_completed = Carbon::now();
         $order->save();
 
         return redirect('/orderstatus');
