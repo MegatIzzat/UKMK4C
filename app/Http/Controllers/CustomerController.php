@@ -43,6 +43,11 @@ class CustomerController extends Controller
         return view('customer.cart',['products'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
     }
 
+       public function manageprofile(){
+        return view('customer.profile');
+
+        }
+
     public function checkout(Request $request, $user){
         $customer = Customer::find($user); 
         $category = Category::get(); 

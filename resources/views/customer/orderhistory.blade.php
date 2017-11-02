@@ -103,6 +103,9 @@
     </div>
   </div>
 </div>
+<div class="col-md-offset-4 col-md-4">
+  <a href="/" class="btn btn-success btn-block" role="button">Back to Home</a></li>
+</div>
 
 <div class="modal fade" id="rateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
