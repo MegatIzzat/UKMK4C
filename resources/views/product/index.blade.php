@@ -35,7 +35,7 @@
              <td>{{$product->product_name}}</td>
              <td>RM {{number_format($product->product_price, 2)}}</td>
              <td>{{$product->category_id}}</td>
-             <td>{{$product->product_img}}</td>
+             <td><div><button class="btn btn-primary btn-sm upload-img" id="btn-img" data-id="{{$product->product_id}}">Upload</button></div></td>
              <td>{{number_format($product->product_rating, 1)}}</td>
               <td>
               <button class="btn btn-warning btn-detail open_modal" value="{{$product->product_id}}">Edit</button>
@@ -106,6 +106,37 @@
       </div>
   </div>
 </div>
+{{-- <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+           <div class="modal-content">
+             <div class="modal-header">
+             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4 class="modal-title" id="myModalLabel">Upload Image</h4>
+            </div>
+            <div class="modal-body">
+            
+            <form id="frmImage" name="frmImage" class="form-horizontal" enctype="multipart/form-data" action="{{route('productmanagement.upload')}}" method="POST">
+              {{csrf_field()}}
+          {{ method_field('PUT') }}
+              <div class="alert alert-danger print-error-msg" style="display:none">
+                  <ul></ul>
+              </div>
+                 <label class="hidden" id="product_id"></label>
+              <div class="form-group">
+                 <label for="inputId" class="col-sm-3 control-label">Product Image :</label>
+                   <div class="col-sm-9">
+                    <input type="file" class="form-control" id="product_img" name="product_img">
+                   </div>
+                   </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary btn-upload" id="btn-upload" type="submit">Upload Image</button>
+            </div>
+        </div>
+      </div>
+  </div> --}}
+
     <meta name="_token" content="{!! csrf_token() !!}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>

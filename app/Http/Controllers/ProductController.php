@@ -65,4 +65,25 @@ class ProductController extends Controller
     	return response()->json($product);
     }
 
+    // public function upload(Request $request, $product_id)
+    // {
+    //   $validator = Validator::make($request->all(), [
+    //     'product_img' => 'required|image',
+    //   ]
+    //   );
+
+    //   if ($validator->passes()) {
+
+    //     $input = $request->all();
+    //     $input['product_img'] = time().'.'.$request->product_img->getClientOriginalExtension();
+    //     $request->product_img->move(public_path('img'), $input['product_img']);
+
+    //     $img = \DB::table('product')->where('product_id', $product_id)->update(['product_img' => $input]);
+
+    //     return response()->json(['success'=>'done']);
+    //   }
+
+    //   return response()->json(['error'=>$validator->errors()->all()]);
+    // }
+
 }

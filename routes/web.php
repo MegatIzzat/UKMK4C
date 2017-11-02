@@ -61,15 +61,20 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 use Illuminate\Http\Request;
 
-Route::get('/productmanagement', 'ProductController@index')->name('index');
+Route::group(['prefix'=>'/productmanagement', 'name'=>'productmanagement', 'as'=>'productmanagement.'], function(){
 
-Route::get('/productmanagement/{product_id?}', 'ProductController@show')->name('show');
+	Route::get('/', 'ProductController@index')->name('index');
 
-Route::post('/productmanagement', 'ProductController@create')->name('create');
+	Route::get('{product_id?}', 'ProductController@show')->name('show');
 
-Route::put('/productmanagement/{product_id?}', 'ProductController@update')->name('update');
+	Route::post('/', 'ProductController@create')->name('create');
 
-Route::delete('/productmanagement/{product_id?}', 'ProductController@destroy')->name('delete');
+	Route::put('{product_id?}', 'ProductController@update')->name('update');
+
+	Route::delete('{product_id?}', 'ProductController@destroy')->name('delete');
+
+	Route::put('upload/{product_id?}', 'ProductController@upload')->name('upload');
+});
 
 use App\Product;
 use App\Rating;
