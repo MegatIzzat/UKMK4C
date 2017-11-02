@@ -8,15 +8,9 @@ class Order extends Model
 	protected $table = 'order';
 	protected $primaryKey = 'order_id';
 
-<<<<<<< HEAD
-	protected $fillable = ['order_id','cust_id','total_price','order_status','order_feedback'];
-	public const CREATED_AT = 'order_date';
-	public const UPDATED_AT = 'order_completed';
-=======
 	protected $fillable = ['order_id','cust_id','total_price','order_status','order_feedback','order_completed'];
 	public const CREATED_AT = 'order_date';
 	public const UPDATED_AT = 'order_feedbacktime';
->>>>>>> Megat-2
 	public $timestamp = false;
 
 	public function Customer(){
@@ -27,4 +21,3 @@ class Order extends Model
 		return $this->hasMany('App\Orderline');
 	}
 }
-
