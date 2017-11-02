@@ -11,8 +11,12 @@
     <!-- Bootstrap -->
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('css/customize.css')}}" rel="stylesheet">
+    <link href="/css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+  </head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="{{asset('js/star-rating.js')}}"></script>
+  
 </head>
 <body>
 
@@ -26,7 +30,7 @@
                     <span class="icon-bar"></span>
                 </button>
     
-                 <a class="navbar-brand" href="/"><strong>Kiosk4Community</strong></a>
+                 <a class="navbar-brand" href="/"><strong>Test</strong></a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -68,7 +72,8 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-user"></span> {{ Auth::user()->name }} <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Manage Profile</a></li>
+                                <li><a href="{{route('profile.edit',['user' => Auth::user()->user_id])}}">Manage Profile</a></li>
+                                <li><a href="/orderhistory">Your Order History</a></li>
 
                                 <li role="separator" class="divider"></li>
                                 <li><a href="{{ route('logout') }}"

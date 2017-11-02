@@ -8,9 +8,9 @@ class Order extends Model
 	protected $table = 'order';
 	protected $primaryKey = 'order_id';
 
-	protected $fillable = ['order_id','cust_id','total_price','order_status'];
+	protected $fillable = ['order_id','cust_id','total_price','order_status','order_feedback','order_completed'];
 	public const CREATED_AT = 'order_date';
-	public const UPDATED_AT = 'order_modified';
+	public const UPDATED_AT = 'order_feedbacktime';
 	public $timestamp = false;
 
 	public function Customer(){

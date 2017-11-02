@@ -8,7 +8,7 @@
         $.get(url + '/' + product_id, function (data) {
             //success data
             console.log(data);
-            $('#product_id').val(data.product_id).prop("disabled", true);
+            $('#product_id').val(data.product_id).prop("readonly", true);
             // $('#product_id').val(data.product_id);
             $('#product_name').val(data.product_name);
             $('#product_price').val(data.product_price);
@@ -21,10 +21,11 @@
     });
     //display modal form for creating new product
     $('#btn_add').click(function(){
-        $('#product_id').prop("disabled", false);
+        $('#product_id').prop("readonly", false);
         $('#btn-save').val("add");
         $('#frmProducts').trigger("reset");
         $('#myModal').modal('show');
+        $('#product_rating').val('0');
     });
 
     // delete product and remove it from list
@@ -64,26 +65,7 @@
         });
         
     });
-    // $(document).on('click','.delete-product',function(){
-    //     var product_id = $(this).val();
-    //      $.ajaxSetup({
-    //         headers: {
-    //             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-    //         }
-    //     })
-    //     $.ajax({
-    //         type: "DELETE",
-    //         url: url + '/' + product_id,
-    //         success: function (data) {
-    //             console.log(data);
-    //             $("#product" + product_id).remove();
-    //         },
-    //         error: function (data) {
-    //             console.log('Error:', data);
-    //         }
 
-    //     });
-    // });
     //create new product / update existing product
     $("#btn-save").click(function (e) {
         $.ajaxSetup({
@@ -92,6 +74,7 @@
             }
         })
         e.preventDefault(); 
+
         var formData = {
             product_id: $('#product_id').val(),
             product_name: $('#product_name').val(),
@@ -108,6 +91,7 @@
         if (state == "update"){
             type = "PUT"; //for updating existing resource
             my_url += '/' + product_id;
+            product_rating: $('#product_rating').val();
         }
         console.log(formData);
         $.ajax({
@@ -115,6 +99,8 @@
             url: my_url,
             data: formData,
             dataType: 'json',
+            // contentType: false,
+            // processData: false,
             success: function (data) {
                 console.log(data);
                 var product = '<tr id="product' + data.product_id + '"><td>' + data.product_id + '</td><td>' + data.product_name + '</td><td>' + data.product_price + '</td><td>' + data.category_id + '</td><td>' + data.product_img + '</td><td>' + data.product_rating + '</td>' ;

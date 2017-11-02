@@ -9,7 +9,9 @@ use App\Order;
 use App\Orderline;
 use App\Customer;
 use App\Category;
+use App\Rating;
 use Session;
+use Auth;
 
 class CustomerController extends Controller
 {
@@ -18,7 +20,7 @@ class CustomerController extends Controller
         //
         $product = Product::paginate(6);
         $category = Category::get();
-        return view('customer.index',compact('product','category'));
+        return view('customer.index',compact('product','category', 'rating'));
     }
 
     public function AddToCart(Request $request, $product_id){
@@ -40,6 +42,11 @@ class CustomerController extends Controller
         $cart = new Cart($oldCart);
         return view('customer.cart',['products'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
     }
+
+       public function manageprofile(){
+        return view('customer.profile');
+
+        }
 
     public function checkout(Request $request, $user){
         $customer = Customer::find($user); 
@@ -87,4 +94,30 @@ class CustomerController extends Controller
             return redirect()->route('cust.index')->with('success','Order has been successfully made!');
         }
     }
+    
+    public function orderHistory()
+    {
+        $order = Order::get();
+        $orderline = Orderline::get();
+        $product = Product::get();
+
+        return view('customer.orderhistory',compact('order','orderline','product'));
+    }
+
+    public function sendRating(Request $request, $product_id){
+        // $this->user_id = Auth::user()->user_id;
+        // $rating = $this->notSpam()->approved();
+        $rating = Rating::create($request->input());
+        $r = number_format(\DB::table('rating')->where('product_id', $product_id)->average('product_rating'),2);
+        $product = \DB::table('product')->where('product_id', $product_id)->update(['product_rating' => $r]);
+        return response()->json($product);
+    }
+
+    public function sendFeedback(Request $request, $id)
+    {
+        //
+        Order::findOrFail($id)->update($request->all());
+        return redirect('/orderhistory');
+    }
+
 }
