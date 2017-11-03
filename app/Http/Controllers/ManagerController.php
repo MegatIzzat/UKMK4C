@@ -92,6 +92,6 @@ class ManagerController extends Controller
         $orderline = Orderline::get();
         $product = Product::get();
 
-        return view('staff.viewFeedback',compact('order','orderline','product'));
+        return view('staff.viewfeedback',compact('order','orderline','product'));
     }
 }
