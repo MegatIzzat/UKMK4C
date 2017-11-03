@@ -27,23 +27,8 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
-      //   $validator = Validator::make($request->all(), [
-      //   'product_img' => 'required|image|max:2048',
-      //   ]);
-
-      //   if ($validator->passes()) {
-      //   $input = $request->all();
-      //   $input['product_img'] = time().'.'.$request->product_img->getClientOriginalExtension();
-      //   $request->product_img->move(public_path('img'), $input['product_img']);
-
-      //   Product::create($input);
-
-      //   return response()->json(['success'=>'done']);
-      //   }
-
-      // return response()->json(['error'=>$validator->errors()->all()]);
     	
-        $product = Product::create($request->input());
+      $product = Product::create($request->input());
     	return response()->json($product);
     }
 
