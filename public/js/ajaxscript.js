@@ -91,7 +91,6 @@
         if (state == "update"){
             type = "PUT"; //for updating existing resource
             my_url += '/' + product_id;
-            product_rating: $('#product_rating').val();
         }
         console.log(formData);
         $.ajax({
