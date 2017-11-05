@@ -56,7 +56,7 @@
             </div>
             <div class="modal-body">
             
-            <form id="frmProducts" name="frmProducts" class="form-horizontal" enctype="multipart/form-data">
+            <form id="frmProducts" name="frmProducts" class="form-horizontal">
               <div class="form-group">
                  <label for="inputId" class="col-sm-3 control-label">ID</label>
                    <div class="col-sm-9">
