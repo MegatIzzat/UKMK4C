@@ -8,15 +8,13 @@
         $.get(url + '/' + product_id, function (data) {
             //success data
             console.log(data);
-            $('#product_id').val(data.product_id).prop("readonly", true);
-            // $('#product_id').val(data.product_id);
-            $('#product_name').val(data.product_name);
-            $('#product_price').val(data.product_price);
-            $('#category_id').val(data.category_id);
-            $('#product_img').val(data.product_img);
-            $('#product_rating').val(data.product_rating);
-            $('#btn-save').val("update");
-            $('#myModal').modal('show');
+            $('#upproduct_id').val(data.product_id).prop("readonly", true);
+            $('#upproduct_name').val(data.product_name);
+            $('#upproduct_price').val(data.product_price);
+            $('#upcategory_id').val(data.category_id);
+            $('#upproduct_img').val(data.product_img);
+            $('#upproduct_rating').val(data.product_rating);
+            $('#updateModal').modal('show');
         }) 
     });
     //display modal form for creating new product
@@ -84,18 +82,18 @@
             product_rating: $('#product_rating').val(),
         }
         //used to determine the http verb to use [add=POST], [update=PUT]
-        var state = $('#btn-save').val();
-        var type = "POST"; //for creating new resource
-        var product_id = $('#product_id').val();
-        var my_url = url;
-        if (state == "update"){
-            type = "PUT"; //for updating existing resource
-            my_url += '/' + product_id;
-        }
+        // var state = $('#btn-save').val();
+        // var type = "POST"; //for creating new resource
+        // var product_id = $('#product_id').val();
+        // var my_url = url;
+        // if (state == "update"){
+        //     type = "PUT"; //for updating existing resource
+        //     my_url += '/' + product_id;
+        // }
         console.log(formData);
         $.ajax({
-            type: type,
-            url: my_url,
+            type: "POST",
+            url: url,
             data: formData,
             dataType: 'json',
             // contentType: false,
@@ -105,12 +103,12 @@
                 var product = '<tr id="product' + data.product_id + '"><td>' + data.product_id + '</td><td>' + data.product_name + '</td><td>' + data.product_price + '</td><td>' + data.category_id + '</td><td>' + data.product_img + '</td><td>' + data.product_rating + '</td>' ;
                 product += '<td><button class="btn btn-warning btn-detail open_modal" value="' + data.product_id + '">Edit</button>';
                 product += ' <button class="btn btn-danger btn-delete delete-product" value="' + data.product_id + '">Delete</button></td></tr>';
-                if (state == "add"){ //if user added a new record
-                    $('#products-list').append(product);
-                }else{ //if user updated an existing record
-                    $("#product" + product_id).replaceWith( product );
+                // if (state == "add"){ //if user added a new record
+                $('#products-list').append(product);
+                // }else{ //if user updated an existing record
+                //     $("#product" + product_id).replaceWith( product );
                     
-                }
+                // }
                 $('#frmProducts').trigger("reset");
                 $('#myModal').modal('hide');
                 location.reload();

@@ -2,7 +2,6 @@
   <head>
    <title>Product Management K4C</title>  
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> 
-    <link href="css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
   </head>
 <body>
 <div class="container">
@@ -52,7 +51,7 @@
            <div class="modal-content">
              <div class="modal-header">
              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="myModalLabel">Product</h4>
+                <h4 class="modal-title" id="myModalLabel">New Product</h4>
             </div>
             <div class="modal-body">
             
@@ -99,50 +98,77 @@
             </form>
             </div>
             <div class="modal-footer">
-            <button type="button" class="btn btn-primary" id="btn-save" value="add">Save changes</button>
+            <button type="button" class="btn btn-primary" id="btn-save">Add Product</button>
             {{-- <input type="hidden" id="product_id" name="product_id" value="0"> --}}
             </div>
         </div>
       </div>
   </div>
 </div>
-{{-- <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
+
+    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
            <div class="modal-content">
              <div class="modal-header">
              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="myModalLabel">Upload Image</h4>
+                <h4 class="modal-title" id="myModalLabel">Update Product</h4>
             </div>
             <div class="modal-body">
             
-            <form id="frmImage" name="frmImage" class="form-horizontal" enctype="multipart/form-data" action="{{route('productmanagement.upload')}}" method="POST">
+            <form id="frmUpdateProducts" name="frmUpdateProducts" class="form-horizontal" action="{{route('productmanagement.update', $product->product_id)}}" method="POST">
               {{csrf_field()}}
-          {{ method_field('PUT') }}
-              <div class="alert alert-danger print-error-msg" style="display:none">
-                  <ul></ul>
-              </div>
-                 <label class="hidden" id="product_id"></label>
+              {{method_field('PUT')}}
               <div class="form-group">
-                 <label for="inputId" class="col-sm-3 control-label">Product Image :</label>
+                 <label for="inputId" class="col-sm-3 control-label">ID</label>
                    <div class="col-sm-9">
-                    <input type="file" class="form-control" id="product_img" name="product_img">
+                    <input type="text" class="form-control" id="upproduct_id" name="upproduct_id">
                    </div>
                    </div>
+                <div class="form-group">
+                 <label for="inputName" class="col-sm-3 control-label">Name</label>
+                   <div class="col-sm-9">
+                    <input type="text" class="form-control" id="upproduct_name" name="upproduct_name">
+                   </div>
+                   </div>
+                 <div class="form-group">
+                 <label for="inputPrice" class="col-sm-3 control-label">Price</label>
+                    <div class="col-sm-9">
+                    <input type="number" class="form-control" id="upproduct_price" min="0" step="0.1" name="upproduct_price">
+                    </div>
+                </div>
+                <div class="form-group">
+                 <label for="inputCategory" class="col-sm-3 control-label">Category</label>
+                    <div class="col-sm-9">
+                      <select class="form-control" id="upcategory_id" name="upcategory_id">
+                        <option value="0" disabled="true" selected="true">--Select--</option>
+                        @foreach($category as $cat)
+                          <option value="{{$cat->category_id}}">{{$cat->category_name}}</option>
+                        @endforeach
+                      </select>
+                    {{-- <input type="text" class="form-control" id="category_id" name="category" placeholder="Product Category" value=""> --}}
+                    </div>
+                </div>
+                <div>
+                    <input type="hidden" class="form-control" id="upproduct_img" name="upproduct_img">
+                </div>
+                <div class="form-group">
+                 <label for="inputRating" class="col-sm-3 control-label">Rating</label>
+                    <div class="col-sm-9">
+                    <input type="number" class="form-control" id="upproduct_rating" name="upproduct_rating" readonly="">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary btn-update">Save changes</button>
             </form>
             </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-primary btn-upload" id="btn-upload" type="submit">Upload Image</button>
             </div>
         </div>
-      </div>
-  </div> --}}
+</div>
 
     <meta name="_token" content="{!! csrf_token() !!}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="{{asset('js/ajaxscript.js')}}"></script>
     <script src="{{asset('js/jquery.confirm.js')}}"></script>
-    <script src="{{asset('js/star-rating.js')}}"></script>
-
 </body>
 </html>
