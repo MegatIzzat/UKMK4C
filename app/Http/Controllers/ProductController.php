@@ -27,8 +27,7 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
-    	
-      $product = Product::create($request->input());
+        $product = Product::create($request->input());
     	return response()->json($product);
     }
 
@@ -65,13 +64,15 @@ class ProductController extends Controller
 
             ]);
         
-        return redirect()->route('productmanagement.index');
+        return redirect()->route('productmanagement.index')->with('success', $id.' has been successfully updated!');
     }
 
-    public function destroy($product_id)
+    public function destroy(Request $request, $product_id)
     {
-    	$product = Product::destroy($product_id);
-    	return response()->json($product);
+        $id = $request->deproduct_id;
+
+    	$product = Product::destroy($id);
+    	return redirect()->route('productmanagement.index')->with('success', $id.' has been successfully deleted!');
     }
 
     // public function upload(Request $request, $product_id)

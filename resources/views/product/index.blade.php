@@ -9,7 +9,8 @@
  <div class="panel-heading">Product Management
  <button id="btn_add" name="btn_add" class="btn btn-success pull-right">Add New Product</button>
     </div>
-      <div class="panel-body"> 
+      <div class="panel-body">
+        @include('error.flash-message') 
         <ul>
           @foreach($errors->all() as $key)
             <li>{{ $key }}</li>
@@ -39,6 +40,7 @@
               <td>
               <button class="btn btn-warning btn-detail open_modal" value="{{$product->product_id}}">Edit</button>
               <button class="btn btn-danger btn-delete delete-product" value="{{$product->product_id}}">Delete</button>
+              </form>
               </td>
             </tr>
             @endforeach
@@ -106,63 +108,98 @@
   </div>
 </div>
 
-    <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-           <div class="modal-content">
-             <div class="modal-header">
-             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h4 class="modal-title" id="myModalLabel">Update Product</h4>
-            </div>
-            <div class="modal-body">
-            
-            <form id="frmUpdateProducts" name="frmUpdateProducts" class="form-horizontal" action="{{route('productmanagement.update', $product->product_id)}}" method="POST">
-              {{csrf_field()}}
-              {{method_field('PUT')}}
-              <div class="form-group">
-                 <label for="inputId" class="col-sm-3 control-label">ID</label>
-                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="upproduct_id" name="upproduct_id">
-                   </div>
-                   </div>
-                <div class="form-group">
-                 <label for="inputName" class="col-sm-3 control-label">Name</label>
-                   <div class="col-sm-9">
-                    <input type="text" class="form-control" id="upproduct_name" name="upproduct_name">
-                   </div>
-                   </div>
-                 <div class="form-group">
-                 <label for="inputPrice" class="col-sm-3 control-label">Price</label>
-                    <div class="col-sm-9">
-                    <input type="number" class="form-control" id="upproduct_price" min="0" step="0.1" name="upproduct_price">
-                    </div>
-                </div>
-                <div class="form-group">
-                 <label for="inputCategory" class="col-sm-3 control-label">Category</label>
-                    <div class="col-sm-9">
-                      <select class="form-control" id="upcategory_id" name="upcategory_id">
-                        <option value="0" disabled="true" selected="true">--Select--</option>
-                        @foreach($category as $cat)
-                          <option value="{{$cat->category_id}}">{{$cat->category_name}}</option>
-                        @endforeach
-                      </select>
-                    {{-- <input type="text" class="form-control" id="category_id" name="category" placeholder="Product Category" value=""> --}}
-                    </div>
-                </div>
-                <div>
-                    <input type="hidden" class="form-control" id="upproduct_img" name="upproduct_img">
-                </div>
-                <div class="form-group">
-                 <label for="inputRating" class="col-sm-3 control-label">Rating</label>
-                    <div class="col-sm-9">
-                    <input type="number" class="form-control" id="upproduct_rating" name="upproduct_rating" readonly="">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                  <button type="submit" class="btn btn-primary btn-update">Save changes</button>
-            </form>
-            </div>
-            </div>
+<div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title" id="myModalLabel">Update Product</h4>
+      </div>
+      <div class="modal-body">
+      
+      <form id="frmUpdateProducts" name="frmUpdateProducts" class="form-horizontal" action="{{route('productmanagement.update', $product->product_id)}}" method="POST">
+        {{csrf_field()}}
+        {{method_field('PUT')}}
+        <div class="form-group">
+           <label for="inputId" class="col-sm-3 control-label">ID</label>
+             <div class="col-sm-9">
+              <input type="text" class="form-control" id="upproduct_id" name="upproduct_id">
+             </div>
         </div>
+          <div class="form-group">
+           <label for="inputName" class="col-sm-3 control-label">Name</label>
+             <div class="col-sm-9">
+              <input type="text" class="form-control" id="upproduct_name" name="upproduct_name">
+             </div>
+             </div>
+           <div class="form-group">
+           <label for="inputPrice" class="col-sm-3 control-label">Price</label>
+              <div class="col-sm-9">
+              <input type="number" class="form-control" id="upproduct_price" min="0" step="0.1" name="upproduct_price">
+              </div>
+          </div>
+          <div class="form-group">
+           <label for="inputCategory" class="col-sm-3 control-label">Category</label>
+              <div class="col-sm-9">
+                <select class="form-control" id="upcategory_id" name="upcategory_id">
+                  <option value="0" disabled="true" selected="true">--Select--</option>
+                  @foreach($category as $cat)
+                    <option value="{{$cat->category_id}}">{{$cat->category_name}}</option>
+                  @endforeach
+                </select>
+              {{-- <input type="text" class="form-control" id="category_id" name="category" placeholder="Product Category" value=""> --}}
+              </div>
+          </div>
+          <div>
+              <input type="hidden" class="form-control" id="upproduct_img" name="upproduct_img">
+          </div>
+          <div class="form-group">
+           <label for="inputRating" class="col-sm-3 control-label">Rating</label>
+              <div class="col-sm-9">
+              <input type="number" class="form-control" id="upproduct_rating" name="upproduct_rating" readonly="">
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary btn-update">Save changes</button>
+          </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title" id="myModalLabel">Delete Product</h4>
+      </div>
+      <div class="modal-body">
+      
+      <form id="frmDeleteProducts" name="frmDeleteProducts" class="form-horizontal" action="{{route('productmanagement.delete', $product->product_id)}}" method="POST">
+        {{csrf_field()}}
+        {{method_field('DELETE')}}
+        <div class="form-group">
+           <label for="inputId" class="col-sm-3 control-label">ID</label>
+             <div class="col-sm-9">
+              <input type="text" class="form-control" id="deproduct_id" name="deproduct_id" readonly="">
+             </div>
+        </div>
+          <div class="form-group">
+           <label for="inputName" class="col-sm-3 control-label">Name</label>
+             <div class="col-sm-9">
+              <input type="text" class="form-control" id="deproduct_name" name="deproduct_name" readonly="">
+             </div>
+          </div>
+          <div class="modal-footer">
+            <p>Are you sure you want to delete this product? <strong>This action cannot be undone.</strong></p>
+            <button type="submit" class="btn btn-danger btn-delete">Confirm Delete</button>
+          </div>
+      </form>
+      </div>
+    </div>
+  </div>
 </div>
 
     <meta name="_token" content="{!! csrf_token() !!}" />

@@ -26,6 +26,19 @@
         $('#product_rating').val('0');
     });
 
+    //display modal form for deleting product
+    $(document).on('click','.delete-product',function(){
+        var product_id = $(this).val();
+           
+        $.get(url + '/' + product_id, function (data) {
+            //success data
+            console.log(data);
+            $('#deproduct_id').val(data.product_id);
+            $('#deproduct_name').val(data.product_name);
+            $('#deleteModal').modal('show');
+        }) 
+    });
+
     // delete product and remove it from list
     // $(document).on('click','.delete-product',function(){
     //     var product_id = $(this).val();
