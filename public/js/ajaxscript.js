@@ -27,42 +27,42 @@
     });
 
     // delete product and remove it from list
-    $(document).on('click','.delete-product',function(){
-        var product_id = $(this).val();
+    // $(document).on('click','.delete-product',function(){
+    //     var product_id = $(this).val();
 
-        $.confirm({
-            text: "Are you sure you want to delete this product? <strong>This action cannot be undone.</strong>",
-            title: "Confirmation required",
-            confirm: function(button) {
+    //     $.confirm({
+    //         text: "Are you sure you want to delete this product? <strong>This action cannot be undone.</strong>",
+    //         title: "Confirmation required",
+    //         confirm: function(button) {
               
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                }
-            })
-            $.ajax({
-                type: "DELETE",
-                url: url + '/' + product_id,
-                success: function (data) {
-                    console.log(data);
-                    $("#product" + product_id).remove();
-                    alert("Product successfully deleted");
-                },
-                error: function (data) {
-                    console.log('Error:', data);
-                }
+    //         $.ajaxSetup({
+    //             headers: {
+    //                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+    //             }
+    //         })
+    //         $.ajax({
+    //             type: "DELETE",
+    //             url: url + '/' + product_id,
+    //             success: function (data) {
+    //                 console.log(data);
+    //                 $("#product" + product_id).remove();
+    //                 alert("Product successfully deleted");
+    //             },
+    //             error: function (data) {
+    //                 console.log('Error:', data);
+    //             }
     
-            });
-            },
-            cancel: function(button) {
-            // nothing to do
-            },
-            confirmButton: "Yes I am sure",
-            confirmButtonClass: "btn-danger",
-            cancelButtonClass: "btn-default",
-        });
+    //         });
+    //         },
+    //         cancel: function(button) {
+    //         // nothing to do
+    //         },
+    //         confirmButton: "Yes I am sure",
+    //         confirmButtonClass: "btn-danger",
+    //         cancelButtonClass: "btn-default",
+    //     });
         
-    });
+    // });
 
     //create new product / update existing product
     $("#btn-save").click(function (e) {
