@@ -78,7 +78,7 @@
 								</div>
 								<div class="ratings">
 									<p>
-										<input id="input-3" name="input-3" value="{{$p->product_rating}}" class="rating" data-size="xs" data-show-clear="false" data-show-caption="true" readonly>
+										<input id="input-3" name="input-3" value="{{$p->product_rating}}" class="rating" data-size="xs" data-show-clear="false" data-show-caption="false" readonly>
 									</p>
 								</div>
 								<div class="footer">

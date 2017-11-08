@@ -109,9 +109,10 @@ class CustomerController extends Controller
         // $this->user_id = Auth::user()->user_id;
         // $rating = $this->notSpam()->approved();
         $rating = Rating::create($request->input());
-        $r = number_format(\DB::table('rating')->where('product_id', $product_id)->average('product_rating'),2);
-        $product = \DB::table('product')->where('product_id', $product_id)->update(['product_rating' => $r]);
-        return response()->json($product);
+        $id = $request->product_id;
+        $r = number_format(\DB::table('rating')->where('product_id', $id)->average('product_rating'),1);
+        $product = \DB::table('product')->where('product_id', $id)->update(['product_rating' => $r]);
+        return redirect()->route('customer.orderHistory')->with('success','Thank you for your rating!');
     }
 
     public function sendFeedback(Request $request, $id)

@@ -79,20 +79,8 @@ Route::group(['prefix'=>'staff', 'middleware' => ['auth','admin'],'as'=>'staff.'
 
 	/*------------------------------------ TOPUP ----------------------------------*/
 	Route::group(['prefix'=>'topup', 'as' => 'topup.', 'name' => 'topup'], function(){
-
-		Route::get('/', function(){
-			return view('staff.topup.index');
-		});
-		Route::get('{cust_id?}',function($cust_id){
-    		$customer = App\Customer::find($cust_id);
-    		return response()->json($customer);
-		});
-		Route::put('{cust_id?}', function(Request $request,$cust_id){
-			$customer = App\Customer::find($cust_id);
-			$customer->cust_balance += $request->cust_balance;
-			$customer->save();
-			return response()->json($customer);
-		});
+		Route::get('/', 'TopupController@index')->name('index');
+		Route::post('update', 'TopupController@update')->name('update');
 	});
 });
 
