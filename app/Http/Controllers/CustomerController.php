@@ -123,5 +123,12 @@ class CustomerController extends Controller
         Order::findOrFail($id)->update($request->all());
         return redirect('/orderhistory');
     }
+public function show($id)
+{
+    return view('show');
+}
+
+
+
 
 }

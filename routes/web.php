@@ -48,9 +48,18 @@ Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 
 /*---------------------- ADMIN ----------------------------*/
 
-Route::group(['prefix'=>'staff', 'middleware' => ['auth','admin'],'as'=>'staff.', 'name'=>'staff' ], function(){
+Route::group(['prefix'=>'staff', 'as'=>'staff.','name'=>'staff' ], function(){
 	Route::get('/', 'OrderController@index')->name('index');
 	Route::get('viewfeedback',  'StaffController@viewFeedback')->name('viewfeedback');
+
+
+
+
+Route::group(['prefix' => 'customer','middleware' => ['auth','admin'], 'as'=>'customer.','name'=>'customer'], function(){
+	Route::get('/','AjaxController@index')->name('index');
+});   
+
+
 
 
 	/*------------------------------------ ADVERTISEMENT ----------------------------------*/
@@ -62,6 +71,8 @@ Route::group(['prefix'=>'staff', 'middleware' => ['auth','admin'],'as'=>'staff.'
 		Route::put('update/{id}','AdverController@update')->name('update');
 		Route::delete('delete/{id}', 'AdverController@destroy')->name('delete');
 	});
+
+
 
 	/*------------------------------------ PRODUCT MANAGEMENT ----------------------------------*/
 	Route::group(['prefix' => 'product','as'=>'product.','name'=>'product'],function(){
@@ -97,8 +108,6 @@ Route::group(['prefix'=>'staff', 'middleware' => ['auth','admin'],'as'=>'staff.'
 		});
 	});
 });
-
-
 
 /*--------------------------------------------------------------------------------------------*/
 
