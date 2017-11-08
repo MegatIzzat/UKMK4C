@@ -113,7 +113,8 @@ class CustomerController extends Controller
         $rating = Rating::create($request->input());
         $r = number_format(\DB::table('rating')->where('product_id', $product_id)->average('product_rating'),2);
         $product = \DB::table('product')->where('product_id', $product_id)->update(['product_rating' => $r]);
-        return response()->json($product);
+        // return response()->json($product);
+        return redirect('/orderhistory');    
     }
 
     public function sendFeedback(Request $request, $id)
