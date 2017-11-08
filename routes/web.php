@@ -35,7 +35,7 @@ Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 	Route::group(['middleware' => 'auth'], function(){
 		Route::get('checkout/{user}', 'CustomerController@checkout')->name('checkout');
 
-		Route::group(['prefix'=>'/profile', 'name'=>'profile', 'as'=>'profile.'], function(){
+		Route::group(['prefix'=>'profile', 'name'=>'profile', 'as'=>'profile.'], function(){
 			Route::get('create', 'ProfileController@create')->name('create');
 			Route::post('store', 'ProfileController@store')->name('store');
 			Route::get('edit/{id}', 'ProfileController@edit')->name('edit');

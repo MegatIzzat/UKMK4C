@@ -9,6 +9,7 @@ use App\Order;
 use App\Orderline;
 use App\Customer;
 use App\Category;
+use App\Advertisement;
 use App\Rating;
 use Session;
 use Auth;
@@ -21,7 +22,8 @@ class CustomerController extends Controller
         $product = Product::paginate(6);
         $productcat = Product::get();
         $category = Category::get();
-        return view('customer.index',compact('product','category', 'rating','productcat'));
+        $adv = Advertisement::get();
+        return view('customer.index',compact('product','category', 'rating','productcat','adv'));
     }
 
     public function AddToCart(Request $request, $product_id){
@@ -113,6 +115,7 @@ class CustomerController extends Controller
         $r = number_format(\DB::table('rating')->where('product_id', $id)->average('product_rating'),1);
         $product = \DB::table('product')->where('product_id', $id)->update(['product_rating' => $r]);
         return redirect()->route('customer.orderHistory')->with('success','Thank you for your rating!');
+
     }
 
     public function sendFeedback(Request $request, $id)
