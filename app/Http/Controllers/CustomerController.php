@@ -9,6 +9,7 @@ use App\Order;
 use App\Orderline;
 use App\Customer;
 use App\Category;
+use App\Advertisement;
 use App\Rating;
 use Session;
 use Auth;
@@ -21,7 +22,8 @@ class CustomerController extends Controller
         $product = Product::paginate(6);
         $productcat = Product::get();
         $category = Category::get();
-        return view('customer.index',compact('product','category', 'rating','productcat'));
+        $adv = Advertisement::get();
+        return view('customer.index',compact('product','category', 'rating','productcat','adv'));
     }
 
     public function AddToCart(Request $request, $product_id){
