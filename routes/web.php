@@ -52,11 +52,11 @@ Route::group(['prefix'=>'staff', 'as'=>'staff.','name'=>'staff' ], function(){
 	Route::get('/', 'OrderController@index')->name('index');
 	Route::get('viewfeedback',  'StaffController@viewFeedback')->name('viewfeedback');
 
-});
+
 
 
 Route::group(['prefix' => 'ajax','middleware' => ['auth','admin'], 'as'=>'ajax.','name'=>'ajax'], function(){
-Route::get('/','AjaxController@index')->name('index');
+	Route::get('/','AjaxController@index')->name('index');
 Route::get('show/{user}','AjaxController@show')->name('show');
 
 });   
@@ -109,6 +109,7 @@ Route::get('show/{user}','AjaxController@show')->name('show');
 			return response()->json($customer);
 		});
 	});
+});
 
 
 
