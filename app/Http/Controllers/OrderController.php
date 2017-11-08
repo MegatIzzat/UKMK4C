@@ -14,11 +14,11 @@ class OrderController extends Controller
 	public function index()
 	{
 
-		$order = Order::get();
+		$order = Order::orderBy('order_date','DESC')->get();
 		$orderline = Orderline::get();
 		$product = Product::get();
 
-    	return view('staff.orderstatus',compact('order','orderline','product'));
+    	return view('staff.index',compact('order','orderline','product'));
 	}
 
 	public function update($id)
@@ -28,7 +28,7 @@ class OrderController extends Controller
         $order->order_completed = Carbon::now();
         $order->save();
 
-        return redirect('/orderstatus');
+        return redirect()->route('staff.index');
     }
 
 }

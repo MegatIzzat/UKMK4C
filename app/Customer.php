@@ -8,7 +8,7 @@ class Customer extends Model
 {
     //
     protected $table = 'customer';
-    protected $fillable = ['cust_id','cust_name','cust_pass','cust_balance'];
+    protected $fillable = ['cust_id','cust_email','cust_balance'];
     protected $primaryKey = 'cust_id';
 
     public $timestamps = false;

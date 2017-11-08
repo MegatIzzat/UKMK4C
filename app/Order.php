@@ -11,7 +11,6 @@ class Order extends Model
 	protected $fillable = ['order_id','cust_id','total_price','order_status','order_feedback','order_completed'];
 	public const CREATED_AT = 'order_date';
 	public const UPDATED_AT = 'order_feedbacktime';
-	public $timestamp = false;
 
 	public function Customer(){
 		return $this->belongTo('App\Customer');
@@ -21,3 +20,4 @@ class Order extends Model
 		return $this->hasMany('App\Orderline');
 	}
 }
+

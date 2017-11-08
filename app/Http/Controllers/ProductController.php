@@ -5,9 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Category;
-use Storage;
 use Validator;
-
 
 class ProductController extends Controller
 {
@@ -16,7 +14,7 @@ class ProductController extends Controller
     {
     	$products = Product::all();
         $category=Category::all();
-        return view('product.index', compact('category'))->with('products',$products);
+        return view('staff.product.index', compact('category'))->with('products',$products);
     	// return view('product.index')->with('products',$products);
     }
 
@@ -29,7 +27,8 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
-        $product = Product::create($request->input());
+    	
+      $product = Product::create($request->input());
     	return response()->json($product);
     }
 
@@ -66,29 +65,34 @@ class ProductController extends Controller
 
             ]);
         
-        return redirect()->route('productmanagement.index')->with('success', $id.' has been successfully updated!');
+        return redirect()->route('staff.product.index');
     }
 
-    public function destroy(Request $request, $product_id)
+    public function destroy($product_id)
     {
-        $id = $request->deproduct_id;
-
-    	$product = Product::destroy($id);
-    	return redirect()->route('productmanagement.index')->with('success', $id.' has been successfully deleted!');
+    	$product = Product::destroy($product_id);
+    	return response()->json($product);
     }
 
-    public function upload(Request $request)
-    {
-        $product_id = $request->fileproduct_id;
-        $file = $request->file('fileproduct_img');
-        $filename = $file->getClientOriginalName();
-        $product = \DB::table('product')->where('product_id', $product_id)->update(['product_img' => $filename]);
-        if (!empty($file)){
-            Storage::disk('upload')->put($file->getClientOriginalName(), file_get_contents($file));
-        }
+    // public function upload(Request $request, $product_id)
+    // {
+    //   $validator = Validator::make($request->all(), [
+    //     'product_img' => 'required|image',
+    //   ]
+    //   );
 
-        return redirect()->route('productmanagement.index')->with('success', $filename.' has been successfully uploaded!');
+    //   if ($validator->passes()) {
 
-    }
+    //     $input = $request->all();
+    //     $input['product_img'] = time().'.'.$request->product_img->getClientOriginalExtension();
+    //     $request->product_img->move(public_path('img'), $input['product_img']);
+
+    //     $img = \DB::table('product')->where('product_id', $product_id)->update(['product_img' => $input]);
+
+    //     return response()->json(['success'=>'done']);
+    //   }
+
+    //   return response()->json(['error'=>$validator->errors()->all()]);
+    // }
 
 }

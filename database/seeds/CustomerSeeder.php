@@ -15,18 +15,9 @@ class CustomerSeeder extends Seeder
 
                 [
                     'cust_id' => 'C0001',
+                    'cust_email' => 'nadia@gmail.com',
                     'cust_balance' => '30.00',
                 ],
-
-                [
-                    'cust_id' => 'C0002',
-                    'cust_balance' => '50.00',
-                ],
-
-                [
-                    'cust_id' => 'C0003',
-                    'cust_balance' => '30.00',
-                ]
 
         ]);
     }

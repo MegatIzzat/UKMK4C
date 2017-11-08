@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.customer.customer')
 
 @section('title','Main')
 
@@ -10,18 +10,24 @@
 
 	  <!-- Content Row -->
 		<div class="row">
-			<!-- Alert -->
-				@include('error.flash-message')
 
 			<div class="col-md-3">
 				<div class="list-group">
 					<a href="#" class="list-group-item"><strong>Category</strong></a>
 					@foreach($category as $c)
-					<a href="#" class="list-group-item">{{$c->category_name}}</a>
+						<a href=" # " class="list-group-item">
+							{{$c->category_name}} 
+							<span class="badge badge-success pull-right">  
+								{{ $productcat->where('category_id', $c->category_id)->count() }}
+							</span>
+						</a>
 					@endforeach
 		  </div>
 			</div>	
 			<div class="col-md-9">
+				<!-- Alert -->
+				@include('error.flash-message')
+				
 				<!-- Content Column -->
 				@foreach($errors->all() as $key)
 					<li>{{ $key }}</li>
@@ -65,7 +71,7 @@
 				@foreach($product as $p)
 					<div class="col-md-4 col-xs-12 ">
 						<div class="thumbnail">
-								<a href="#"><img src="{{asset('img/'.$p->product_img)}}" alt="Image not available"></a>
+								<a href="#"><img src="{{asset('img/'.$p->product_id.'.jpg')}}" alt="product-img"></a>
 								<div class="caption">
 									<h4><a href="#">{{$p->product_name}}</a></h4>
 									<h4><strong>RM {{ number_format($p->product_price, 2)}}</strong></h4>
@@ -77,7 +83,7 @@
 								</div>
 								<div class="footer">
 									<p class="pull-left">Rated {{$p->Rating()->count()}} times</p>
-									<a href="{{route('product.addToCart',['product_id' => $p->product_id])}}" class="btn btn-success pull-right" role="button">Add to Cart</a>
+									<a href="{{route('cust.addcart',['product_id' => $p->product_id])}}" class="btn btn-success pull-right" role="button">Add to Cart</a>
 								
 									
 								</div>

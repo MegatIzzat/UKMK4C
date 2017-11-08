@@ -15,8 +15,8 @@ class Topup extends Migration
     {
         //
         Schema::create('topup', function(Blueprint $table){
-            $table->string('cust_id',5);
-            $table->string('staff_id',5);
+            $table->string('cust_id',7);
+            $table->string('staff_id',7);
             $table->timestamp('log_time');
             $table->float('amount',5,2);
 

@@ -11,75 +11,94 @@
 |
 */
 
-/*------------------------ MANAGER -------------------------------*/
+use Illuminate\Http\Request;
 
-Route::group(['prefix'=>'/manager', 'middleware' => 'auth','as'=>'manager.', 'name'=>'manager' ], function(){
-	Route::get('/','ManagerController@index')->name('index');
-	Route::get('create', 'ManagerController@create')->name('create');
-	Route::post('store', 'ManagerController@store')->name('store');
-	Route::get('edit/{id}', 'ManagerController@edit')->name('edit');
-	Route::put('update/{id}','ManagerController@update')->name('update');
-	Route::delete('delete/{id}', 'ManagerController@destroy')->name('delete');
-});
+Auth::routes();
 
-/*------------------------ STAFF -------------------------------*/
-
-Route::group(['prefix'=>'/staff', 'middleware' => 'auth','as'=>'staff.', 'name'=>'staff' ], function(){
-	Route::get('/','StaffController@index')->name('index');
-	Route::get('create', 'StaffController@create')->name('create');
-	Route::post('store', 'StaffController@store')->name('store');
-	Route::get('edit/{id}', 'StaffController@edit')->name('edit');
-	Route::put('update/{id}','StaffController@update')->name('update');
-	Route::delete('delete/{id}', 'StaffController@destroy')->name('delete');
-});
+/*---------------------- CUSTOM LOGIN & REGISTER -------------------------------*/
+Route::post('/login/custom', 'LoginController@login')->name('login.custom');
+Route::get('staff/register','Auth\StaffRegisterController@showRegistrationForm')->name('staff.register');
+Route::post('staff/register','Auth\StaffRegisterController@register');
 
 /*------------------------ CUSTOMER -------------------------------*/
 
-Route::group(['prefix'=>'/', 'as'=>'cust.', 'name'=>'cust' ], function(){
-	
+Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 
+	Route::get('/','CustomerController@index')->name('index');
+	// Route::get('/{id}','CustomerController@category')->name('category');
+	Route::get('/home','CustomerController@index')->name('home');
+
+	Route::get('add-to-cart/{product_id}', 'CustomerController@AddToCart')->name('addcart');
+	Route::get('/cart', 'CustomerController@getCart')->name('getcart');
+
+	/*----------------------------- AUTHENTICATE --------------------------*/
+	Route::group(['middleware' => 'auth'], function(){
+		Route::get('checkout/{user}', 'CustomerController@checkout')->name('checkout');
+
+		Route::group(['prefix'=>'/profile', 'name'=>'profile', 'as'=>'profile.'], function(){
+			Route::get('create', 'ProfileController@create')->name('create');
+			Route::post('store', 'ProfileController@store')->name('store');
+			Route::get('edit/{id}', 'ProfileController@edit')->name('edit');
+			Route::get('','ProfileController@index')->name('index');
+			Route::get('show/{user}', 'ProfileController@show')->name('show');
+		    Route::put('update/{user}','ProfileController@update')->name('update');
+		});
+	});
 });
 
-Route::group(['prefix'=>'/', 'middleware' => 'auth','as'=>'cust.', 'name'=>'cust' ], function(){
-	Route::get('checkout/{user}', 'CustomerController@checkout')->name('checkout');
-	
+/*---------------------- ADMIN ----------------------------*/
+
+Route::group(['prefix'=>'staff', 'middleware' => ['auth','admin'],'as'=>'staff.', 'name'=>'staff' ], function(){
+	Route::get('/', 'OrderController@index')->name('index');
+
+	/*------------------------------------ ADVERTISEMENT ----------------------------------*/
+	Route::group(['prefix' => 'advertisement', 'as'=>'advertisement.','name'=>'advertisement'], function(){
+		Route::get('/','AdverController@index')->name('index');
+		Route::get('create', 'AdverController@create')->name('create');
+		Route::post('store', 'AdverController@store')->name('store');
+		Route::get('{id}', 'AdverController@edit')->name('edit');
+		Route::put('update/{id}','AdverController@update')->name('update');
+		Route::delete('delete/{id}', 'AdverController@destroy')->name('delete');
+	});
+
+	/*------------------------------------ PRODUCT MANAGEMENT ----------------------------------*/
+	Route::group(['prefix' => 'product','as'=>'product.','name'=>'product'],function(){
+		Route::get('/', 'ProductController@index')->name('index');
+		Route::get('{product_id?}', 'ProductController@show')->name('show');
+		Route::post('/', 'ProductController@create')->name('create');
+		Route::put('{product_id?}', 'ProductController@update')->name('update');
+		Route::delete('{product_id?}', 'ProductController@destroy')->name('delete');
+		Route::put('upload/{product_id?}', 'ProductController@upload')->name('upload');
+	});
+
+	/*------------------------------------ ORDER MANAGEMENT ----------------------------------*/
+	Route::group(['prefix'=>'order', 'name'=>'order', 'as'=>'order.' ], function(){
+		Route::get('/', 'OrderController@index')->name('index');
+		Route::get('update/{id}','OrderController@update')->name('update');
+	});
+
+	/*------------------------------------ TOPUP ----------------------------------*/
+	Route::group(['prefix'=>'topup', 'as' => 'topup.', 'name' => 'topup'], function(){
+
+		Route::get('/', function(){
+			return view('staff.topup.index');
+		});
+		Route::get('{cust_id?}',function($cust_id){
+    		$customer = App\Customer::find($cust_id);
+    		return response()->json($customer);
+		});
+		Route::put('{cust_id?}', function(Request $request,$cust_id){
+			$customer = App\Customer::find($cust_id);
+			$customer->cust_balance += $request->cust_balance;
+			$customer->save();
+			return response()->json($customer);
+		});
+	});
 });
 
-/*------------------------ AUTH -------------------------------*/
-Auth::routes();
-
-/*------------------------ HOME -------------------------------*/
-Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/','CustomerController@index')->name('index');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
 
 
-/*------------------------ PRODUCT -----------------------------*/
-
-use Illuminate\Http\Request;
-
-Route::group(['prefix'=>'/productmanagement', 'name'=>'productmanagement', 'as'=>'productmanagement.'], function(){
-
-	Route::get('/', 'ProductController@index')->name('index');
-
-	Route::get('{product_id?}', 'ProductController@show')->name('show');
-
-	Route::post('/', 'ProductController@create')->name('create');
-
-	Route::put('{product_id?}', 'ProductController@update')->name('update');
-
-	Route::delete('{product_id?}', 'ProductController@destroy')->name('delete');
-
-	Route::post('upload', 'ProductController@upload')->name('upload');
-});
-
-use App\Product;
-use App\Rating;
-use App\Order;
-use App\Orderline;
+/*--------------------------------------------------------------------------------------------*/
 
 Route::get('orderhistory', [
 	'uses' => 'CustomerController@orderHistory',
@@ -100,83 +119,12 @@ Route::group(['prefix'=>'/orderhistory/', 'as'=>'customer.', 'name'=>'customer' 
 			Route::put('sendFeedback/{id}','CustomerController@sendFeedback')->name('sendFeedback');
 	});
 
-Route::get('viewfeedback', [
-	'uses' => 'ManagerController@viewFeedback',
-	'as' => 'manager.viewFeedback'
-]);
-
 
 /*------------------------ CART -----------------------------*/
 
 
-Route::get('add-to-cart/{product_id}', [
-	'uses' => 'CustomerController@AddToCart',
-	'as' => 'product.addToCart'
-]);
-
-Route::get('/cart', [
-	'uses' => 'CustomerController@getCart',
-	'as' => 'product.Cart'
-]);
-
-Route::get('/', [
-	'uses' => 'CustomerController@index',
-	'as' => 'cust.index'
-]);
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-/*-------------------------------- TOP UP -------------------------------------*/
-
-Route::get('topup', function(){
-	return view('staff.topup');
-});
-
-Route::get('topup/{cust_id?}',function($cust_id){
-    $customer = App\Customer::find($cust_id);
-    return response()->json($customer);
-});
-
-Route::put('topup/{cust_id?}', function(Request $request,$cust_id){
-	$customer = App\Customer::find($cust_id);
-	$customer->cust_balance += $request->cust_balance;
-	$customer->save();
-	return response()->json($customer);
-});
-
-
-/*------------------------ STAFF -----------------------------*/
-//use Illuminate\Http\Request;
-
-Route::group(['prefix'=>'/orderstatus/', 'name'=>'orderstatus' ], function(){
-
-	Route::get('', 'OrderController@index')->name('index');
-	Route::get('update/{id}','OrderController@update')->name('update');
-});
 
 
 
 
-/*------------------------ ADVERTISEMENT -----------------------------*/
-
-Route::get('/advertisement','AdverController@index');
-Route::post('/advertisement','AdverController@create');
-Route::get('/advertisement/{advertisement_id}', 'AdverController@show');
-Route::put('/advertisement/{advertisement_id}', 'AdverController@update');
-Route::delete('/advertisement/{advertisement_id}', 'AdverController@destroy');
-
-
-/*--------------------------profile*/
-
-Route::group(['prefix'=>'/profile/', 'name'=>'profile', 'as'=>'profile.' ], function(){
-	
-	Route::get('create', 'ProfileController@create')->name('create');
-	Route::post('store', 'ProfileController@store')->name('store');
-	Route::get('edit/{id}', 'ProfileController@edit')->name('edit');
-	Route::get('','ProfileController@index')->name('index');
-	Route::get('show/{user}', 'ProfileController@show')->name('show');
-    Route::put('update/{user}','ProfileController@update')->name('update');
-});
 
