@@ -18,7 +18,7 @@ class Advertisement extends Migration
             $table->string('advertisement_id',5);
             $table->string('advertisement_name');
             $table->string('advertisement_img');
-            $table->string('staff_id',5);
+            $table->string('staff_id',7);
 
             $table->primary('advertisement_id');
             $table->foreign('staff_id')->references('staff_id')->on('staff');

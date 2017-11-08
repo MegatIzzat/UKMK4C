@@ -11,23 +11,5 @@ class CustomerSeeder extends Seeder
      */
     public function run()
     {
-        App\Customer::insert([
-
-                [
-                    'cust_id' => 'C0001',
-                    'cust_balance' => '30.00',
-                ],
-
-                [
-                    'cust_id' => 'C0002',
-                    'cust_balance' => '50.00',
-                ],
-
-                [
-                    'cust_id' => 'C0003',
-                    'cust_balance' => '30.00',
-                ]
-
-        ]);
     }
 }

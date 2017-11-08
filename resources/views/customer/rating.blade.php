@@ -1,10 +1,8 @@
-<html>
-<head>
- <title>Orderlist Management K4C</title>  
- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> 
- <link href="/css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
-</head>
-<body>
+@extends('layouts.customer.customer')
+
+@section('title','Rating')
+
+@section('content')
   <div class="container">
     <div class="panel panel-primary">
      <div class="panel-heading">Order In Progress
@@ -166,5 +164,4 @@
         });
 </script>
 
-</body>
-</html>
+@endsection

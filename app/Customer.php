@@ -8,8 +8,7 @@ class Customer extends Model
 {
     //
     protected $table = 'customer';
-
-    protected $fillable = ['cust_id','cust_pass','cust_balance'];
+    protected $fillable = ['cust_id','cust_email','cust_balance'];
     protected $primaryKey = 'cust_id';
 
     public $timestamps = false;
@@ -19,7 +18,7 @@ class Customer extends Model
     }
 
     public function Order(){
-    	return $this->hasMany('App\Order');
+    	return $this->hasMany('App\Order','cust_id');
     }
 
     public function User(){

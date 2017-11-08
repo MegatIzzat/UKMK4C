@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Orderline extends Model
 {
     //
-    public $incrementing = false;
+    public $timestamps = false;
     protected $table = 'orderline';
     protected $fillable = ['order_id','product_id','quantity'];
 

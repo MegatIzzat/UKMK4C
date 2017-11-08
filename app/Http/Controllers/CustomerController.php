@@ -19,8 +19,9 @@ class CustomerController extends Controller
     {
         //
         $product = Product::paginate(6);
+        $productcat = Product::get();
         $category = Category::get();
-        return view('customer.index',compact('product','category', 'rating'));
+        return view('customer.index',compact('product','category', 'rating','productcat'));
     }
 
     public function AddToCart(Request $request, $product_id){

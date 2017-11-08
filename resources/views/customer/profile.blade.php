@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.customer.customer')
 
 @section('title','Manage Profile')
 
@@ -17,7 +17,7 @@
 
 				@endforeach
 
-				<form class="form-horizontal" method="POST" action="{{route('profile.update',['user' => Auth::user()->user_id] )}}">
+				<form class="form-horizontal" method="POST" action="{{route('cust.profile.update',['user' => Auth::user()->user_id] )}}">
 				{{csrf_field()}}
 				{{method_field('PUT')}}
 

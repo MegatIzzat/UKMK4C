@@ -15,11 +15,11 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'user_id','name', 'email', 'password',
+        'user_id', 'user_name', 'password', 'isAdmin'
     ];
 
-    protected $primaryKey = 'user_id';
     public $incrementing = false;
+    protected $primaryKey = 'user_id';
 
     /**
      * The attributes that should be hidden for arrays.
@@ -30,7 +30,15 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
     public function Customer(){
         return $this->hasOne('App\Customer','user_id','cust_id');
+    }
+
+    public function isAdmin(){
+        if($this->isAdmin){
+            return true;
+        }
+        return false;
     }
 }

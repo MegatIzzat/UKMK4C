@@ -11,28 +11,29 @@ class AdvertisementSeeder extends Seeder
      */
     public function run()
     {
-         App\Advertisement::insert([
+        //  App\Advertisement::insert([
 
-                [
-                    'advertisement_id' => 'A0001',
-                    'advertisement_name' => 'Job Hiring',
-                    'advertisement_img' => '',
-                    'staff_id' => 'admin',
-                ],
+        //         [
+        //             'advertisement_id' => 'A0001',
+        //             'advertisement_name' => 'Job Hiring',
+        //             'advertisement_img' => '',
+        //             'staff_id' => 'admin',
+        //         ],
 
-                [
-                    'advertisement_id' => 'A0002',
-                    'advertisement_name' => 'New Menu',
-                    'advertisement_img' => '',
-                    'staff_id' => 'admin',
-                ],
+        //         [
+        //             'advertisement_id' => 'A0002',
+        //             'advertisement_name' => 'New Menu',
+        //             'advertisement_img' => '',
+        //             'staff_id' => 'admin',
+        //         ],
 
-                [
-                    'advertisement_id' => 'A0003',
-                    'advertisement_name' => 'Lucky Draw',
-                    'advertisement_img' => '',
-                    'staff_id' => 'admin',
-                ]
+        //         [
+        //             'advertisement_id' => 'A0003',
+        //             'advertisement_name' => 'Lucky Draw',
+        //             'advertisement_img' => '',
+        //             'staff_id' => 'admin',
+        //         ]
 
-        ]);    }
+        // ]);    
+     }
 }

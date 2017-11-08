@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts..customer')
 
 @section('content')
 <div class="container">
@@ -92,6 +92,8 @@
                                 </select>
                             </div>
                         </div>
+
+                        <input id="is_admin" type="hidden" name="is_admin" value="0">
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
