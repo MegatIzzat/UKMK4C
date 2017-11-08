@@ -266,7 +266,7 @@
          e.preventDefault();
          var formdata = new FormData(form);
 
-         request.open('post', '/product/upload/');
+         request.open('post', 'staff/product/upload/');
          request.addEventListener("load", transferComplete);
          request.send(formdata);
          $('#frmUpload').trigger("reset");
