@@ -71,14 +71,14 @@
 				@foreach($product as $p)
 					<div class="col-md-4 col-xs-12 ">
 						<div class="thumbnail">
-								<a href="#"><img src="{{asset('img/'.$p->product_id.'.jpg')}}" alt="product-img"></a>
+								<a href="#"><img src="{{asset('img/'.$p->product_img)}}" alt="Image not available"></a>
 								<div class="caption">
 									<h4><a href="#">{{$p->product_name}}</a></h4>
 									<h4><strong>RM {{ number_format($p->product_price, 2)}}</strong></h4>
 								</div>
 								<div class="ratings">
 									<p>
-										<input id="input-3" name="input-3" value="{{$p->product_rating}}" class="rating" data-size="xs" data-show-clear="false" data-show-caption="true" readonly>
+										<input id="input-3" name="input-3" value="{{$p->product_rating}}" class="rating" data-size="xs" data-show-clear="false" data-show-caption="false" readonly>
 									</p>
 								</div>
 								<div class="footer">
