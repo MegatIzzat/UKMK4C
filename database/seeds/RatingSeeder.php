@@ -12,21 +12,21 @@ class RatingSeeder extends Seeder
     public function run()
     {
         
-        App\Rating::insert([
-        [
-                    'product_id' => 'P0001',
-                    'product_rating' => '2.5',
-        ],
+        // App\Rating::insert([
+        // [
+        //             'product_id' => 'P0001',
+        //             'product_rating' => '2.5',
+        // ],
 
-        [
-                    'product_id' => 'P0001',
-                    'product_rating' => '4.0',
-        ],
+        // [
+        //             'product_id' => 'P0001',
+        //             'product_rating' => '4.0',
+        // ],
 
-        [
-                    'product_id' => 'P0003',
-                    'product_rating' => '2.0',
-        ],
+        // [
+        //             'product_id' => 'P0003',
+        //             'product_rating' => '2.0',
+        // ],
 
         // [
         //             'product_id' => 'P0004',
