@@ -16,7 +16,7 @@ class ProductController extends Controller
     {
         $products = Product::all();
         $category=Category::all();
-        return view('product.index', compact('category'))->with('products',$products);
+        return view('staff.product.index', compact('category'))->with('products',$products);
         // return view('product.index')->with('products',$products);
     }
 

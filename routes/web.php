@@ -68,7 +68,7 @@ Route::group(['prefix'=>'staff', 'middleware' => ['auth','admin'],'as'=>'staff.'
 		Route::post('/', 'ProductController@create')->name('create');
 		Route::put('{product_id?}', 'ProductController@update')->name('update');
 		Route::delete('{product_id?}', 'ProductController@destroy')->name('delete');
-		Route::put('upload/{product_id?}', 'ProductController@upload')->name('upload');
+		Route::post('upload', 'ProductController@upload')->name('upload');
 	});
 
 	/*------------------------------------ ORDER MANAGEMENT ----------------------------------*/
