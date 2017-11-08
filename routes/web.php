@@ -55,10 +55,8 @@ Route::group(['prefix'=>'staff', 'as'=>'staff.','name'=>'staff' ], function(){
 
 
 
-Route::group(['prefix' => 'ajax','middleware' => ['auth','admin'], 'as'=>'ajax.','name'=>'ajax'], function(){
+Route::group(['prefix' => 'customer','middleware' => ['auth','admin'], 'as'=>'customer.','name'=>'customer'], function(){
 	Route::get('/','AjaxController@index')->name('index');
-Route::get('show/{user}','AjaxController@show')->name('show');
-
 });   
 
 
