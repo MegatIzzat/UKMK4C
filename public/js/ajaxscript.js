@@ -1,5 +1,5 @@
 
-    var url = "http://127.0.0.1:8000/productmanagement";
+    var url = "http://127.0.0.1:8000/product";
     //display modal form for product editing
 
     $(document).on('click','.open_modal',function(){
@@ -26,43 +26,69 @@
         $('#product_rating').val('0');
     });
 
-    // delete product and remove it from list
+    //display modal form for deleting product
     $(document).on('click','.delete-product',function(){
         var product_id = $(this).val();
-
-        $.confirm({
-            text: "Are you sure you want to delete this product? <strong>This action cannot be undone.</strong>",
-            title: "Confirmation required",
-            confirm: function(button) {
-              
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                }
-            })
-            $.ajax({
-                type: "DELETE",
-                url: url + '/' + product_id,
-                success: function (data) {
-                    console.log(data);
-                    $("#product" + product_id).remove();
-                    alert("Product successfully deleted");
-                },
-                error: function (data) {
-                    console.log('Error:', data);
-                }
-    
-            });
-            },
-            cancel: function(button) {
-            // nothing to do
-            },
-            confirmButton: "Yes I am sure",
-            confirmButtonClass: "btn-danger",
-            cancelButtonClass: "btn-default",
-        });
-        
+           
+        $.get(url + '/' + product_id, function (data) {
+            //success data
+            console.log(data);
+            $('#deproduct_id').val(data.product_id);
+            $('#deproduct_name').val(data.product_name);
+            $('#deleteModal').modal('show');
+        }) 
     });
+
+    $(document).on('click','.upload-img',function(){
+        var product_id = $(this).val();
+           
+        $.get(url + '/' + product_id, function (data) {
+            //success data
+            console.log(data);
+            $('#fileproduct_id').val(data.product_id);
+            $('#fileproduct_name').val(data.product_name);
+            $('#fileproduct_current').text(data.product_img);
+            $('#uploadModal').modal('show');
+        }) 
+    });
+
+    // delete product and remove it from list
+    // $(document).on('click','.delete-product',function(){
+    //     var product_id = $(this).val();
+
+    //     $.confirm({
+    //         text: "Are you sure you want to delete this product? <strong>This action cannot be undone.</strong>",
+    //         title: "Confirmation required",
+    //         confirm: function(button) {
+              
+    //         $.ajaxSetup({
+    //             headers: {
+    //                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+    //             }
+    //         })
+    //         $.ajax({
+    //             type: "DELETE",
+    //             url: url + '/' + product_id,
+    //             success: function (data) {
+    //                 console.log(data);
+    //                 $("#product" + product_id).remove();
+    //                 alert("Product successfully deleted");
+    //             },
+    //             error: function (data) {
+    //                 console.log('Error:', data);
+    //             }
+    
+    //         });
+    //         },
+    //         cancel: function(button) {
+    //         // nothing to do
+    //         },
+    //         confirmButton: "Yes I am sure",
+    //         confirmButtonClass: "btn-danger",
+    //         cancelButtonClass: "btn-default",
+    //     });
+        
+    // });
 
     //create new product / update existing product
     $("#btn-save").click(function (e) {
@@ -78,7 +104,7 @@
             product_name: $('#product_name').val(),
             product_price: $('#product_price').val(),
             category_id: $('#category_id').val(),
-            product_img: $('#product_img').val(),
+            product_img: "no-image.jpg",
             product_rating: $('#product_rating').val(),
         }
         //used to determine the http verb to use [add=POST], [update=PUT]
