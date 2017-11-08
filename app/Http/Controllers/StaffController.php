@@ -82,4 +82,13 @@ class StaffController extends Controller
     {
         //
     }
+
+    public function viewFeedback()
+    {
+        $order = Order::get();
+        $orderline = Orderline::get();
+        $product = Product::get();
+
+        return view('staff.feedback.viewfeedback',compact('order','orderline','product'));
+    }
 }
