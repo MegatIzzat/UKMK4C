@@ -17,11 +17,11 @@ class AjaxController extends Controller
         return view('ajax.index',compact('user','customer'));
     }
 
-     public function show($id)
-     {
-         $user = User::where('user_id', $id)->firstOrFail();
-         $customer = Customer::where('cust_id',$id)->firstOrFail();
-        return view('ajax.show', compact('user','customer'));
-     }
+     // public function show($id)
+     // {
+     //     $user = User::where('user_id', $id)->firstOrFail();
+     //     $customer = Customer::where('cust_id',$id)->firstOrFail();
+     //    return view('ajax.show', compact('user','customer'));
+     // }
 
 }

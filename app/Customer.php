@@ -12,6 +12,7 @@ class Customer extends Model
     protected $primaryKey = 'cust_id';
 
     public $timestamps = false;
+    public $incrementing = false;
 
     public function Topup(){
     	return $this->hasMany('App\Topup','cust_id');
@@ -22,7 +23,7 @@ class Customer extends Model
     }
 
     public function User(){
-    	return $this->hasOne('App\User', 'user_id', 'cust_id');
+    	return $this->hasOne('App\User', 'user_id');
 
     }
 
