@@ -83,7 +83,10 @@
 								</div>
 								<div class="footer">
 									<p class="pull-left">Rated {{$p->Rating()->count()}} times</p>
-									<a href="{{route('cust.addcart',['product_id' => $p->product_id])}}" class="btn btn-success pull-right" role="button">Add to Cart</a>
+
+									
+										<a href="{{route('cust.addcart',['product_id' => $p->product_id])}}" class="btn btn-success pull-right" role="button">Add to Cart</a>
+									
 								
 									
 								</div>

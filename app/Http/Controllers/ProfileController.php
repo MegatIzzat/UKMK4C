@@ -93,7 +93,7 @@ class ProfileController extends Controller
         // return response()->json($user);
 
         Validator::make($request->all(), [
-            'user_id' => 'required|string|min:7',
+            'user_id' => 'required|string|7',
             'name' => 'required|string|min:1',
             'email' => 'required|string|min:10',
             'password' => 'required|string',
