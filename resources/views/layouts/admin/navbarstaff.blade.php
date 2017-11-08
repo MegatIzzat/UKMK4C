@@ -27,7 +27,7 @@
                                 <li><a href=" {{route('staff.topup.index')}} ">Top Up</a></li>
                                 <li><a href=" {{route('staff.product.index')}}">Product</a></li>
                                 <li><a href=" ">Staff</a></li>
-                                <li><a href=" ">Feedback</a></li>
+                                <li><a href=" {{route('staff.viewfeedback')}} ">Feedback</a></li>
                                 <li><a href=" {{route('staff.advertisement.index')}} ">Advertisement</a></li>
                             </ul>
                         </li>
