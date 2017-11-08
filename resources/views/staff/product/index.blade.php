@@ -123,7 +123,7 @@
       </div>
       <div class="modal-body">
       
-      <form id="frmUpdateProducts" name="frmUpdateProducts" class="form-horizontal" action="{{route('productmanagement.update', $product->product_id)}}" method="POST">
+      <form id="frmUpdateProducts" name="frmUpdateProducts" class="form-horizontal" action="{{route('staff.product.update', $product->product_id)}}" method="POST">
         {{csrf_field()}}
         {{method_field('PUT')}}
         <div class="form-group">
@@ -183,7 +183,7 @@
       </div>
       <div class="modal-body">
       
-      <form id="frmDeleteProducts" name="frmDeleteProducts" class="form-horizontal" action="{{route('productmanagement.delete', $product->product_id)}}" method="POST">
+      <form id="frmDeleteProducts" name="frmDeleteProducts" class="form-horizontal" action="{{route('staff.product.delete', $product->product_id)}}" method="POST">
         {{csrf_field()}}
         {{method_field('DELETE')}}
         <div class="form-group">
@@ -217,7 +217,7 @@
       </div>
       <div class="modal-body">
       
-      <form id="frmUpload" name="frmUpload" class="form-horizontal" action="{{route('productmanagement.upload', $product->product_id)}}" method="POST" enctype="multipart/form-data">
+      <form id="frmUpload" name="frmUpload" class="form-horizontal" action="{{route('staff.product.upload', $product->product_id)}}" method="POST" enctype="multipart/form-data">
         {{csrf_field()}}
         {{-- {{method_field('PUT')}} --}}
         <div class="form-group">
@@ -257,7 +257,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="{{asset('js/ajaxscript.js')}}"></script>
-    <script src="{{asset('js/jquery.confirm.js')}}"></script>
     <script>
       var form = document.getElementById('frmUpload'); 
       var request = new XMLHttpRequest();
@@ -266,7 +265,7 @@
          e.preventDefault();
          var formdata = new FormData(form);
 
-         request.open('post', 'staff/product/upload/');
+         request.open('post', 'product/upload');
          request.addEventListener("load", transferComplete);
          request.send(formdata);
          $('#frmUpload').trigger("reset");

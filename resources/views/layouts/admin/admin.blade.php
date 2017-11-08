@@ -8,7 +8,6 @@
 	<link rel="stylesheet" href="{{asset('css/flatly/theme/bootstrap.css')}}" media="screen">
 	<link rel="stylesheet" href="{{asset('css/flatly/theme/usebootstrap.css')}}">
 	<link rel="stylesheet" href="{{asset('css/customize.css')}}">
-	<script src="{{asset('js/star-rating.js')}}"></script>
 </head>
 <body>
 
@@ -19,5 +18,6 @@
 	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
 	<script src="{{asset('css/flatly/bootstrap/bootstrap.min.js')}}"></script>
 	<script src="{{asset('css/flatly/bootstrap/usebootstrap.js')}}"></script>
+	<script src="{{asset('js/star-rating.js')}}"></script>
 </body>
 </html>

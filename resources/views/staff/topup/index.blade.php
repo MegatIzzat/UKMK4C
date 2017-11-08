@@ -12,7 +12,7 @@
 					<h3 class="text-center">Top Up Account</h3>
 				</div>
 				<div class="panel-body">
-					<fieldset>
+					<form {{-- action="{{route('')}}" --}}>
 						<div class="form-group">
 							<input class="form-control input-lg" placeholder="Customer ID" id="cust_id" name="cust_id" type="text">
 						</div>
@@ -70,15 +70,15 @@
 						</div> --}}
 
 						<input class="btn btn-lg btn-success btn-block" value="PROCEED" type="submit">
-					</fieldset>
+					</form>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
 	<meta name="_token" content="{!! csrf_token() !!}" />
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="{{asset('js/jquery.confirm.js')}}"></script>
 
 
@@ -91,7 +91,7 @@
 
 	<script type="text/javascript">
 
-		var url = "http://127.0.0.1:8000/topup";
+		var url = "http://127.0.0.1:8000/staff/topup";
 		$(document).on('click','.btn-success',function(){
 
 		$.ajaxSetup({
