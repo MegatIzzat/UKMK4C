@@ -41,7 +41,7 @@ Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 			Route::get('edit/{id}', 'ProfileController@edit')->name('edit');
 			Route::get('','ProfileController@index')->name('index');
 			Route::get('show/{user}', 'ProfileController@show')->name('show');
-		    Route::put('update/{user}','ProfileController@update')->name('update');
+			Route::put('update/{user}','ProfileController@update')->name('update');
 		});
 	});
 });
@@ -50,6 +50,8 @@ Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 
 Route::group(['prefix'=>'staff', 'middleware' => ['auth','admin'],'as'=>'staff.', 'name'=>'staff' ], function(){
 	Route::get('/', 'OrderController@index')->name('index');
+	Route::get('viewfeedback',  'StaffController@viewFeedback')->name('viewfeedback');
+
 
 	/*------------------------------------ ADVERTISEMENT ----------------------------------*/
 	Route::group(['prefix' => 'advertisement', 'as'=>'advertisement.','name'=>'advertisement'], function(){
@@ -94,8 +96,8 @@ Route::get('orderhistory', [
 ]);
 
 Route::get('orderhistory/{product_id}',function($product_id){
-    $rating = App\Rating::where('product_id', $product_id)->get();
-    return response()->json($r);
+	$rating = App\Rating::where('product_id', $product_id)->get();
+	return response()->json($r);
 });
 
 Route::post('orderhistory/{product_id}', [
@@ -104,8 +106,10 @@ Route::post('orderhistory/{product_id}', [
 ]);
 
 Route::group(['prefix'=>'/orderhistory/', 'as'=>'customer.', 'name'=>'customer' ], function(){
-			Route::put('sendFeedback/{id}','CustomerController@sendFeedback')->name('sendFeedback');
-	});
+	Route::put('sendFeedback/{id}','CustomerController@sendFeedback')->name('sendFeedback');
+});
+
+
 
 
 /*------------------------ CART -----------------------------*/
