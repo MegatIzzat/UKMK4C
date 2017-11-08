@@ -35,14 +35,20 @@
                         @guest
                             <li><a href="{{ route('login') }}">Login</a></li>
                         @else
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                                    {{ Auth::user()->user_name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    <li><a href="{{route('cust.profile.edit',['user' => Auth::user()->user_id])}}">Manage Profile</a></li>
-                                    <li><a href="/orderhistory">Your Order History</a></li>
+                                    @if(Auth::user()->isAdmin == 0)
+                                        <li>yayayaya</li>
+                                    @endif()
+                                
+                                    <li>
+                                        <a href="">  </a>
+                                    </li>
 
                                 <li role="separator" class="divider"></li>
                                     <li>
@@ -57,7 +63,7 @@
                                         </form>
                                     </li>
                                 </ul>
-                            </li>
+                                </li>
                         @endguest
                     </ul>
                 </div>
