@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Order;
+use App\Orderline;
+use App\Product;
 
 class StaffController extends Controller
 {
@@ -81,5 +84,14 @@ class StaffController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function viewFeedback()
+    {
+        $order = Order::get();
+        $orderline = Orderline::get();
+        $product = Product::get();
+
+        return view('staff.feedback.viewfeedback',compact('order','orderline','product'));
     }
 }
