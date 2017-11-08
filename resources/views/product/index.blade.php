@@ -35,7 +35,7 @@
              <td>{{$product->product_name}}</td>
              <td>RM {{number_format($product->product_price, 2)}}</td>
              <td>{{$product->category_id}}</td>
-             <td><div><button class="btn btn-primary btn-sm upload-img" id="btn-img" data-id="{{$product->product_id}}">Upload</button></div></td>
+             <td><div><button class="btn btn-primary btn-sm upload-img" id="btn-img" value="{{$product->product_id}}">Upload</button></div></td>
              <td>{{number_format($product->product_rating, 1)}}</td>
               <td>
               <button class="btn btn-warning btn-detail open_modal" value="{{$product->product_id}}">Edit</button>
@@ -89,7 +89,7 @@
                     </div>
                 </div>
                 <div>
-                    <input type="hidden" class="form-control" id="product_img" name="product_img">
+                    <input type="hidden" class="form-control" id="product_img" name="product_img" value="no-image.jpg">
                 </div>
                 <div class="form-group">
                  <label for="inputRating" class="col-sm-3 control-label">Rating</label>
@@ -202,10 +202,77 @@
   </div>
 </div>
 
+<div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+     <div class="modal-content">
+       <div class="modal-header">
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+          <h4 class="modal-title" id="myModalLabel">Upload Image</h4>
+      </div>
+      <div class="modal-body">
+      
+      <form id="frmUpload" name="frmUpload" class="form-horizontal" action="{{route('productmanagement.upload', $product->product_id)}}" method="POST" enctype="multipart/form-data">
+        {{csrf_field()}}
+        {{-- {{method_field('PUT')}} --}}
+        <div class="form-group">
+           <label class="col-sm-3 control-label">ID</label>
+             <div class="col-sm-9">
+              <input type="text" class="form-control" id="fileproduct_id" name="fileproduct_id" readonly="">
+             </div>
+        </div>
+          <div class="form-group">
+           <label class="col-sm-3 control-label">Name</label>
+             <div class="col-sm-9">
+              <input type="text" class="form-control" id="fileproduct_name" name="fileproduct_name" readonly="">
+             </div>
+          </div>
+          <div class="form-group">
+           <label class="col-sm-3 control-label">Current Image</label>
+             <div class="col-sm-9">
+              <p class="form-control" id="fileproduct_current" name="fileproduct_current">No Image Available</p>
+             </div>
+          </div>
+          <div class="form-group">
+           <label class="col-sm-3 control-label">New Image</label>
+             <div class="col-sm-9">
+              <input type="file" class="form-control" id="fileproduct_img" name="fileproduct_img" accept="image/jpg, image/jpeg">
+             </div>
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Submit</button>
+          </div>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
+
     <meta name="_token" content="{!! csrf_token() !!}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="{{asset('js/ajaxscript.js')}}"></script>
     <script src="{{asset('js/jquery.confirm.js')}}"></script>
+    <script>
+      var form = document.getElementById('frmUpload'); 
+      var request = new XMLHttpRequest();
+
+      form.addEventListener('submit', function(e) {
+         e.preventDefault();
+         var formdata = new FormData(form);
+
+         request.open('post', '/productmanagement/upload/');
+         request.addEventListener("load", transferComplete);
+         request.send(formdata);
+         $('#frmUpload').trigger("reset");
+         $('#uploadModal').modal('hide');
+         alert("File Successfully Uploaded!");
+      });
+
+      function transferComplete(data) {
+        console.log("Completed");
+      }
+
+    </script>
+
 </body>
 </html>

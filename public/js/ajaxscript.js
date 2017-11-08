@@ -39,6 +39,19 @@
         }) 
     });
 
+    $(document).on('click','.upload-img',function(){
+        var product_id = $(this).val();
+           
+        $.get(url + '/' + product_id, function (data) {
+            //success data
+            console.log(data);
+            $('#fileproduct_id').val(data.product_id);
+            $('#fileproduct_name').val(data.product_name);
+            $('#fileproduct_current').text(data.product_img);
+            $('#uploadModal').modal('show');
+        }) 
+    });
+
     // delete product and remove it from list
     // $(document).on('click','.delete-product',function(){
     //     var product_id = $(this).val();
@@ -91,7 +104,7 @@
             product_name: $('#product_name').val(),
             product_price: $('#product_price').val(),
             category_id: $('#category_id').val(),
-            product_img: $('#product_img').val(),
+            product_img: "no-image.jpg",
             product_rating: $('#product_rating').val(),
         }
         //used to determine the http verb to use [add=POST], [update=PUT]

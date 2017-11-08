@@ -73,7 +73,7 @@ Route::group(['prefix'=>'/productmanagement', 'name'=>'productmanagement', 'as'=
 
 	Route::delete('{product_id?}', 'ProductController@destroy')->name('delete');
 
-	Route::put('upload/{product_id?}', 'ProductController@upload')->name('upload');
+	Route::post('upload', 'ProductController@upload')->name('upload');
 });
 
 use App\Product;
