@@ -34,7 +34,7 @@
         </thead>
 
         @foreach($order as $key => $p)
-        @if($p->cust_id=='C0003')
+        @if($p->cust_id=='C0001')
         @if($p->order_status=='Completed')
         <tr>
           <td>
@@ -80,13 +80,20 @@
             {{round(abs($to_time - $from_time) / 60). " minutes"}}
           </td>
 
-
+          @if($p->order_feedback==null)
+          <form class="form-horizontal" method="POST" action="{{ route('customer.sendFeedback',$p->order_id)}}">
+          {{csrf_field()}}
+          {{ method_field('PUT') }}
           <td>
-            <textarea id="myDIV" style="width:100%" rows="3"></textarea>
+            <textarea name="order_feedback" style="width:100%" rows="3"></textarea>
             <br>
-            <a class="btn btn-success btn-sm"  role="button" style="width:100%">Send Feedback</a>
+            <button style="width:100%" class="btn btn-success" type="submit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Send Feedback</button>
           </td>
+        </form>
 
+        @else
+        <td>{{$p->order_feedback}}</td>
+          @endif
         </tr>
         @endif
         @endif
@@ -95,6 +102,9 @@
 
     </div>
   </div>
+</div>
+<div class="col-md-offset-4 col-md-4">
+  <a href="/" class="btn btn-success btn-block" role="button">Back to Home</a></li>
 </div>
 
 <div class="modal fade" id="rateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

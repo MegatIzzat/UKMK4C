@@ -27,7 +27,7 @@ Route::group(['prefix'=>'/manager', 'middleware' => 'auth','as'=>'manager.', 'na
 Route::group(['prefix'=>'/staff', 'middleware' => 'auth','as'=>'staff.', 'name'=>'staff' ], function(){
 	Route::get('/','StaffController@index')->name('index');
 	Route::get('create', 'StaffController@create')->name('create');
-	Route::post('store', 'AStaffController@store')->name('store');
+	Route::post('store', 'StaffController@store')->name('store');
 	Route::get('edit/{id}', 'StaffController@edit')->name('edit');
 	Route::put('update/{id}','StaffController@update')->name('update');
 	Route::delete('delete/{id}', 'StaffController@destroy')->name('delete');
@@ -42,11 +42,9 @@ Route::group(['prefix'=>'/', 'as'=>'cust.', 'name'=>'cust' ], function(){
 
 Route::group(['prefix'=>'/', 'middleware' => 'auth','as'=>'cust.', 'name'=>'cust' ], function(){
 	Route::get('checkout/{user}', 'CustomerController@checkout')->name('checkout');
+	
 });
 
-// Route::group(['prefix'=>'/feedback', 'name'=>'feedback' ], function(){
-// 	Route::get('', 'FeedbackController@index')->name('index');
-// });
 /*------------------------ AUTH -------------------------------*/
 Auth::routes();
 
@@ -63,46 +61,21 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 use Illuminate\Http\Request;
 
-Route::get('/productmanagement', 'ProductController@index')->name('index');
+Route::group(['prefix'=>'/productmanagement', 'name'=>'productmanagement', 'as'=>'productmanagement.'], function(){
 
-Route::get('/productmanagement/{product_id?}', 'ProductController@show')->name('show');
+	Route::get('/', 'ProductController@index')->name('index');
 
-Route::post('/productmanagement', 'ProductController@create')->name('create');
-// Route::post('/productmanagement', 'ProductController@store')->name('store');
+	Route::get('{product_id?}', 'ProductController@show')->name('show');
 
-Route::put('/productmanagement/{product_id?}', 'ProductController@update')->name('update');
+	Route::post('/', 'ProductController@create')->name('create');
 
-Route::delete('/productmanagement/{product_id?}', 'ProductController@destroy')->name('delete');
+	Route::put('{product_id?}', 'ProductController@update')->name('update');
 
-// Route::get('form-validation', 'HomeController@formValidation');
-// Route::post('form-validation', 'HomeController@formValidationPost');
+	Route::delete('{product_id?}', 'ProductController@destroy')->name('delete');
 
-// Route::get('productajaxCRUD', function () {
-//     $products = App\Product::all();
-//     return view('product.index')->with('products',$products);
-// });
-// Route::get('productajaxCRUD/{product_id?}',function($product_id){
-//     $product = App\Product::find($product_id);
-//     return response()->json($product);
-// });
-// Route::post('productajaxCRUD',function(Request $request){   
-//     $product = App\Product::create($request->input());
-//     return response()->json($product);
-// });
-// Route::put('productajaxCRUD/{product_id?}',function(Request $request,$product_id){
-//     $product = App\Product::find($product_id);
-//     $product->product_name = $request->product_name;
-//     $product->product_price= $request->product_price;
-//     $product->category_id= $request->category_id;
-//     $product->product_img= $request->product_img;
-//     $product->product_rating= $request->product_rating;
-//     $product->save();
-//     return response()->json($product);
-// });
-// Route::delete('productajaxCRUD/{product_id?}',function($product_id){
-//     $product = App\Product::destroy($product_id);
-//     return response()->json($product);
-// });
+	Route::post('upload', 'ProductController@upload')->name('upload');
+});
+
 use App\Product;
 use App\Rating;
 use App\Order;
@@ -122,6 +95,16 @@ Route::post('orderhistory/{product_id}', [
 	'uses' => 'CustomerController@sendRating',
 	'as' => 'customer.sendRating'
 ]);
+
+Route::group(['prefix'=>'/orderhistory/', 'as'=>'customer.', 'name'=>'customer' ], function(){
+			Route::put('sendFeedback/{id}','CustomerController@sendFeedback')->name('sendFeedback');
+	});
+
+Route::get('viewfeedback', [
+	'uses' => 'ManagerController@viewFeedback',
+	'as' => 'manager.viewFeedback'
+]);
+
 
 /*------------------------ CART -----------------------------*/
 
@@ -171,6 +154,29 @@ Route::group(['prefix'=>'/orderstatus/', 'name'=>'orderstatus' ], function(){
 
 	Route::get('', 'OrderController@index')->name('index');
 	Route::get('update/{id}','OrderController@update')->name('update');
-
-
 });
+
+
+
+
+/*------------------------ ADVERTISEMENT -----------------------------*/
+
+Route::get('/advertisement','AdverController@index');
+Route::post('/advertisement','AdverController@create');
+Route::get('/advertisement/{advertisement_id}', 'AdverController@show');
+Route::put('/advertisement/{advertisement_id}', 'AdverController@update');
+Route::delete('/advertisement/{advertisement_id}', 'AdverController@destroy');
+
+
+/*--------------------------profile*/
+
+Route::group(['prefix'=>'/profile/', 'name'=>'profile', 'as'=>'profile.' ], function(){
+	
+	Route::get('create', 'ProfileController@create')->name('create');
+	Route::post('store', 'ProfileController@store')->name('store');
+	Route::get('edit/{id}', 'ProfileController@edit')->name('edit');
+	Route::get('','ProfileController@index')->name('index');
+	Route::get('show/{user}', 'ProfileController@show')->name('show');
+    Route::put('update/{user}','ProfileController@update')->name('update');
+});
+

@@ -1,13 +1,13 @@
 <html>
 <head>
- <title>Orderlist Management K4C</title>  
+ <title>View Feedback K4C</title>  
  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> 
- <link href="/css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
+<link href="/css/star-rating.css" media="all" rel="stylesheet" type="text/css" />
 </head>
 <body>
   <div class="container">
     <div class="panel panel-primary">
-     <div class="panel-heading">Order In Progress
+     <div class="panel-heading">Feedback
      </div>
      <div class="panel-body"> 
       <ul>
@@ -21,50 +21,66 @@
       <table class="table">
         <thead>
           <tr>
+            <th>Order Time</th>
             <th>Order ID</th>
-            <th>Order Status</th>
-            <th>Product Name</th>
-            <th>Give Rating</th>
-            <th>Product Quantity</th>
+            <th>Product Purchased</th>
+            <th>Paid</th>
+            <th>Waiting Time</th>         
+            <th>Feedback</th>
+
 
           </tr>
         </thead>
 
         @foreach($order as $key => $p)
-
+        @if($p->order_status=='Completed')
         <tr>
+          <td>
+            {{date('d-M-Y', strtotime($p->order_date.' + 8 hours'))}}<br>
+            {{date('h:i A', strtotime($p->order_date.' + 8 hours'))}}
+          </td><!-- Display in Malaysia time -->
           <td>{{$p->order_id}}</td>
           
-          <td>{{$p->order_status}}</td>
-
-          @foreach($orderline as $key => $q)
-            @if($p->order_id == $q->order_id)
+          <td>
+            <div class="row">
+              @foreach($orderline as $key => $q)
+              @if($p->order_id == $q->order_id)
               @foreach($product as $key => $r)
-                @if($q->product_id == $r->product_id)
-	                <td>{{$r->product_name}}</td>
-	                @if($p->order_status=='Completed')
-                  <td>
-                    <div class="btn btn-primary btn-md" id="btn-rating" role="button" data-id="{{$q->product_id}}" data-value="{{$r->product_name}}"> Rate </a>
-                  </td>
-          @else
-          <td></td>
-          @endif
-                @endif
+              @if($q->product_id == $r->product_id)
+              <div>{{$r->product_name}}</div>
+              @endif
               @endforeach
-              <td>{{$q->quantity}}</td>
-              <tr><td></td><td></td>
-            @endif
-          @endforeach
+              @endif
+              @endforeach
+            </div>
+          </td>
 
-          </tr>
-          @endforeach
-        </table>
 
-      </div>
+          <td>RM {{number_format($p->total_price, 2)}}</td>
+
+          <td>
+            <?php
+            $to_time = strtotime($p->order_date);
+            $from_time = strtotime($p->order_completed); 
+            ?>
+            {{round(abs($to_time - $from_time) / 60). " minutes"}}
+          </td>
+
+        <td>{{$p->order_feedback}}</td>
+        
+        </tr>
+        @endif
+        @endforeach
+      </table>
+
     </div>
   </div>
+</div>
+<div class="col-md-offset-4 col-md-4">
+  <a href="/" class="btn btn-success btn-block" role="button">Back to Home</a></li>
+</div>
 
-  <div class="modal fade" id="rateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="rateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
            <div class="modal-content">
              <div class="modal-header">
@@ -74,7 +90,7 @@
             <div class="modal-body">
             
             <form id="frmRating" name="frmRating" class="form-horizontal">
-            	<div class="form-group">
+              <div class="form-group">
                    <div class="col-sm-9">
                     <label class="hidden" id="product_id"></label>
                    </div>
@@ -107,24 +123,26 @@
 <script src="{{asset('js/ajaxscript.js')}}"></script>
 <script src="{{asset('js/jquery.confirm.js')}}"></script>
 <script src="{{asset('js/star-rating.js')}}"></script>
+</body>
+</html>
 
 <script>
-	var url = "http://127.0.0.1:8000/rating";
+  var url = "http://127.0.0.1:8000/orderhistory";
 
-	$('.btn-primary').click(function (e) {
-		e.preventDefault();
-		var id = $(this).attr('data-id');
-		var name = $(this).attr('data-value');
-		console.log(id);
-		console.log(name);
-		$('#product_id').text(id);
-		$('#product_name').text(name);
-		$('#rateModal').modal('show');
-		$('#frmRating').trigger("reset");
+  $('.btn-primary').click(function (e) {
+    e.preventDefault();
+    var id = $(this).attr('data-id');
+    var name = $(this).attr('data-value');
+    console.log(id);
+    console.log(name);
+    $('#product_id').text(id);
+    $('#product_name').text(name);
+    $('#rateModal').modal('show');
+    $('#frmRating').trigger("reset");
 
-	});
+  });
 
-	$(".btn-warning").click(function (e) {
+  $(".btn-warning").click(function (e) {
         e.preventDefault();
 
         $.ajaxSetup({

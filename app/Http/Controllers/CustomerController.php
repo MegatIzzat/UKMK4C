@@ -10,7 +10,6 @@ use App\Orderline;
 use App\Customer;
 use App\Category;
 use App\Rating;
-use App\Feedback;
 use Session;
 use Auth;
 
@@ -43,6 +42,11 @@ class CustomerController extends Controller
         $cart = new Cart($oldCart);
         return view('customer.cart',['products'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
     }
+
+       public function manageprofile(){
+        return view('customer.profile');
+
+        }
 
     public function checkout(Request $request, $user){
         $customer = Customer::find($user); 
@@ -94,11 +98,10 @@ class CustomerController extends Controller
     public function orderHistory()
     {
         $order = Order::get();
-        $feedback = Feedback::get();
         $orderline = Orderline::get();
         $product = Product::get();
 
-        return view('customer.orderhistory',compact('order','feedback','orderline','product'));
+        return view('customer.orderhistory',compact('order','orderline','product'));
     }
 
     public function sendRating(Request $request, $product_id){
@@ -108,6 +111,13 @@ class CustomerController extends Controller
         $r = number_format(\DB::table('rating')->where('product_id', $product_id)->average('product_rating'),2);
         $product = \DB::table('product')->where('product_id', $product_id)->update(['product_rating' => $r]);
         return response()->json($product);
+    }
+
+    public function sendFeedback(Request $request, $id)
+    {
+        //
+        Order::findOrFail($id)->update($request->all());
+        return redirect('/orderhistory');
     }
 
 }

@@ -48,7 +48,26 @@ class OrderlineSeeder extends Seeder
                     'order_id' => 'B0003',
                     'product_id' => 'P0019',
                     'quantity' => '1',
-                ]
+                ],
+
+                [
+                    'order_id' => 'B0004',
+                    'product_id' => 'P0003',
+                    'quantity' => '1',
+                ],
+
+                [
+                    'order_id' => 'B0004',
+                    'product_id' => 'P0004',
+                    'quantity' => '1',
+                ],
+
+                [
+                    'order_id' => 'B0004',
+                    'product_id' => 'P0014',
+                    'quantity' => '1',
+                ],
+
 
 
         ]);    }
