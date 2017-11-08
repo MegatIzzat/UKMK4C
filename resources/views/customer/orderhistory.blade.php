@@ -57,7 +57,7 @@
 								@foreach($orderline as $key => $q)
 									@if($p->order_id == $q->order_id)
 										@foreach($product as $key => $r)
-											@if($q->product_id == $r->product_id)
+											@if($q->product_id == $r->product_id && $p->order_feedback==null)
 												<div><button class="btn btn-primary btn-xs" data-id="{{$q->product_id}}" data-value="{{$r->product_name}}">Rate</button></div>
 											@endif
 										@endforeach
