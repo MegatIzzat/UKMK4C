@@ -32,7 +32,7 @@ class User extends Authenticatable
 
 
     public function Customer(){
-        return $this->hasOne('App\Customer','user_id','cust_id');
+        return $this->hasOne('App\Customer','cust_id');
     }
 
     public function isAdmin(){
