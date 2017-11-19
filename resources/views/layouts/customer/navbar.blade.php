@@ -23,8 +23,23 @@
                 <li><a href=" {{route('cust.home')}} "><span class="glyphicon glyphicon-home"> Home</span></a></li>
 
                 @auth
+                <?php $x=0 ?>
+                 @foreach($notify as $n)
+                     @if($n->is_seen == 0)
+                        <?php ++$x ?>
+                    @endif
+                @endforeach
+
+                @if($x==0)
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-envelope"> Notification</span></a>
+                @else
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color:blue" class="glyphicon glyphicon-envelope"> Notification</span>
+                        <span style="background-color:red" class="badge">{{$x}}</span>
+                    </a>
+                @endif
+
                     <ul class="dropdown-menu">
                      @foreach($notify as $n)
                      @if($n->is_seen == 0)
@@ -32,17 +47,25 @@
                         <form class="form-horizontal" method="POST" action="{{ route('cust.isNotified',$n->order_id)}}">
                             {{csrf_field()}}
                             {{ method_field('PUT') }}
-                            <button  class="btn btn-info" type="submit">Your Order {{$n->order_id}} has been completed.<span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                            <button  class="btn-info" type="submit">Your Order {{$n->order_id}} has been completed.<span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
                         </form>
                     </li>
                     
                     @else
                     <li>
-                        <button  class="btn btn-default" disabled>Your Order {{$n->order_id}} has been completed.<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>
+                        <button  class="btn-default" disabled>Your Order {{$n->order_id}} has been completed.<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>
                     </li>
                     @endif
+                    @endforeach  
+                    <!-- <li>
+                        <form class="form-horizontal" method="POST" action="{{ route('cust.isNotified',$n->order_id)}}">
+                            {{csrf_field()}}
+                            {{ method_field('PUT') }}
+                            <button  class="btn-warning" type="submit">Mark all as read.<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>
+                        </form>
+                    </li> -->
                 </li>               
-                @endforeach  
+                
             </ul>
         @endauth
 

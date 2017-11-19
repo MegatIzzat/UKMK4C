@@ -40,13 +40,15 @@ class CustomerController extends Controller
     }
 
     public function getCart(){
+                $notify = Notify::get();
+
         
         if (!Session::has('cart')){
-            return view('customer.cart',['products' => null]);
+            return view('customer.cart',['products' => null])->with(compact('notify'));
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        return view('customer.cart',['products'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
+        return view('customer.cart',['products'=>$cart->items, 'totalPrice'=>$cart->totalPrice])->with(compact('notify'));;
     }
 
     public function manageprofile(){
