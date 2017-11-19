@@ -10,22 +10,18 @@ use App\Orderline;
 use App\Customer;
 use App\Category;
 use App\Rating;
-use App\Notify;
 use Session;
 use Auth;
 
 class CustomerController extends Controller
 {
-
     public function index()
     {
         //
         $product = Product::paginate(6);
         $productcat = Product::get();
         $category = Category::get();
-        $notify = Notify::get();
-
-        return view('customer.index',compact('product','category', 'rating','productcat','notify'));
+        return view('customer.index',compact('product','category', 'rating','productcat'));
     }
 
     public function AddToCart(Request $request, $product_id){
@@ -40,7 +36,6 @@ class CustomerController extends Controller
     }
 
     public function getCart(){
-        
         if (!Session::has('cart')){
             return view('customer.cart',['products' => null]);
         }
@@ -49,10 +44,10 @@ class CustomerController extends Controller
         return view('customer.cart',['products'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
     }
 
-    public function manageprofile(){
+       public function manageprofile(){
         return view('customer.profile');
 
-    }
+        }
 
     public function checkout(Request $request, $user){
         $customer = Customer::find($user); 
@@ -85,9 +80,9 @@ class CustomerController extends Controller
             if (Session::has('cart')){
                 foreach ($cart->items as $products) {
                     Orderline::create([
-                        'order_id' => $order_id,
-                        'product_id' => $products['item']['product_id'], 
-                        'quantity' => $products['qty']
+                    'order_id' => $order_id,
+                    'product_id' => $products['item']['product_id'], 
+                    'quantity' => $products['qty']
                     ]);
                 }
             }
@@ -106,10 +101,8 @@ class CustomerController extends Controller
         $order = Order::get();
         $orderline = Orderline::get();
         $product = Product::get();
-        $notify = Notify::get();
 
-
-        return view('customer.orderhistory',compact('order','orderline','product','notify'));
+        return view('customer.orderhistory',compact('order','orderline','product'));
     }
 
     public function sendRating(Request $request, $product_id){
@@ -127,20 +120,10 @@ class CustomerController extends Controller
         Order::findOrFail($id)->update($request->all());
         return redirect('/orderhistory');
     }
-
-    public function isNotified(Request $request, $id)
-    {
-        //
-        Notify::where('order_id',$id)->update(['is_seen' => 1]);
-        return back();
-        return redirect()->back();
-
-    }
-
-    public function show($id)
-    {
-        return view('show');
-    }
+public function show($id)
+{
+    return view('show');
+}
 
 
 
