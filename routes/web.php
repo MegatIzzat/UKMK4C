@@ -24,6 +24,8 @@ Route::post('staff/register','Auth\StaffRegisterController@register');
 
 Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 
+
+
 	Route::get('/','CustomerController@index')->name('index');
 	// Route::get('/{id}','CustomerController@category')->name('category');
 	Route::get('/home','CustomerController@index')->name('home');
@@ -34,6 +36,8 @@ Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 	/*----------------------------- AUTHENTICATE --------------------------*/
 	Route::group(['middleware' => 'auth'], function(){
 		Route::get('checkout/{user}', 'CustomerController@checkout')->name('checkout');
+		Route::put('isNotified/{id}','CustomerController@isNotified')->name('isNotified');
+
 
 		Route::group(['prefix'=>'/profile', 'name'=>'profile', 'as'=>'profile.'], function(){
 			Route::get('create', 'ProfileController@create')->name('create');
