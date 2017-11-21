@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Order;
 use App\Orderline;
 use App\Product;
+use App\Notify;
+
 use Carbon\Carbon;
 
 class OrderController extends Controller
@@ -27,6 +29,12 @@ class OrderController extends Controller
         $order->order_status = 'Completed';
         $order->order_completed = Carbon::now();
         $order->save();
+
+        $notify = new Notify;
+        $notify->order_id = $id;
+        $notify->is_seen = 0;
+        $notify->save();
+
 
         return redirect()->route('staff.index');
     }

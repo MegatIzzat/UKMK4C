@@ -21,41 +21,39 @@
             <ul class="nav navbar-nav">
 
                 <li><a href=" {{route('cust.home')}} "><span class="glyphicon glyphicon-home"> Home</span></a></li>
-
+           
                 @auth
-                <?php $x=0 ?>
+
+                <?php $unseen=0 ?><!-- Count unseen notification -->
                  @foreach($notify as $n)
                      @if($n->is_seen == 0)
-                        <?php ++$x ?>
+                        <?php ++$unseen ?>
                     @endif
                 @endforeach
 
-                @if($x==0)
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-envelope"> Notification</span></a>
-                @else
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span style="color:blue" class="glyphicon glyphicon-envelope"> Notification</span>
-                        <span style="background-color:red" class="badge">{{$x}}</span>
+                    <a href="notification#" class="dropdown-toggle" data-toggle="dropdown">
+                    @if($unseen==0)
+                        <span class="glyphicon glyphicon-envelope"> Notification</span>
+                    @else
+                        <span style="color:blue" class="glyphicon glyphicon-envelope"> Notification</span>
+                        <span style="background-color:red" class="badge">{{$unseen}}</span>                   
+                    @endif
                     </a>
-                @endif
 
-                    <ul class="dropdown-menu">
-                     @foreach($notify as $n)
-                     @if($n->is_seen == 0)
-                     <li>                        
+                    <ul class="dropdown-menu" style="width:300px">
+                    @foreach($notify->reverse() as $n)<!-- sort notification by most recent -->
+                    <li>
+                    @if($n->is_seen == 0)                                            
                         <form class="form-horizontal" method="POST" action="{{ route('cust.isNotified',$n->order_id)}}">
                             {{csrf_field()}}
                             {{ method_field('PUT') }}
-                            <button  class="btn-info" type="submit">Your Order {{$n->order_id}} has been completed.<span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
-                        </form>
-                    </li>
-                    
+                            <button style="width:100%" class="btn-info" type="submit">Your Order {{$n->order_id}} has been completed.<span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                        </form>                   
                     @else
-                    <li>
-                        <button  class="btn-default" disabled>Your Order {{$n->order_id}} has been completed.<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>
-                    </li>
+                        <button style="width:100%" class="btn-default" disabled>Your Order {{$n->order_id}} has been completed.<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>
                     @endif
+                    </li>
                     @endforeach  
                     <!-- <li>
                         <form class="form-horizontal" method="POST" action="{{ route('cust.isNotified',$n->order_id)}}">
@@ -63,7 +61,8 @@
                             {{ method_field('PUT') }}
                             <button  class="btn-warning" type="submit">Mark all as read.<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>
                         </form>
-                    </li> -->
+                    </li> -->           
+
                 </li>               
                 
             </ul>
@@ -82,23 +81,22 @@
 
         <!-- Authentication Links -->
         @guest
-
         <li><a href="{{ route('login') }}">Login</a></li>
         @else
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
-               {{ Auth::user()->user_name }} <span class="caret"></span>
+               <span class="glyphicon glyphicon-user"></span> {{ Auth::user()->user_name }} <span class="caret"></span>
            </a>
 
            <ul class="dropdown-menu">
-            <li><a href="{{route('cust.profile.edit',['user' => Auth::user()->user_id])}}">Manage Profile</a></li>
-            <li><a href="/orderhistory">Your Order History</a></li>
+            <li><a href="{{route('cust.profile.edit',['user' => Auth::user()->user_id])}}"><span class="glyphicon glyphicon-edit"> Manage Profile</a></li>
+            <li><a href="/orderhistory"><span class="glyphicon glyphicon-time"> Order History</a></li>
 
             <li role="separator" class="divider"></li>
             <li>
                 <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();">
+                document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-off"> 
                 Logout
             </a>
 
