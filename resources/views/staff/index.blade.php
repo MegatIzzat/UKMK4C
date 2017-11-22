@@ -3,7 +3,7 @@
 @section('title','Order')
 
 @section('content')
-	
+<meta http-equiv="refresh" content="10" ><!-- reload page every 10 seconds	 -->
   <div class="container">
 	<div class="panel panel-primary">
 	 <div class="panel-heading">Order In Progress
@@ -14,8 +14,6 @@
 		<li>{{ $key }}</li>
 		@endforeach
 	  </ul>
-
-
 
 	  <table class="table">
 		<thead>
@@ -34,7 +32,7 @@
 			  
 			  @if($p->order_status!='Completed')
 				<td>
-					<a  href="{{route('staff.order.update',$p->order_id) }}" class="btn btn-success btn-sm" role="button"> Complete </a>
+					<a  href="{{route('staff.order.update',[$p->order_id,$p->cust_id]) }}" class="btn btn-success btn-sm" role="button"> Complete </a>
 				</td>
 			  @else
 			  	<td>{{$p->order_status}}</td>

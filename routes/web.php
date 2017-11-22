@@ -20,15 +20,17 @@ Route::post('/login/custom', 'LoginController@login')->name('login.custom');
 Route::get('staff/register','Auth\StaffRegisterController@showRegistrationForm')->name('staff.register');
 Route::post('staff/register','Auth\StaffRegisterController@register');
 
+
 /*------------------------ CUSTOMER -------------------------------*/
 
 Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 
 
-
 	Route::get('/','CustomerController@index')->name('index');
 	// Route::get('/{id}','CustomerController@category')->name('category');
 	Route::get('/home','CustomerController@index')->name('home');
+
+
 
 	Route::get('add-to-cart/{product_id}', 'CustomerController@AddToCart')->name('addcart');
 	Route::get('/cart', 'CustomerController@getCart')->name('getcart');
@@ -37,12 +39,16 @@ Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 	Route::group(['middleware' => 'auth'], function(){
 		Route::get('checkout/{user}', 'CustomerController@checkout')->name('checkout');
 		Route::put('isNotified/{id}','CustomerController@isNotified')->name('isNotified');
+		Route::get('refreshNavbar','NotifyController@refreshNavbar')->name('refreshNavbar');
+
 
 
 		Route::group(['prefix'=>'/profile', 'name'=>'profile', 'as'=>'profile.'], function(){
 			Route::get('create', 'ProfileController@create')->name('create');
 			Route::post('store', 'ProfileController@store')->name('store');
 			Route::get('edit/{id}', 'ProfileController@edit')->name('edit');
+					Route::get('edit/{id}/refreshNavbar','NotifyController@refreshNavbar')->name('refreshNavbar');
+
 			Route::get('','ProfileController@index')->name('index');
 			Route::get('show/{user}', 'ProfileController@show')->name('show');
 			Route::put('update/{user}','ProfileController@update')->name('update');
@@ -91,7 +97,7 @@ Route::group(['prefix' => 'customer','middleware' => ['auth','admin'], 'as'=>'cu
 	/*------------------------------------ ORDER MANAGEMENT ----------------------------------*/
 	Route::group(['prefix'=>'order', 'name'=>'order', 'as'=>'order.' ], function(){
 		Route::get('/', 'OrderController@index')->name('index');
-		Route::get('update/{id}','OrderController@update')->name('update');
+		Route::get('update/{id}/{cust}','OrderController@update')->name('update');
 	});
 
 	/*------------------------------------ TOPUP ----------------------------------*/

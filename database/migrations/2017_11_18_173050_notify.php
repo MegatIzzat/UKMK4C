@@ -15,10 +15,12 @@ class Notify extends Migration
     {
         //
         Schema::create('notify', function(Blueprint $table){
-            $table->string('order_id',10);
+            $table->increments('id');
+            $table->string('user_id',7);
+            $table->string('notification',255);
             $table->boolean('is_seen');
             
-            $table->foreign('order_id')->references('order_id')->on('order');
+            $table->foreign('user_id')->references('user_id')->on('users');
         });
     }
 

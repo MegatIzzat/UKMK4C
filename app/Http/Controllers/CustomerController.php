@@ -40,7 +40,7 @@ class CustomerController extends Controller
     }
 
     public function getCart(){
-                $notify = Notify::get();
+        $notify = Notify::get();
 
         
         if (!Session::has('cart')){
@@ -133,7 +133,7 @@ class CustomerController extends Controller
     public function isNotified(Request $request, $id)
     {
         //
-        Notify::where('order_id',$id)->update(['is_seen' => 1]);
+        Notify::findOrFail($id)->update(['is_seen' => 1]);
         return back();
         return redirect()->back();
 
@@ -143,6 +143,8 @@ class CustomerController extends Controller
     {
         return view('show');
     }
+
+    
 
 
 

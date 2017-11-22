@@ -1,19 +1,3 @@
-<!-- <?php
-$page = $_SERVER['PHP_SELF'];
-$sec = "5";
-?>
-<html>
-    <head>
-    <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
-    </head>
-</html>
- -->
-<!--  <meta http-equiv="refresh" content="10" > 
- -->
-
-<head>
-<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-</head>
 <div id="gigi">
  <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
@@ -124,17 +108,3 @@ $sec = "5";
 </div>
 </nav>
 </div>
-@auth
-<script language="javascript" type="text/javascript">
-function loadlink(){
-    $('#gigi').load('refreshNavbar',function () {
-         $(this).unwrap();
-    });
-}
-
-loadlink(); // This will run on page load
-setInterval(function(){
-    loadlink() // this will run after every 5 seconds
-},10000);
-</script>
-@endauth
