@@ -130,14 +130,7 @@ class CustomerController extends Controller
         return redirect('/orderhistory');
     }
 
-    public function isNotified(Request $request, $id)
-    {
-        //
-        Notify::findOrFail($id)->update(['is_seen' => 1]);
-        return back();
-        return redirect()->back();
-
-    }
+    
 
     public function show($id)
     {

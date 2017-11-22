@@ -43,6 +43,13 @@
                     </a>
 
                     <ul class="dropdown-menu" style="width:300px">
+                        <form class="form-horizontal" method="POST" action="{{ route('cust.isNotifiedAll',Auth::user()->user_id)}}">
+                            {{csrf_field()}}
+                            {{ method_field('PUT') }}
+                            <p style="text-align:left;">Notification <span style="float:right;"><a href="#" onclick="$(this).closest('form').submit()"> Mark All as Read </a></span></p>
+                        </form>                   
+                                
+                                     
                     @foreach($notify->reverse() as $n)<!-- sort notification by most recent -->
                     <li>
                     @if(Auth::user()->user_id==$n->user_id)
@@ -57,9 +64,8 @@
                         @endif
                     @endif
                     </li>
-                    @endforeach             
+                    @endforeach
 
-                </li>               
                 
             </ul>
         @endauth

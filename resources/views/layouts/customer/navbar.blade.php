@@ -14,6 +14,7 @@ $sec = "5";
 <head>
 <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 </head>
+
 <div id="gigi">
  <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
@@ -59,6 +60,13 @@ $sec = "5";
                     </a>
 
                     <ul class="dropdown-menu" style="width:300px">
+                        <form class="form-horizontal" method="POST" action="{{ route('cust.isNotifiedAll',Auth::user()->user_id)}}">
+                            {{csrf_field()}}
+                            {{ method_field('PUT') }}
+                            <p style="text-align:left;">Notification <span style="float:right;"><a href="#" onclick="$(this).closest('form').submit()"> Mark All as Read </a></span></p>
+                        </form>                   
+                                
+                                     
                     @foreach($notify->reverse() as $n)<!-- sort notification by most recent -->
                     <li>
                     @if(Auth::user()->user_id==$n->user_id)
@@ -73,9 +81,8 @@ $sec = "5";
                         @endif
                     @endif
                     </li>
-                    @endforeach             
+                    @endforeach
 
-                </li>               
                 
             </ul>
         @endauth
@@ -93,7 +100,8 @@ $sec = "5";
 
         <!-- Authentication Links -->
         @guest
-        <li><a href="{{ route('login') }}">Login</a></li>
+        <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"> Login</a></li>
+
         @else
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
@@ -124,6 +132,7 @@ $sec = "5";
 </div>
 </nav>
 </div>
+
 @auth
 <script language="javascript" type="text/javascript">
 function loadlink(){

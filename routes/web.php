@@ -38,7 +38,9 @@ Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 	/*----------------------------- AUTHENTICATE --------------------------*/
 	Route::group(['middleware' => 'auth'], function(){
 		Route::get('checkout/{user}', 'CustomerController@checkout')->name('checkout');
-		Route::put('isNotified/{id}','CustomerController@isNotified')->name('isNotified');
+		Route::put('isNotified/{id}','NotifyController@isNotified')->name('isNotified');
+		Route::put('isNotifiedAll/{id}','NotifyController@isNotifiedAll')->name('isNotifiedAll');
+
 		Route::get('refreshNavbar','NotifyController@refreshNavbar')->name('refreshNavbar');
 
 
@@ -47,8 +49,6 @@ Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 			Route::get('create', 'ProfileController@create')->name('create');
 			Route::post('store', 'ProfileController@store')->name('store');
 			Route::get('edit/{id}', 'ProfileController@edit')->name('edit');
-					Route::get('edit/{id}/refreshNavbar','NotifyController@refreshNavbar')->name('refreshNavbar');
-
 			Route::get('','ProfileController@index')->name('index');
 			Route::get('show/{user}', 'ProfileController@show')->name('show');
 			Route::put('update/{user}','ProfileController@update')->name('update');
