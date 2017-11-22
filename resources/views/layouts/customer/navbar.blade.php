@@ -28,9 +28,8 @@ $sec = "5";
                 <span class="icon-bar"></span>
             </button>
 
-            <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                KIOSK4COMMUNITY
+            <!-- Branding Image -->            <a class="navbar-brand" href="{{ url('/') }}">
+               <img src="{{asset('img/kiosk4community.jpg')}}"> KIOSK4COMMUNITY
             </a>
         </div>
 
@@ -63,7 +62,7 @@ $sec = "5";
                         <form class="form-horizontal" method="POST" action="{{ route('cust.isNotifiedAll',Auth::user()->user_id)}}">
                             {{csrf_field()}}
                             {{ method_field('PUT') }}
-                            <p style="text-align:left;">Notification <span style="float:right;"><a href="#" onclick="$(this).closest('form').submit()"> Mark All as Read </a></span></p>
+                            <p style="text-align:left;"><b>Notification</b> <span style="float:right;"><a href="#" onclick="$(this).closest('form').submit()"> Mark All as Read </a></span></p>
                         </form>                   
                                 
                                      

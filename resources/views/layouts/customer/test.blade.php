@@ -13,7 +13,7 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                KIOSK4COMMUNITY
+               <img src="{{asset('img/kiosk4community.jpg')}}"> KIOSK4COMMUNITY
             </a>
         </div>
 
@@ -46,7 +46,7 @@
                         <form class="form-horizontal" method="POST" action="{{ route('cust.isNotifiedAll',Auth::user()->user_id)}}">
                             {{csrf_field()}}
                             {{ method_field('PUT') }}
-                            <p style="text-align:left;">Notification <span style="float:right;"><a href="#" onclick="$(this).closest('form').submit()"> Mark All as Read </a></span></p>
+                            <p style="text-align:left;"><b>Notification</b> <span style="float:right;"><a href="#" onclick="$(this).closest('form').submit()"> Mark All as Read </a></span></p>
                         </form>                   
                                 
                                      
@@ -83,7 +83,8 @@
 
         <!-- Authentication Links -->
         @guest
-        <li><a href="{{ route('login') }}">Login</a></li>
+        <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"> Login</a></li>
+
         @else
         <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
