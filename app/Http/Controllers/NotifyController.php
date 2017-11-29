@@ -13,7 +13,7 @@ class NotifyController extends Controller
     {
         //
         $notify = Notify::get();
-        return view('layouts.customer.test',compact('notify'));
+        return view('layouts.customer.refreshNavbar',compact('notify'));
     }
 
     public function isNotified(Request $request, $id)
