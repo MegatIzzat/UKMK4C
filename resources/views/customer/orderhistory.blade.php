@@ -57,7 +57,23 @@
 									@if($p->order_id == $q->order_id)
 										@foreach($product as $key => $r)
 											@if($q->product_id == $r->product_id)
-												<div><button class="btn btn-primary btn-xs" data-id="{{$q->product_id}}" data-value="{{$r->product_name}}">Rate</button></div>
+											@if($q->rating_id==null)
+											<form class="form-horizontal" method="POST" action="{{ route('customer.sendRating',[$p->order_id, $q->product_id])}}">
+												{{csrf_field()}}
+												{{ method_field('POST') }}
+												<div>
+													<input type="number" name="product_rating" min="0" max="5" step="0.5"><button type="submit"> Rate</button>
+												</div>
+											</form>
+											@else
+
+												@foreach($rating as $key => $z)
+												@if($q->rating_id == $z->rating_id)
+													You rated {{$z->product_rating}} star<br>
+												@endif
+												@endforeach
+
+											@endif
 											@endif
 										@endforeach
 									@endif
@@ -145,63 +161,5 @@
 
 </body>
 </html>
-
-<script>
-	var url = "http://127.0.0.1:8000/orderhistory";
-
-	$('.btn-primary').click(function (e) {
-		e.preventDefault();
-		var id = $(this).attr('data-id');
-		var name = $(this).attr('data-value');
-		console.log(id);
-		console.log(name);
-		$('#product_id').text(id);
-		$('#product_name').text(name);
-		$('#rateModal').modal('show');
-		$('#frmRating').trigger("reset");
-
-	});
-
-	$(".btn-warning").click(function (e) {
-				e.preventDefault();
-
-				$.ajaxSetup({
-						headers: {
-								'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-						}
-				})
-
-				var formData = {
-						product_id: $('#product_id').text(),
-						product_rating: $('#product_rating').val(),
-				}
-
-				var product_id = $('#product_id').text();
-				var product_rating = $('#product_rating').val();
-
-				console.log('product id = ',product_id);
-				console.log('product rating = ',product_rating);
-
-				var my_url = url;
-				my_url += '/' + product_id;
-
-						$.ajax({
-								type: "POST",
-								url: my_url,
-								data: formData,
-								dataType: 'json',
-								success: function (data) {
-										console.log(data);
-										$('#product_rating').rating('reset');
-										alert("Thank you for your rating!");
-										$('#rateModal').modal('hide');
-										// $('.btn-primary').remove();
-								},
-								error: function (data) {
-										console.log('Error:', data);
-								}
-						});
-				});
-</script>
 
 @endsection

@@ -131,7 +131,7 @@ Route::get('orderhistory/{product_id}',function($product_id){
 	return response()->json($r);
 });
 
-Route::post('orderhistory/{product_id}', [
+Route::post('orderhistory/{order_id}/{product_id}', [
 	'uses' => 'CustomerController@sendRating',
 	'as' => 'customer.sendRating'
 ]);
