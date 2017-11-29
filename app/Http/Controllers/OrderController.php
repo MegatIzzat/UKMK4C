@@ -13,7 +13,8 @@ class OrderController extends Controller
     //
 	public function index()
 	{
-		$order = Order::orderBy('order_date','DESC')->where('order_status', 'In Progress')->get();
+
+		$order = Order::orderBy('order_date','DESC')->get();
 		$orderline = Orderline::get();
 		$product = Product::get();
 

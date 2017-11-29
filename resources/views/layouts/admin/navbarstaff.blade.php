@@ -11,7 +11,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/staff') }}">
+                    <a class="navbar-brand" href="{{ url('/') }}">
                         KIOSK4COMMUNITY
                     </a>
                 </div>
@@ -24,33 +24,18 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true"> Menu <span class="caret"></span></a>
                             <ul class="dropdown-menu">
                                 <li><a href=" {{route('staff.index')}} ">Order</a></li>
-                                <li><a href=" {{route('staff.topup.index')}} ">Top Up</a></li>
                                 <li><a href=" {{route('staff.product.index')}}">Product</a></li>
                                 <li><a href=" ">Staff</a></li>
                                 <li><a href=" {{route('staff.viewfeedback')}} ">Feedback</a></li>
                                 <li><a href=" {{route('staff.advertisement.index')}} ">Advertisement</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true"> Register <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href=" {{url('/register')}} "> Customer</a></li>
-                                <li><a href=" {{url('staff/register')}} ">Staff</a></li>
-                            </ul>
-                        </li>
-                        <li><a href="{{route('staff.report')}}">Sales Report</a></li>
+                        <li><a href="">Sales Report</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true"> List <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href=" {{url('/staff/customer')}} "> Customer</a></li>
-                                <li><a href="">Staff</a></li>
-                            </ul>
-                        </li>
-
+                            
                         <!-- Authentication Links -->
                         @guest
                             <li><a href="{{ route('login') }}">Login</a></li>

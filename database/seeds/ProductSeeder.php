@@ -135,7 +135,7 @@ class ProductSeeder extends Seeder
                     'product_name' => 'Horlicks Ais',
                     'product_price' => '1.60',
                     'category_id' => 'K0003',
-                    'product_img' => 'P0014.JPG',
+                    'product_img' => 'P0014.jpg',
                     'product_rating' => '0.0',
                 ],
 
@@ -144,7 +144,7 @@ class ProductSeeder extends Seeder
                     'product_name' => 'Mocha Ais',
                     'product_price' => '2.20',
                     'category_id' => 'K0003',
-                    'product_img' => 'P0015.JPG',
+                    'product_img' => 'P0015.jpg',
                     'product_rating' => '0.0',
                 ],
 
@@ -153,7 +153,7 @@ class ProductSeeder extends Seeder
                     'product_name' => 'Kopi Panas',
                     'product_price' => '1.20',
                     'category_id' => 'K0004',
-                    'product_img' => 'P0016.JPG',
+                    'product_img' => 'P0016.jpg',
                     'product_rating' => '0.0',
                 ],
 
@@ -162,7 +162,7 @@ class ProductSeeder extends Seeder
                     'product_name' => 'Teh O Panas',
                     'product_price' => '1.00',
                     'category_id' => 'K0004',
-                    'product_img' => 'P0017.JPG',
+                    'product_img' => 'P0017.jpg',
                     'product_rating' => '0.0',
                 ],
 
@@ -171,7 +171,7 @@ class ProductSeeder extends Seeder
                     'product_name' => 'Teh Tarik',
                     'product_price' => '1.30',
                     'category_id' => 'K0004',
-                    'product_img' => 'P0018.JPG',
+                    'product_img' => 'P0018.jpg',
                     'product_rating' => '0.0',
                 ],
 
@@ -180,7 +180,7 @@ class ProductSeeder extends Seeder
                     'product_name' => 'Limau Panas',
                     'product_price' => '1.00',
                     'category_id' => 'K0004',
-                    'product_img' => 'P0019.JPG',
+                    'product_img' => 'P0019.jpg',
                     'product_rating' => '0.0',
                 ],
 
@@ -189,7 +189,7 @@ class ProductSeeder extends Seeder
                     'product_name' => 'Milo Panas',
                     'product_price' => '1.50',
                     'category_id' => 'K0004',
-                    'product_img' => 'P0020.JPG',
+                    'product_img' => 'P0020.jpg',
                     'product_rating' => '0.0',
                 ],
         ]);    

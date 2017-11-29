@@ -5,10 +5,10 @@
 @section('content')
 
 <html>
-  <!-- <head>
+  <head>
    <title>Product Management K4C</title>  
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> 
-  </head> -->
+  </head>
 <body>
 <div class="container">
 <div class="panel panel-primary">
@@ -16,7 +16,7 @@
  <button id="btn_add" name="btn_add" class="btn btn-success pull-right">Add New Product</button>
     </div>
       <div class="panel-body">
-        @include('error.flash-message')
+        @include('error.flash-message') 
         <ul>
           @foreach($errors->all() as $key)
             <li>{{ $key }}</li>
@@ -254,8 +254,8 @@
 </div>
 
     <meta name="_token" content="{!! csrf_token() !!}" />
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="{{asset('js/ajaxscript.js')}}"></script>
     <script>
       var form = document.getElementById('frmUpload'); 

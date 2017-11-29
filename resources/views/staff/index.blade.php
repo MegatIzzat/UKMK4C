@@ -17,7 +17,7 @@
 
 
 
-	  <table class="table" id="tableOrder">
+	  <table class="table">
 		<thead>
 		  <tr>
 			<th>Order ID</th>
@@ -59,10 +59,4 @@
 	  </div>
 	</div>
   </div>
-	<script type="text/javascript">
-		setInterval(function(){
-		$( "#tableOrder" ).load("staff #tableOrder");
-		console.log("refresh")
-		}, 5000); //refresh every 5 seconds
-	</script>
 @endsection

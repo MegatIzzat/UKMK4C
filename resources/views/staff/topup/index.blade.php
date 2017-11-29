@@ -8,20 +8,19 @@
 	<div class="row">
 		<div class="col-md-10 col-md-offset-1">
 			<div class="well">
-				@include('error.flash-message')
-				@foreach($errors->all() as $key)
-            		<li>{{ $key }}</li>
-          		@endforeach
 				<div>
 					<h3 class="text-center">Top Up Account</h3>
 				</div>
 				<div class="panel-body">
-					<form id="frmTopup" action="{{route('staff.topup.update')}}" method="POST">
-						{{csrf_field()}}
-        				{{-- {{method_field('PUT')}} --}}
+					<form {{-- action="{{route('')}}" --}}>
 						<div class="form-group">
 							<input class="form-control input-lg" placeholder="Customer ID" id="cust_id" name="cust_id" type="text">
 						</div>
+						{{-- <div class="form-group">
+							<select class="form-control input-lg">
+								<option selecterd="">Security Question</option>
+							</select>
+						</div> --}}
 						<div id="topupvalue" class="btn-group-vertical btn-lg" data-toggle="buttons">
 							<div class="col-md-12 btn-group-justified">
 							<label class="btn btn-primary gradient">
@@ -81,5 +80,67 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 	<script src="{{asset('js/jquery.confirm.js')}}"></script>
+
+
+	{{-- <script>
+		$(document).on('click','.btn-success',function(){
+			var cust_id = $('#cust_id').val();
+			console.log(cust_id); 
+		});
+	</script> --}}
+
+	<script type="text/javascript">
+
+		var url = "http://127.0.0.1:8000/staff/topup";
+		$(document).on('click','.btn-success',function(){
+
+		$.ajaxSetup({
+			headers: {
+				'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+			}
+		})
+
+		var formData = {
+			cust_id: $('#cust_id').val(),
+			cust_balance: $("input[name=topupvalue]:checked").val(),
+		}
+
+		var cust_id = $('#cust_id').val();
+		var cust_balance = $("input[name=topupvalue]:checked").val();
+
+		var my_url = url;
+		my_url += '/' + cust_id;
+
+		$.confirm({
+			text: "<strong>Customer ID: " + cust_id + "<br />" +"Amount to Top Up: RM" + cust_balance + "</strong>" + "<br /> <br /> Are you sure you want to proceed?",
+			title: "Confirmation required",
+			confirm: function(button) {
+			  
+			console.log(cust_balance);
+			$.ajax({
+				type: "PUT",
+				url: my_url,
+				data: formData,
+				dataType: 'json',
+				success: function (data) {
+					console.log(data);
+				},
+				error: function (data) {
+					console.log('Error:', data);
+				}
+			
+			});
+			alert("Top Up Successful");
+			location.reload();
+			},
+			cancel: function(button) {
+			},
+			confirmButton: "Yes, proceed",
+			confirmButtonClass: "btn-danger",
+			cancelButtonClass: "btn-default",
+		});
+		
+	});
+	</script>
 
 @endsection

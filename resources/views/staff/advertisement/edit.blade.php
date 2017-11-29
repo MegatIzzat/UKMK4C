@@ -6,7 +6,7 @@
 
 <div class="container">
 	<div class="col-md-10 col-md-offset-1">
-	<form class="form-horizontal" method="POST" action="{{ route('staff.advertisement.update',$adv->advertisement_id)}}" enctype="multipart/form-data">
+	<form class="form-horizontal" method="POST" action="{{ route('staff.advertisement.update',$adv->advertisement_id)}}">
 		{{csrf_field()}}
 		{{ method_field('PUT') }}
 
@@ -42,7 +42,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label">Advertisement Image</label>
 					<div class="col-md-6">
-						<input type="file" name="advertisement_img" class="form-control" value="{{$adv->advertisement_img}}">
+						<input type="text" name="advertisement_img" class="form-control" value="{{$adv->advertisement_img}}">
 					</div>
 				</div>
 
