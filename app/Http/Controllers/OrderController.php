@@ -6,11 +6,6 @@ use Illuminate\Http\Request;
 use App\Order;
 use App\Orderline;
 use App\Product;
-use App\Notify;
-use App\User;
-use Auth;
-
-
 use Carbon\Carbon;
 
 class OrderController extends Controller
@@ -25,19 +20,12 @@ class OrderController extends Controller
     	return view('staff.index',compact('order','orderline','product'));
 	}
 
-	public function update($id, $cust)
+	public function update($id)
     {
         $order = Order::find($id);
         $order->order_status = 'Completed';
         $order->order_completed = Carbon::now();
         $order->save();
-
-        $notify = new Notify;
-        $notify->user_id = $cust;
-        $notify->notification = 'Your order '.$id.' has been completed. ';
-        $notify->is_seen = 0;
-        $notify->save();
-
 
         return redirect()->route('staff.index');
     }

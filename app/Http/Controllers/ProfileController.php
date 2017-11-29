@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Customer;
 use App\User;
-use App\Notify;
 use Validator;
 use Session;
 
@@ -18,11 +17,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-       $user = User::all();
+        $user = User::all();
        $customer = Customer::all();
-       $notify = Notify::get();
-
-       return view('customer.profile',compact('user','customer','notify'));
+       return view('customer.profile',compact('user','customer'));
     
     }
 
@@ -73,10 +70,7 @@ class ProfileController extends Controller
 
         $user = User::findOrfail($id);
         $customer = Customer::findOrfail($id);
-        $notify = Notify::get();
-
-
-        return view('customer.profile', compact('user','customer','notify'));
+        return view('customer.profile', compact('user','customer'));
 
     }
 
