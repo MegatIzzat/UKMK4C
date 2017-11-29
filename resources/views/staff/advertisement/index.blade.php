@@ -6,6 +6,8 @@
 
 <div class="container">
 		<div class="col-md-10 col-md-offset-1">
+			<!-- Alert -->
+				@include('error.flash-message')
 			
 
 			<div class="col-md-6">
@@ -31,7 +33,7 @@
 					<tr id="advertisement{{$adv->advertisement_id}}">
 						<td>{{$adv->advertisement_id}}</td>
 						<td>{{$adv->advertisement_name}}</td>
-						<td>{{$adv->advertisement_img}}</td>
+						<td><a href=" {{asset('/img/'.$adv->advertisement_img)}} ">{{$adv->advertisement_img}}</a> </td>
 						<td>{{$adv->staff_id}}</td>
 						<td width="127">
 							

@@ -35,7 +35,7 @@ Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 	Route::group(['middleware' => 'auth'], function(){
 		Route::get('checkout/{user}', 'CustomerController@checkout')->name('checkout');
 
-		Route::group(['prefix'=>'/profile', 'name'=>'profile', 'as'=>'profile.'], function(){
+		Route::group(['prefix'=>'profile', 'name'=>'profile', 'as'=>'profile.'], function(){
 			Route::get('create', 'ProfileController@create')->name('create');
 			Route::post('store', 'ProfileController@store')->name('store');
 			Route::get('edit/{id}', 'ProfileController@edit')->name('edit');
@@ -51,6 +51,8 @@ Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 Route::group(['prefix'=>'staff', 'as'=>'staff.','name'=>'staff' ], function(){
 	Route::get('/', 'OrderController@index')->name('index');
 	Route::get('viewfeedback',  'StaffController@viewFeedback')->name('viewfeedback');
+	Route::get('report',  'StaffController@report')->name('report');
+
 
 
 
@@ -92,20 +94,8 @@ Route::group(['prefix' => 'customer','middleware' => ['auth','admin'], 'as'=>'cu
 
 	/*------------------------------------ TOPUP ----------------------------------*/
 	Route::group(['prefix'=>'topup', 'as' => 'topup.', 'name' => 'topup'], function(){
-
-		Route::get('/', function(){
-			return view('staff.topup.index');
-		});
-		Route::get('{cust_id?}',function($cust_id){
-			$customer = App\Customer::find($cust_id);
-			return response()->json($customer);
-		});
-		Route::put('{cust_id?}', function(Request $request,$cust_id){
-			$customer = App\Customer::find($cust_id);
-			$customer->cust_balance += $request->cust_balance;
-			$customer->save();
-			return response()->json($customer);
-		});
+		Route::get('/', 'TopupController@index')->name('index');
+		Route::post('update', 'TopupController@update')->name('update');
 	});
 });
 
@@ -130,10 +120,6 @@ Route::group(['prefix'=>'/orderhistory/', 'as'=>'customer.', 'name'=>'customer' 
 	Route::put('sendFeedback/{id}','CustomerController@sendFeedback')->name('sendFeedback');
 });
 
-
-
-
-/*------------------------ CART -----------------------------*/
 
 
 

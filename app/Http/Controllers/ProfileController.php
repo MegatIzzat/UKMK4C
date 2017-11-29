@@ -99,7 +99,13 @@ class ProfileController extends Controller
             'password' => 'required|string',
             ])->validate();
 
+        $pass = strlen($request->password);
+
+        if($pass < 16) {
          $password = bcrypt($request->password);
+        } else {
+            $password = $request->password;
+        }
 
         User::findOrFail($user)->update([
             'user_id' => $user,
