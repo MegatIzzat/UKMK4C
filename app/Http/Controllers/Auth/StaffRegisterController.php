@@ -24,7 +24,7 @@ class StaffRegisterController extends Controller
     use RegistersUsers;
 
 
-    protected $redirectTo = '/staff';
+    protected $redirectTo = '/home';
 
     public function __construct()
     {
