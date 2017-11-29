@@ -120,7 +120,7 @@ class CustomerController extends Controller
         // $rating = $this->notSpam()->approved();
         $rating = new Rating;
         $rating->product_id = $product_id;
-        $rating->product_rating = $request->input();
+        $rating->product_rating = $request->input('product_rating');
         $rating->save();
 
 
