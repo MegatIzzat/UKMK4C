@@ -38,7 +38,7 @@
                                 <li><a href=" {{url('staff/register')}} ">Staff</a></li>
                             </ul>
                         </li>
-                        <li><a href="">Sales Report</a></li>
+                        <li><a href="{{route('staff.report')}}">Sales Report</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

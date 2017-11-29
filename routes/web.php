@@ -51,6 +51,8 @@ Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 Route::group(['prefix'=>'staff', 'as'=>'staff.','name'=>'staff' ], function(){
 	Route::get('/', 'OrderController@index')->name('index');
 	Route::get('viewfeedback',  'StaffController@viewFeedback')->name('viewfeedback');
+	Route::get('report',  'StaffController@report')->name('report');
+
 
 
 
@@ -118,10 +120,6 @@ Route::group(['prefix'=>'/orderhistory/', 'as'=>'customer.', 'name'=>'customer' 
 	Route::put('sendFeedback/{id}','CustomerController@sendFeedback')->name('sendFeedback');
 });
 
-
-
-
-/*------------------------ CART -----------------------------*/
 
 
 
