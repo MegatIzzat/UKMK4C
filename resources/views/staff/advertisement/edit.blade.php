@@ -6,7 +6,7 @@
 
 <div class="container">
 	<div class="col-md-10 col-md-offset-1">
-	<form class="form-horizontal" method="POST" action="{{ route('staff.advertisement.update',$adv->advertisement_id)}}">
+	<form class="form-horizontal" method="POST" action="{{ route('staff.advertisement.update',$adv->advertisement_id)}}" enctype="multipart/form-data">
 		{{csrf_field()}}
 		{{ method_field('PUT') }}
 

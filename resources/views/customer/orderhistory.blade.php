@@ -103,6 +103,9 @@
 	<a href="/" class="btn btn-success btn-block" role="button">Back to Home</a></li>
 </div>
 
+@foreach($order as $key => $p)
+@if($p->cust_id == Auth::user()->user_id)
+@if($p->order_status=='Completed')
 <div class="modal fade" id="rateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -140,6 +143,9 @@
 		</div>
 	</div>
 </div>
+@endif
+@endif
+@endforeach
 
 <meta name="_token" content="{!! csrf_token() !!}" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
