@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Product;
 use App\Cart;
 use App\Order;
@@ -104,7 +105,7 @@ class CustomerController extends Controller
     
     public function orderHistory()
     {
-        $order = Order::get();
+        $order = Order::where('order_date', '>=', Carbon::now()->subDay())->get();
         $orderline = Orderline::get();
         $product = Product::get();
         $notify = Notify::get();
