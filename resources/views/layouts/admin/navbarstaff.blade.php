@@ -12,7 +12,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{route('staff.index')}}">
-                        KIOSK4COMMUNITY
+                       <img src="{{asset('img/kiosk4community.jpg')}}"> KIOSK4COMMUNITY
                     </a>
                 </div>
 
