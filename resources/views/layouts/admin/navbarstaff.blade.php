@@ -11,7 +11,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/staff') }}">
+                    <a class="navbar-brand" href="{{route('staff.index')}}">
                         KIOSK4COMMUNITY
                     </a>
                 </div>
@@ -30,7 +30,7 @@
                                 <li><a href=" {{route('staff.advertisement.index')}} ">Advertisement</a></li>
                             </ul>
                         </li>
-                        <li><a href="">Sales Report</a></li>
+                        <li><a href="{{route('staff.report')}}">Sales Report</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

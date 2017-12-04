@@ -94,4 +94,10 @@ class StaffController extends Controller
 
         return view('staff.feedback.viewfeedback',compact('order','orderline','product'));
     }
+
+    
+    public function report()
+    {
+        return view('staff.report.index');
+    }
 }
