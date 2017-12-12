@@ -42,7 +42,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label">Advertisement Image</label>
 					<div class="col-md-6">
-						<input type="file" name="advertisement_img" class="form-control" value="{{$adv->advertisement_img}}">
+						<input type="text" name="advertisement_img" class="form-control" value="{{$adv->advertisement_img}}">
 					</div>
 				</div>
 

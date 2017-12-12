@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="container">
-	<form class="form-horizontal" method="POST" action="{{route('staff.advertisement.store')}}" enctype="multipart/form-data">
+	<form class="form-horizontal" method="POST" action="{{route('staff.advertisement.store')}}">
 		{{csrf_field()}}
 
 		<!-- Alert -->
@@ -40,7 +40,7 @@
 				<div class="form-group">
 					<label class="col-md-4 control-label">Advertisement Image</label>
 					<div class="col-md-6">
-						<input type="file" name="advertisement_img" class="form-control">
+						<input type="text" name="advertisement_img" class="form-control" placeholder="Advertisement Image">
 					</div>
 				</div>
 
