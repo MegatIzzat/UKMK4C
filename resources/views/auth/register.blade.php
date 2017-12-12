@@ -1,4 +1,6 @@
-@extends('layouts.customer.customer')
+@extends('layouts.admin.admin')
+
+@section('title','Register Customer')
 
 @section('content')
 <div class="container">

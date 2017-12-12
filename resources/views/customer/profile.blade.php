@@ -11,11 +11,6 @@
 
 				<div class="page-header">
 					<h2>My Profile</h2>
-									
-				@foreach($errors->all() as $key)
-					<li>{{ $key }}</li>
-
-				@endforeach
 
 				<form class="form-horizontal" method="POST" action="{{route('cust.profile.update',['user' => Auth::user()->user_id] )}}">
 				{{csrf_field()}}
@@ -30,7 +25,7 @@
 					<div class="form-group">
 						<label for="name" class="col-sm-3 control-label">Customer Name</label>
 						<div class="col-sm-9">
-							<input name="name" type="text" class="form-control" id="name" value="{{$user->name}}" required>
+							<input name="name" type="text" class="form-control" id="name" value="{{$Auth::user()->user_name}}" required>
 						</div>
 					</div>
 					<div class="form-group">
