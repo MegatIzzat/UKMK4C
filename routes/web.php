@@ -92,7 +92,7 @@ Route::group(['prefix' => 'customer','middleware' => ['auth','admin'], 'as'=>'cu
 	/*------------------------------------ ORDER MANAGEMENT ----------------------------------*/
 	Route::group(['prefix'=>'order', 'name'=>'order', 'as'=>'order.' ], function(){
 		Route::get('/', 'OrderController@index')->name('index');
-		Route::get('update/{id}','OrderController@update')->name('update');
+		Route::get('update/{id}/{cust}','OrderController@update')->name('update');
 	});
 
 	/*------------------------------------ TOPUP ----------------------------------*/
