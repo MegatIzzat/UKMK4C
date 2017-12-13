@@ -31,7 +31,7 @@
 					<tr id="advertisement{{$adv->advertisement_id}}">
 						<td>{{$adv->advertisement_id}}</td>
 						<td>{{$adv->advertisement_name}}</td>
-						<td><a href=" {{asset('/img/adv/'.$adv->advertisement_img)}} ">{{$adv->advertisement_img}}</a> </td>
+						<td>{{$adv->advertisement_img}}</td>
 						<td>{{$adv->staff_id}}</td>
 						<td width="127">
 							
