@@ -34,39 +34,35 @@
 
 				@endforeach
 
-				<div id="myCarousel" class="carousel slide" data-ride="carousel">
-	<!-- Indicators -->
-	<ol class="carousel-indicators">
-	  <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-	  <li data-target="#myCarousel" data-slide-to="1"></li>
-	  <li data-target="#myCarousel" data-slide-to="2"></li>
-	</ol>
+	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+		<!-- Indicators -->
+		<ol class="carousel-indicators">
+			@foreach ($adv as $key => $ad)
+			  	<li data-target="#myCarousel" data-slide-to="$i" class="{{ $key == 0 ? ' active' : '' }}" ></li>
+			@endforeach
+		</ol>
 
-	<!-- Wrapper for slides -->
-	<div class="carousel-inner">
-	  <div class="item active">
-		<img src="{{asset('img/h1.jpg')}}" alt="Los Angeles" style="width:100%;">
-	  </div>
+		<!-- Wrapper for slides -->
+		<div class="carousel-inner">
+			@foreach ($adv as $key => $ad)
+    			<div class="item{{ $key == 0 ? ' active' : '' }}">
+        			<img src="{{asset('img/'.$ad->advertisement_img)}}">
+    			</div>
+			@endforeach
+		</div>
 
-	  <div class="item">
-		<img src="{{asset('img/h2.jpg')}}" alt="Chicago" style="width:100%;">
-	  </div>
-	
-	  <div class="item">
-		<img src="{{asset('img/h4.jpg')}}" alt="New york" style="width:100%;">
-	  </div>
-	</div>
-
-	<!-- Left and right controls -->
-	<a class="left carousel-control" href="#myCarousel" data-slide="prev">
-	  <span class="glyphicon glyphicon-chevron-left"></span>
-	  <span class="sr-only">Previous</span>
-	</a>
-	<a class="right carousel-control" href="#myCarousel" data-slide="next">
-	  <span class="glyphicon glyphicon-chevron-right"></span>
-	  <span class="sr-only">Next</span>
-	</a>
+		<!-- Left and right controls -->
+		<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+		  <span class="glyphicon glyphicon-chevron-left"></span>
+		  <span class="sr-only">Previous</span>
+		</a>
+		<a class="right carousel-control" href="#myCarousel" data-slide="next">
+		  <span class="glyphicon glyphicon-chevron-right"></span>
+		  <span class="sr-only">Next</span>
+		</a>
   </div><br><br>
+
+			
 
 				@foreach($product as $p)
 					<div class="col-md-4 col-xs-12 ">
@@ -78,7 +74,7 @@
 								</div>
 								<div class="ratings">
 									<p>
-										<input id="input-3" name="input-3" value="{{$p->product_rating}}" class="rating" data-size="xs" data-show-clear="false" data-show-caption="true" readonly>
+										<input id="input-3" name="input-3" value="{{$p->product_rating}}" class="rating" data-size="xs" data-show-clear="false" data-show-caption="false" readonly>
 									</p>
 								</div>
 								<div class="footer">
