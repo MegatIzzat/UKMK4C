@@ -25,7 +25,7 @@
 					<div class="form-group">
 						<label for="name" class="col-sm-3 control-label">Customer Name</label>
 						<div class="col-sm-9">
-							<input name="name" type="text" class="form-control" id="name" value="{{$Auth::user()->user_name}}" required>
+							<input name="name" type="text" class="form-control" id="name" value=" {{Auth::user()->user_name}} " required>
 						</div>
 					</div>
 					<div class="form-group">

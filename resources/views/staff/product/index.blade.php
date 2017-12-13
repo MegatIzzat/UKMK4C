@@ -16,7 +16,7 @@
  <button id="btn_add" name="btn_add" class="btn btn-success pull-right">Add New Product</button>
     </div>
       <div class="panel-body">
-        @include('error.flash-message') 
+        @include('error.flash-message')
         <ul>
           @foreach($errors->all() as $key)
             <li>{{ $key }}</li>
