@@ -88,7 +88,6 @@ class ProductController extends Controller
         }
 
         return redirect()->route('staff.product.index')->with('success', $filename.' has been successfully uploaded!');
-
     }
 
 }

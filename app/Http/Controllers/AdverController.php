@@ -10,8 +10,8 @@ class AdverController extends Controller
 {
     //
     public function index(){
-    	$advertisement = Advertisement::paginate(10);
-    	return view('staff.advertisement.index',compact('advertisement'));
+        $advertisement = Advertisement::paginate(10);
+        return view('staff.advertisement.index',compact('advertisement'));
     }
 
     public function create(){
@@ -20,20 +20,31 @@ class AdverController extends Controller
 
     public function edit($id)
     {
-    	$adv = Advertisement::findOrfail($id);
+        $adv = Advertisement::findOrfail($id);
         return view('staff.advertisement.edit', compact('adv'));
     }
 
     public function store(Request $request)
     {
-    	Validator::make($request->all(), [
+        Validator::make($request->all(), [
             'advertisement_id' => 'required|string',
             'advertisement_name' => 'required|string',
-            'advertisement_img' => 'required|string',
+            'advertisement_img' => 'image|mimes:jpeg,png,jpg,gif,svg',
             'staff_id' => 'string',
             ])->validate();
 
-        Advertisement::create($request->all());
+        $id = $request['advertisement_id'];
+
+        $adv = new Advertisement($request->input());
+
+        if($file = $request->hasFile('advertisement_img')) {
+            $file = $request->file('advertisement_img') ;
+            $fileName = $id . '.' . $file->getClientOriginalExtension() ;
+            $destinationPath = public_path().'/img/' ;
+            $file->move($destinationPath,$fileName);
+            $adv->advertisement_img = $fileName ;
+        }
+        $adv->save() ;
 
         return redirect()->route('staff.advertisement.index')->with('success','Advertisement has been created!');
     }
@@ -42,16 +53,40 @@ class AdverController extends Controller
         Validator::make($request->all(), [
             'advertisement_id' => 'required|string',
             'advertisement_name' => 'required|string',
-            'advertisement_img' => 'required|string',
+            'advertisement_img' => 'image|mimes:jpeg,png,jpg,gif,svg',
             'staff_id' => 'string',
             ])->validate();
 
-        Advertisement::findOrFail($id)->update($request->all());
+        // Advertisement::findOrFail($id)->update($request->all());
+
+        $data = Advertisement::findOrFail($id);
+
+        // if ($adv = $request->hasFile('advertisement_img')) {
+        //     $file = $request->file('advertisement_img') ;
+        //     $fileName = $file->getClientOriginalName() . '.' . $file->getClientOriginalExtension() ;
+        //     $destinationPath = public_path().'/img/' ;
+        //     $file->move($destinationPath,$fileName);
+        //     $adv->advertisement_img = $fileName ;
+        // }
+
+        // $adv->update($request->all());
+
+        $data->update($request->all());
+
+        if ($request->hasFile('advertisement_img')){
+            $file = $request->file('advertisement_img');
+            $name = $file->getClientOriginalName();
+            $data->advertisement_img = $name;
+            $file->move(public_path().'/img/', $name);   
+            $data->save();                  
+        }   
+
         return redirect()->route('staff.advertisement.index')->with('success','Advertisement has been updated!');
     }
 
     public function destroy($id){
         if(Advertisement::destroy($id)) {
+
             return redirect()->route('staff.advertisement.index')->with('success', 'Advertisement has been successfully deleted!');
         } else {
             return redirect()->route('staff.advertisement.index')->with('error', 'Please try again!');
