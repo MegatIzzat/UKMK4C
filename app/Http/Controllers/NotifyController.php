@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Notify;
+use App\Customer;
 
 
 class NotifyController extends Controller
@@ -13,7 +14,8 @@ class NotifyController extends Controller
     {
         //
         $notify = Notify::get();
-        return view('layouts.customer.refreshNavbar',compact('notify'));
+        $topup = Customer::get();
+        return view('layouts.customer.refreshNavbar',compact('notify','topup'));
     }
 
     public function isNotified(Request $request, $id)

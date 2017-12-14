@@ -75,6 +75,15 @@
 
     <!-- Right Side Of Navbar -->
     <ul class="nav navbar-nav navbar-right">
+        @foreach($topup as $t)
+        @if($t->cust_id==Auth::user()->user_id)
+        <li>
+            <a href="#balance">
+                <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> RM {{number_format((float)$t->cust_balance, 2, '.', '')}}
+            </a>
+        </li>
+        @endif
+        @endforeach
         <li>
             <a href="{{route('cust.getcart')}}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart 
                 <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty: ''}}</span>
