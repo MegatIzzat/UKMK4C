@@ -3,7 +3,7 @@
 @section('title','Order')
 
 @section('content')
-<meta http-equiv="refresh" content="10" ><!-- reload page every 10 seconds	 -->
+{{-- <meta http-equiv="refresh" content="10" > --}}
   <div class="container">
 	<div class="panel panel-primary">
 	 <div class="panel-heading">Order In Progress
@@ -14,8 +14,7 @@
 		<li>{{ $key }}</li>
 		@endforeach
 	  </ul>
-
-	  <table class="table">
+	  <table class="table" id="tableOrder">
 		<thead>
 		  <tr>
 			<th>Order ID</th>
@@ -52,4 +51,10 @@
 	  </div>
 	</div>
   </div>
+	<script type="text/javascript">
+		setInterval(function(){
+		$( "#tableOrder" ).load("staff #tableOrder");
+		console.log("refresh")
+		}, 5000); //refresh every 5 seconds
+	</script>
 @endsection
