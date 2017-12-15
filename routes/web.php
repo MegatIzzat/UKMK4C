@@ -17,8 +17,6 @@ Auth::routes();
 
 /*---------------------- CUSTOM LOGIN & REGISTER -------------------------------*/
 Route::post('/login/custom', 'LoginController@login')->name('login.custom');
-Route::get('staff/register','Auth\StaffRegisterController@showRegistrationForm')->name('staff.register');
-Route::post('staff/register','Auth\StaffRegisterController@register');
 
 /*------------------------ CUSTOMER -------------------------------*/
 
@@ -51,21 +49,12 @@ Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 
 /*---------------------- ADMIN ----------------------------*/
 
-Route::group(['prefix'=>'staff', 'as'=>'staff.','name'=>'staff' ], function(){
+Route::group(['prefix'=>'staff', 'as'=>'staff.', 'middleware' => ['auth','admin'], 'name'=>'staff' ], function(){
 	Route::get('/', 'OrderController@index')->name('index');
+	Route::get('register','Auth\StaffRegisterController@showRegistrationForm')->name('register');
+	Route::post('register','Auth\StaffRegisterController@register');
 	Route::get('viewfeedback',  'StaffController@viewFeedback')->name('viewfeedback');
 	Route::get('report',  'StaffController@report')->name('report');
-
-
-
-
-
-Route::group(['prefix' => 'customer','middleware' => ['auth','admin'], 'as'=>'customer.','name'=>'customer'], function(){
-	Route::get('/','AjaxController@index')->name('index');
-});   
-
-
-
 
 	/*------------------------------------ ADVERTISEMENT ----------------------------------*/
 	Route::group(['prefix' => 'advertisement', 'as'=>'advertisement.','name'=>'advertisement'], function(){
