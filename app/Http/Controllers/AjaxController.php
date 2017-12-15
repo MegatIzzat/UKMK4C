@@ -12,16 +12,10 @@ class AjaxController extends Controller
     {
 
         $user = User::get();
-        $customer = Customer::get();
+        $customer = Customer::paginate(30);
         
         return view('ajax.index',compact('user','customer'));
     }
 
-     // public function show($id)
-     // {
-     //     $user = User::where('user_id', $id)->firstOrFail();
-     //     $customer = Customer::where('cust_id',$id)->firstOrFail();
-     //    return view('ajax.show', compact('user','customer'));
-     // }
 
 }
