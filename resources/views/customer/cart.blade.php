@@ -35,8 +35,9 @@
 								<div class="btn-group">
 								<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span></button>
 								<ul class="dropdown-menu">
-									<li><a href="#">Reduce by 1</a></li>
-									<li><a href="#">Reduce All</a></li>
+									<li><a href="{{ route('cust.addByOne', ['id'=> $product['item']['product_id']]) }}">Add by 1</a></li>
+									<li><a href="{{ route('cust.reduceByOne', ['id'=> $product['item']['product_id']]) }}">Reduce by 1</a></li>
+									<li><a href="{{ route('cust.remove', ['id'=> $product['item']['product_id']]) }}">Reduce All</a></li>
 								</ul>
 							</div>
 							</td>

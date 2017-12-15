@@ -26,13 +26,17 @@ Route::group(['middleware' => ['auth','admin']], function(){
 /*------------------------ CUSTOMER -------------------------------*/
 
 Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
-
 	Route::get('/','CustomerController@index')->name('index');
 	// Route::get('/{id}','CustomerController@category')->name('category');
 	Route::get('/home','CustomerController@index')->name('home');
-
 	Route::get('add-to-cart/{product_id}', 'CustomerController@AddToCart')->name('addcart');
 	Route::get('/cart', 'CustomerController@getCart')->name('getcart');
+
+	Route::get('add/{id}','CustomerController@getAddByOne')->name('addByOne');
+
+	Route::get('reduce/{id}','CustomerController@getReduceByOne')->name('reduceByOne');
+
+	Route::get('remove/{id}','CustomerController@getRemoveItem')->name('remove');
 
 	/*----------------------------- AUTHENTICATE --------------------------*/
 	Route::group(['middleware' => 'auth'], function(){

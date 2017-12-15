@@ -37,7 +37,45 @@ class CustomerController extends Controller
 
         $request->session()->put('cart', $cart);
         // dd($request->session()->get('cart'));
-        return redirect()->route('cust.index')->with('success','Item has been added to cart!');
+        return redirect()->route('cust.index');
+    }
+
+    public function getAddByOne($id){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->addByOne($id);
+
+        Session::put('cart', $cart);
+        return redirect()->route('cust.getcart');
+    }
+
+    public function getReduceByOne($id){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->reduceByOne($id);
+
+        if(count($cart->items) > 0){
+            Session::put('cart',$cart);
+        } else {
+            Session::forget('cart');
+        }
+
+        return redirect()->route('cust.getcart');
+    }
+
+    public function getRemoveItem($id){
+        $oldCart = Session::has('cart') ? Session::get('cart') : null;
+        $cart = new Cart($oldCart);
+        $cart->removeItem($id);
+
+
+        if(count($cart->items) > 0){
+            Session::put('cart',$cart);
+        } else {
+            Session::forget('cart');
+        }
+
+        return redirect()->route('cust.getcart');
     }
 
     public function getCart(){
@@ -49,10 +87,11 @@ class CustomerController extends Controller
         return view('customer.cart',['products'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
     }
 
-       public function manageprofile(){
+        public function manageprofile(){
         return view('customer.profile');
-
         }
+
+
 
     public function checkout(Request $request, $user){
         $customer = Customer::find($user); 
