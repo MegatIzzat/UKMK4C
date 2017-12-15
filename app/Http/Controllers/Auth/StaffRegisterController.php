@@ -23,12 +23,11 @@ class StaffRegisterController extends Controller
 
     use RegistersUsers;
 
-
     protected $redirectTo = '/staff';
 
     public function __construct()
     {
-        $this->middleware('guest');
+        // $this->middleware('guest');
     }
 
     public function showRegistrationForm()
