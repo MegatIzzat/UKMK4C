@@ -7,7 +7,7 @@ use App\Customer;
 use App\User;
 use App\Staff;
 
-class AjaxController extends Controller
+class ListController extends Controller
 {
     public function customerlist()
     {
@@ -15,7 +15,7 @@ class AjaxController extends Controller
         $user = User::get();
         $customer = Customer::paginate(30);
         
-        return view('ajax.customerlist',compact('user','customer'));
+        return view('staff.list.customerlist',compact('user','customer'));
     }
 
     public function stafflist()
@@ -24,7 +24,7 @@ class AjaxController extends Controller
         $user = User::get();
         $staff = Staff::paginate(30);
         
-        return view('ajax.stafflist',compact('user','staff'));
+        return view('staff.list.stafflist',compact('user','staff'));
     }
 
 

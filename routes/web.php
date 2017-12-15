@@ -60,8 +60,8 @@ Route::group(['prefix'=>'staff', 'as'=>'staff.', 'middleware' => ['auth','admin'
 	Route::post('register','Auth\StaffRegisterController@register');
 	Route::get('viewfeedback',  'StaffController@viewFeedback')->name('viewfeedback');
 	Route::get('report',  'StaffController@report')->name('report');
-	Route::get('/customerlist','AjaxController@customerlist')->name('customerlist');
-	Route::get('/stafflist','AjaxController@stafflist')->name('stafflist'); 
+	Route::get('customerlist','ListController@customerlist')->name('customerlist');
+	Route::get('stafflist','ListController@stafflist')->name('stafflist'); 
 
 	/*------------------------------------ ADVERTISEMENT ----------------------------------*/
 	Route::group(['prefix' => 'advertisement', 'as'=>'advertisement.','name'=>'advertisement'], function(){

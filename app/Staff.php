@@ -12,6 +12,7 @@ class Staff extends Model
 
     public $timestamps = false;
     protected $primaryKey = 'staff_id';
+    public $incrementing = false;
 
     public function Advertisement(){
     	return $this->hasMany('App\Advertisement','staff_id');
