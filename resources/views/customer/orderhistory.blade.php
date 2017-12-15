@@ -9,6 +9,7 @@
 		</div>
 
 		<div class="panel-body"> 
+			@include('error.flash-message')
 			<ul>
 				@foreach($errors->all() as $key)
 				<li>{{ $key }}</li>
@@ -118,6 +119,9 @@
 	<a href="/" class="btn btn-success btn-block" role="button">Back to Home</a></li>
 </div>
 
+@foreach($order as $key => $p)
+@if($p->cust_id == Auth::user()->user_id)
+@if($p->order_status=='Completed')
 <div class="modal fade" id="rateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -128,31 +132,36 @@
 			</div>
 			
 			<div class="modal-body">
-				<form id="frmRating" name="frmRating" class="form-horizontal">
+				<form id="frmRating" name="frmRating" class="form-horizontal" action="{{route('customer.sendRating', $q->product_id)}}" method="POST">
+					{{csrf_field()}}
 					<div class="form-group">
-						<div class="col-sm-9"><label class="hidden" id="product_id"></label></div>
+						<div class="col-sm-9">
+							<input type="hidden" id="product_id" name="product_id" value="{{$q->product_id}}">
+						</div>
 					</div>
 					
 					<div class="form-group">
 						<label for="inputName" class="col-sm-3 control-label">Product Name</label>
-						<div class="col-sm-9"><p id="product_name"></p></div>
+						<label class="control-label" id="product_name"></label>
 					</div>
 
 					<div class="form-group">
 						<label for="inputRating" class="col-sm-3 control-label">Rating</label>
 						<div class="col-sm-9">
-							<input type="number" class="rating rating-loading" id="product_rating" name="product_rating" data-step=0.5 data-size="sm">
+							<input class="rating rating-loading" id="product_rating" name="product_rating" min="0.5" max="5" data-step=0.5 data-size="sm">
 						</div>
 					</div>
+					<div class="modal-footer">
+						<button type="submit" class="btn btn-warning btn-rate" value="{{$q->product_id}}">Rate!</button>
+					</div>
 				</form>
-			</div>
-
-			<div class="modal-footer">
-				<button type="button" class="btn btn-warning" id="btn-submit">Rate!</button>
 			</div>
 		</div>
 	</div>
 </div>
+@endif
+@endif
+@endforeach
 
 <meta name="_token" content="{!! csrf_token() !!}" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
@@ -162,4 +171,22 @@
 </body>
 </html>
 
+<<<<<<< HEAD
+=======
+<script>
+	$('.btn-primary').click(function (e) {
+		e.preventDefault();
+		var id = $(this).attr('data-id');
+		var name = $(this).attr('data-value');
+		// var product_id = id;
+		console.log(id);
+		console.log(name);
+		$('#product_id').val(id);
+		$('#product_name').text(name);
+		$('#frmRating').trigger("reset");
+		$('#rateModal').modal('show');
+	});
+</script>
+
+>>>>>>> Megat
 @endsection

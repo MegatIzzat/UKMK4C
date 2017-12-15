@@ -61,6 +61,10 @@ Route::group(['prefix'=>'staff', 'as'=>'staff.', 'middleware' => ['auth','admin'
 	Route::get('viewfeedback',  'StaffController@viewFeedback')->name('viewfeedback');
 	Route::get('report',  'StaffController@report')->name('report');
 
+Route::group(['prefix' => 'customer','middleware' => ['auth','admin'], 'as'=>'customer.','name'=>'customer'], function(){
+	Route::get('/','AjaxController@index')->name('index');
+});   
+
 	/*------------------------------------ ADVERTISEMENT ----------------------------------*/
 	Route::group(['prefix' => 'advertisement', 'as'=>'advertisement.','name'=>'advertisement'], function(){
 		Route::get('/','AdverController@index')->name('index');
@@ -115,4 +119,5 @@ Route::post('orderhistory/{order_id}/{product_id}', [
 
 Route::group(['prefix'=>'/orderhistory/', 'as'=>'customer.', 'name'=>'customer' ], function(){
 	Route::put('sendFeedback/{id}','CustomerController@sendFeedback')->name('sendFeedback');
+
 });

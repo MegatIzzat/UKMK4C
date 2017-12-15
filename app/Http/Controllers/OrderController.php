@@ -16,12 +16,12 @@ use Carbon\Carbon;
 class OrderController extends Controller
 {
     //
-    public function index()
-    {
 
-        $order = Order::orderBy('order_date','DESC')->where('order_status', 'In Progress')->get();
-        $orderline = Orderline::get();
-        $product = Product::get();
+	public function index()
+	{
+		$order = Order::orderBy('order_date','DESC')->where('order_status', 'In Progress')->get();
+		$orderline = Orderline::get();
+		$product = Product::get();
 
         return view('staff.index',compact('order','orderline','product'));
     }
