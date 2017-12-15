@@ -18,6 +18,11 @@ Auth::routes();
 /*---------------------- CUSTOM LOGIN & REGISTER -------------------------------*/
 Route::post('/login/custom', 'LoginController@login')->name('login.custom');
 
+Route::group(['middleware' => ['auth','admin']], function(){
+	Route::post('register','Auth\RegisterController@register');
+	Route::get('register','Auth\RegisterController@showRegistrationForm')->name('register');
+});
+
 /*------------------------ CUSTOMER -------------------------------*/
 
 Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
