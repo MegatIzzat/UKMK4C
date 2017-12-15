@@ -10,8 +10,8 @@ class AdverController extends Controller
 {
     //
     public function index(){
-    	$advertisement = Advertisement::paginate(10);
-    	return view('staff.advertisement.index',compact('advertisement'));
+        $advertisement = Advertisement::paginate(10);
+        return view('staff.advertisement.index',compact('advertisement'));
     }
 
     public function create(){
@@ -20,13 +20,13 @@ class AdverController extends Controller
 
     public function edit($id)
     {
-    	$adv = Advertisement::findOrfail($id);
+        $adv = Advertisement::findOrfail($id);
         return view('staff.advertisement.edit', compact('adv'));
     }
 
     public function store(Request $request)
     {
-    	Validator::make($request->all(), [
+        Validator::make($request->all(), [
             'advertisement_id' => 'required|string',
             'advertisement_name' => 'required|string',
             'advertisement_img' => 'required|string',

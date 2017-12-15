@@ -3,7 +3,7 @@
 @section('title','Order')
 
 @section('content')
-	
+{{-- <meta http-equiv="refresh" content="10" > --}}
   <div class="container">
 	<div class="panel panel-primary">
 	 <div class="panel-heading">Order In Progress
@@ -15,9 +15,7 @@
 		@endforeach
 	  </ul>
 
-
-
-	  <table class="table">
+	  <table class="table" id="tableOrder">
 		<thead>
 		  <tr>
 			<th>Order ID</th>
@@ -32,13 +30,8 @@
 			<tr>
 			  <td>{{$p->order_id}}</td>
 			  
-			  @if($p->order_status!='Completed')
-				<td>
-					<a  href="{{route('staff.order.update',$p->order_id) }}" class="btn btn-success btn-sm" role="button"> Complete </a>
-				</td>
-			  @else
-			  	<td>{{$p->order_status}}</td>
-			  @endif
+			  <td><a  href="{{route('staff.order.update',[$p->order_id,$p->cust_id]) }}" class="btn btn-success btn-sm" role="button"> Complete </a></td>
+
 
 			@foreach($orderline as $key => $q)
 				@if($p->order_id == $q->order_id)

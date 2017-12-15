@@ -57,7 +57,24 @@
 									@if($p->order_id == $q->order_id)
 										@foreach($product as $key => $r)
 											@if($q->product_id == $r->product_id)
-												<div><button class="btn btn-primary btn-xs" data-id="{{$q->product_id}}" data-value="{{$r->product_name}}">Rate</button></div>
+
+											@if($q->rating_id==null)
+											<form class="form-horizontal" method="POST" action="{{ route('customer.sendRating',[$p->order_id, $q->product_id])}}">
+												{{csrf_field()}}
+												{{ method_field('POST') }}
+												<div>
+													<input type="number" name="product_rating" min="0" max="5" step="0.5"><button type="submit"> Rate</button>
+												</div>
+											</form>
+											@else
+
+												@foreach($rating as $key => $z)
+												@if($q->rating_id == $z->rating_id)
+													You rated {{$z->product_rating}} star<br>
+												@endif
+												@endforeach
+
+											@endif
 											@endif
 										@endforeach
 									@endif
@@ -140,7 +157,6 @@
 
 <meta name="_token" content="{!! csrf_token() !!}" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="{{asset('js/ajaxscript.js')}}"></script>
 <script src="{{asset('js/jquery.confirm.js')}}"></script>
 
@@ -204,5 +220,4 @@
 						});
 				});
 </script>
-
 @endsection

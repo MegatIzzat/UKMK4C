@@ -93,19 +93,29 @@ class ProfileController extends Controller
         // return response()->json($user);
 
         Validator::make($request->all(), [
-            'user_id' => 'required|string|min:7',
+            'user_id' => 'required|string|max:7',
             'name' => 'required|string|min:1',
             'email' => 'required|string|min:10',
             'password' => 'required|string',
             ])->validate();
 
+        $pass = strlen($request->password);
+
+        if($pass < 16) {
+
          $password = bcrypt($request->password);
+
+        } else {
+            $password = $request->password;
+        }
 
         User::findOrFail($user)->update([
             'user_id' => $user,
             'name' => $request->name,
-            'email' => $request->email,
             'password' => $password
+            ]);
+        Customer::findOrFail($user)->update([
+            'cust_email' => $request->email
             ]);
         return redirect()->route('cust.index');
 

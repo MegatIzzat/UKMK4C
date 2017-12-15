@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Rating extends Model
 {
     //
+	protected $primaryKey = 'rating_id';
     public $incrementing = false;
     protected $table = 'rating';
     protected $fillable = ['rating_id','product_id','product_rating'];

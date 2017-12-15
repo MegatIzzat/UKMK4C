@@ -36,7 +36,7 @@
 					<div class="form-group">
 						<label for="email" class="col-sm-3 control-label">Customer Email</label>
 						<div class="col-sm-9">
-							<input name="email" type="email" class="form-control" id="email" value="{{$user->email}}" required>
+							<input name="email" type="email" class="form-control" id="email" value="{{$customer->cust_email}}" required>
 						</div>
 					</div>
 					<div class="form-group">

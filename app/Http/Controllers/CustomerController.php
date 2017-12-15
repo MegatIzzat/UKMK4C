@@ -12,6 +12,8 @@ use App\Category;
 use App\Rating;
 use Session;
 use Auth;
+use Carbon\Carbon;
+
 
 class CustomerController extends Controller
 {
@@ -21,7 +23,9 @@ class CustomerController extends Controller
         $product = Product::paginate(6);
         $productcat = Product::get();
         $category = Category::get();
-        return view('customer.index',compact('product','category', 'rating','productcat'));
+
+        $adv = Advertisement::get();
+        return view('customer.index',compact('product','category', 'rating','productcat','adv'));
     }
 
     public function AddToCart(Request $request, $product_id){
@@ -98,20 +102,35 @@ class CustomerController extends Controller
     
     public function orderHistory()
     {
-        $order = Order::get();
+        $order = Order::where('order_date', '>=', Carbon::now()->subDay())->get();
         $orderline = Orderline::get();
         $product = Product::get();
 
-        return view('customer.orderhistory',compact('order','orderline','product'));
+        $notify = Notify::get();
+        $rating = Rating::get();
+        return view('customer.orderhistory',compact('order','orderline','product','notify','rating'));
     }
-
-    public function sendRating(Request $request, $product_id){
+    public function sendRating(Request $request, $order_id, $product_id){
         // $this->user_id = Auth::user()->user_id;
         // $rating = $this->notSpam()->approved();
-        $rating = Rating::create($request->input());
+
+        $rating = new Rating;
+        $rating->product_id = $product_id;
+        $rating->product_rating = $request->input('product_rating');
+        $rating->save();
+        $orderline = Orderline::where('order_id', '=', $order_id)->where('product_id', '=', $product_id)->first();
+        $orderline->rating_id=Rating::all()->last()->rating_id;
+        $orderline->save(); 
+        //$rating = Rating::create($request->input());
         $r = number_format(\DB::table('rating')->where('product_id', $product_id)->average('product_rating'),2);
         $product = \DB::table('product')->where('product_id', $product_id)->update(['product_rating' => $r]);
-        return response()->json($product);
+        return redirect('/orderhistory');
+
+        // $rating = Rating::create($request->input());
+        // $id = $request->product_id;
+        // $r = number_format(\DB::table('rating')->where('product_id', $id)->average('product_rating'),1);
+        // $product = \DB::table('product')->where('product_id', $id)->update(['product_rating' => $r]);
+        // return redirect()->route('customer.orderHistory')->with('success','Thank you for your rating!');
     }
 
     public function sendFeedback(Request $request, $id)

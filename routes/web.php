@@ -17,8 +17,11 @@ Auth::routes();
 
 /*---------------------- CUSTOM LOGIN & REGISTER -------------------------------*/
 Route::post('/login/custom', 'LoginController@login')->name('login.custom');
-Route::get('staff/register','Auth\StaffRegisterController@showRegistrationForm')->name('staff.register');
-Route::post('staff/register','Auth\StaffRegisterController@register');
+
+Route::group(['middleware' => ['auth','admin']], function(){
+	Route::post('register','Auth\RegisterController@register');
+	Route::get('register','Auth\RegisterController@showRegistrationForm')->name('register');
+});
 
 /*------------------------ CUSTOMER -------------------------------*/
 
@@ -35,6 +38,10 @@ Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 	Route::group(['middleware' => 'auth'], function(){
 		Route::get('checkout/{user}', 'CustomerController@checkout')->name('checkout');
 
+		Route::put('isNotified/{id}','NotifyController@isNotified')->name('isNotified');
+		Route::put('isNotifiedAll/{id}','NotifyController@isNotifiedAll')->name('isNotifiedAll');
+		Route::get('refreshNavbar','NotifyController@refreshNavbar')->name('refreshNavbar');
+
 		Route::group(['prefix'=>'/profile', 'name'=>'profile', 'as'=>'profile.'], function(){
 			Route::get('create', 'ProfileController@create')->name('create');
 			Route::post('store', 'ProfileController@store')->name('store');
@@ -48,19 +55,16 @@ Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 
 /*---------------------- ADMIN ----------------------------*/
 
-Route::group(['prefix'=>'staff', 'as'=>'staff.','name'=>'staff' ], function(){
+Route::group(['prefix'=>'staff', 'as'=>'staff.', 'middleware' => ['auth','admin'], 'name'=>'staff' ], function(){
 	Route::get('/', 'OrderController@index')->name('index');
+	Route::get('register','Auth\StaffRegisterController@showRegistrationForm')->name('register');
+	Route::post('register','Auth\StaffRegisterController@register');
 	Route::get('viewfeedback',  'StaffController@viewFeedback')->name('viewfeedback');
-
-
-
+	Route::get('report',  'StaffController@report')->name('report');
 
 Route::group(['prefix' => 'customer','middleware' => ['auth','admin'], 'as'=>'customer.','name'=>'customer'], function(){
 	Route::get('/','AjaxController@index')->name('index');
 });   
-
-
-
 
 	/*------------------------------------ ADVERTISEMENT ----------------------------------*/
 	Route::group(['prefix' => 'advertisement', 'as'=>'advertisement.','name'=>'advertisement'], function(){
@@ -87,7 +91,7 @@ Route::group(['prefix' => 'customer','middleware' => ['auth','admin'], 'as'=>'cu
 	/*------------------------------------ ORDER MANAGEMENT ----------------------------------*/
 	Route::group(['prefix'=>'order', 'name'=>'order', 'as'=>'order.' ], function(){
 		Route::get('/', 'OrderController@index')->name('index');
-		Route::get('update/{id}','OrderController@update')->name('update');
+		Route::get('update/{id}/{cust}','OrderController@update')->name('update');
 	});
 
 	/*------------------------------------ TOPUP ----------------------------------*/
@@ -121,7 +125,7 @@ Route::get('orderhistory/{product_id}',function($product_id){
 	return response()->json($r);
 });
 
-Route::post('orderhistory/{product_id}', [
+Route::post('orderhistory/{order_id}/{product_id}', [
 	'uses' => 'CustomerController@sendRating',
 	'as' => 'customer.sendRating'
 ]);
@@ -129,15 +133,3 @@ Route::post('orderhistory/{product_id}', [
 Route::group(['prefix'=>'/orderhistory/', 'as'=>'customer.', 'name'=>'customer' ], function(){
 	Route::put('sendFeedback/{id}','CustomerController@sendFeedback')->name('sendFeedback');
 });
-
-
-
-
-/*------------------------ CART -----------------------------*/
-
-
-
-
-
-
-
