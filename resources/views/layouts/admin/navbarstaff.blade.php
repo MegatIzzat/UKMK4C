@@ -37,11 +37,7 @@
                                 <li><a href=" {{url('staff/register')}} ">Staff</a></li>
                             </ul>
                         </li>
-<<<<<<< HEAD
-                        <li><a href=" {{url('staff/report')}} ">Sales Report</a></li>
-=======
                         <li><a href="{{route('staff.report')}}">Sales Report</a></li>
->>>>>>> Megat
                     </ul>
 
                     <!-- Right Side Of Navbar -->

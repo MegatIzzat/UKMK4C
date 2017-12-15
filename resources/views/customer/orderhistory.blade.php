@@ -115,9 +115,6 @@
 		</div>
 	</div>
 </div>
-<div class="col-md-offset-4 col-md-4">
-	<a href="/" class="btn btn-success btn-block" role="button">Back to Home</a></li>
-</div>
 
 @foreach($order as $key => $p)
 @if($p->cust_id == Auth::user()->user_id)
@@ -170,9 +167,6 @@
 
 </body>
 </html>
-
-<<<<<<< HEAD
-=======
 <script>
 	$('.btn-primary').click(function (e) {
 		e.preventDefault();
@@ -188,5 +182,4 @@
 	});
 </script>
 
->>>>>>> Megat
 @endsection
