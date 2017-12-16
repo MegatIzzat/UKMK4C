@@ -14,8 +14,14 @@
 			<div class="col-md-3">
 				<div class="list-group">
 					<a href="#" class="list-group-item"><strong>Category</strong></a>
+					<a href="{{route('cust.index')}}" class="list-group-item">
+						All Menu
+						<span class="badge badge-success pull-right">
+						{{ $productcat->count()}}
+						</span>
+					</a>
 					@foreach($category as $c)
-						<a href=" # " class="list-group-item">
+						<a href="{{route('cust.category',['id' => $c->category_id])}} " class="list-group-item">
 							{{$c->category_name}} 
 							<span class="badge badge-success pull-right">  
 								{{ $productcat->where('category_id', $c->category_id)->count() }}

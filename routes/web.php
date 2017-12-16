@@ -27,6 +27,8 @@ Route::group(['middleware' => ['auth','admin']], function(){
 
 Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 	Route::get('/','CustomerController@index')->name('index');
+	Route::get('/category/{id}','CustomerController@show')->name('category');
+	
 	// Route::get('/{id}','CustomerController@category')->name('category');
 	Route::get('/home','CustomerController@index')->name('home');
 	Route::get('add-to-cart/{product_id}', 'CustomerController@AddToCart')->name('addcart');
