@@ -27,17 +27,20 @@ Route::group(['middleware' => ['auth','admin']], function(){
 
 Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 	Route::get('/','CustomerController@index')->name('index');
-	Route::get('/category/{id}','CustomerController@show')->name('category');
-	
-	// Route::get('/{id}','CustomerController@category')->name('category');
 	Route::get('/home','CustomerController@index')->name('home');
+
+	/*--------------------------- CATEGORY & SORT ---------------------------*/
+	Route::get('category/{id}','CustomerController@show')->name('category');
+	Route::get('sort/price-low-to-high','CustomerController@pricelow')->name('pricelow');
+	Route::get('sort/price-high-to-low','CustomerController@pricehigh')->name('pricehigh');
+	Route::get('sort/rating-low-to-high','CustomerController@ratinghigh')->name('ratinghigh');
+	
+	
+	/*---------------------------------- CART --------------------------------*/
 	Route::get('add-to-cart/{product_id}', 'CustomerController@AddToCart')->name('addcart');
 	Route::get('/cart', 'CustomerController@getCart')->name('getcart');
-
 	Route::get('add/{id}','CustomerController@getAddByOne')->name('addByOne');
-
 	Route::get('reduce/{id}','CustomerController@getReduceByOne')->name('reduceByOne');
-
 	Route::get('remove/{id}','CustomerController@getRemoveItem')->name('remove');
 
 	/*----------------------------- AUTHENTICATE --------------------------*/

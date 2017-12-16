@@ -36,6 +36,30 @@ class CustomerController extends Controller
         return view('customer.index',compact('product','productcat','category','adv'));
     }
 
+    public function pricelow(){
+        $product = Product::orderBy('product_price','asc')->paginate(6);
+        $category = Category::get();
+        $productcat = Product::get();
+        $adv = Advertisement::get();
+        return view('customer.index',compact('product','productcat','category','adv'));
+    }
+
+    public function pricehigh(){
+        $product = Product::orderBy('product_price','desc')->paginate(6);
+        $category = Category::get();
+        $productcat = Product::get();
+        $adv = Advertisement::get();
+        return view('customer.index',compact('product','productcat','category','adv'));
+    }
+
+    public function ratinghigh(){
+        $product = Product::orderBy('product_rating','desc')->paginate(6);
+        $category = Category::get();
+        $productcat = Product::get();
+        $adv = Advertisement::get();
+        return view('customer.index',compact('product','productcat','category','adv'));
+    }
+
     public function AddToCart(Request $request, $product_id){
         $product = Product::find($product_id);
         $oldCart = Session::has('cart') ? Session::get('cart') : null;
