@@ -21,7 +21,7 @@
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
 
-                <li><a href=" {{route('cust.home')}} "><span class="glyphicon glyphicon-home"> Home</span></a></li>
+                <li><a href=" {{route('cust.home')}} "><span class="glyphicon glyphicon-home"></span> &nbsp;Home</a></li>
            
                 @auth
 
@@ -35,9 +35,9 @@
                 <li class="dropdown">
                     <a href="notification#" class="dropdown-toggle" data-toggle="dropdown">
                     @if($unseen==0)
-                        <span class="glyphicon glyphicon-envelope"> Notification</span>
+                        <span class="glyphicon glyphicon-envelope"></span> &nbsp;Notification
                     @else
-                        <span style="color:blue" class="glyphicon glyphicon-envelope"> Notification</span>
+                        <span style="color:blue" class="glyphicon glyphicon-envelope"></span> &nbsp;Notification
                         <span style="background-color:red" class="badge">{{$unseen}}</span>                   
                     @endif
                     </a>
@@ -92,23 +92,29 @@
 
         <!-- Authentication Links -->
         @guest
-        <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"> Login</a></li>
+        <li><a href="{{ route('login') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 
         @else
-        <li class="dropdown">
+            
+            <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
                <span class="glyphicon glyphicon-user"></span> {{ Auth::user()->user_name }} <span class="caret"></span>
            </a>
+           
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="{{route('cust.profile.edit',['user' => Auth::user()->user_id])}}"><span class="glyphicon glyphicon-edit"></span> Manage Profile</a>
+                </li>
+                <li>
+                    <a href="/orderhistory"><span class="glyphicon glyphicon-time"></span> &nbsp;Order History</a>
+                </li>
 
-           <ul class="dropdown-menu">
-            <li><a href="{{route('cust.profile.edit',['user' => Auth::user()->user_id])}}"><span class="glyphicon glyphicon-edit"> Manage Profile</a></li>
-            <li><a href="/orderhistory"><span class="glyphicon glyphicon-time"> Order History</a></li>
+                <li role="separator" class="divider"></li>
 
-            <li role="separator" class="divider"></li>
             <li>
                 <a href="{{ route('logout') }}"
                 onclick="event.preventDefault();
-                document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-off"> 
+                document.getElementById('logout-form').submit();"><span class="glyphicon glyphicon-off"></span>
                 Logout
             </a>
 
@@ -116,10 +122,11 @@
                 {{ csrf_field() }}
             </form>
         </li>
-    </ul>
-</li>
-@endguest
-</ul>
+            </ul>
+            </li>
+
+        @endguest
+        </ul>
 </div>
 </div>
 </nav>

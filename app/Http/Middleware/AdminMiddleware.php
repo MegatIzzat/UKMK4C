@@ -18,7 +18,7 @@ class AdminMiddleware
         if(\Auth::user()->isAdmin == 1){
             return $next($request);
         }
-        return redirect()->guest('/');
+        return redirect()->route('staff.index');
 
         
     }

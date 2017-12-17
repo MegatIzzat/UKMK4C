@@ -14,16 +14,30 @@
 			<div class="col-md-3">
 				<div class="list-group">
 					<a href="#" class="list-group-item"><strong>Category</strong></a>
+					<a href="{{route('cust.index')}}" class="list-group-item">
+						All Menu
+						<span class="badge badge-success pull-right">
+						{{ $productcat->count()}}
+						</span>
+					</a>
 					@foreach($category as $c)
-						<a href=" # " class="list-group-item">
+						<a href="{{route('cust.category',['id' => $c->category_id])}} " class="list-group-item">
 							{{$c->category_name}} 
 							<span class="badge badge-success pull-right">  
 								{{ $productcat->where('category_id', $c->category_id)->count() }}
 							</span>
 						</a>
 					@endforeach
-		  </div>
+		  		</div>
+
+		  		<div class="list-group">
+					<a href="#" class="list-group-item"><strong>Sort</strong></a>
+					<a href="{{ route('cust.pricelow') }}" class="list-group-item">Price : Low to High</a>
+					<a href="{{ route('cust.pricehigh') }}" class="list-group-item">Price : High to Low</a>
+					<a href="{{ route('cust.ratinghigh') }}" class="list-group-item">Rating : Low to High</a>
+				</div>
 			</div>	
+
 			<div class="col-md-9">
 				<!-- Alert -->
 				@include('error.flash-message')

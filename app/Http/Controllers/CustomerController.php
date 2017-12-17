@@ -21,12 +21,43 @@ class CustomerController extends Controller
 {
     public function index()
     {
-        //
         $product = Product::paginate(6);
-        $productcat = Product::get();
         $category = Category::get();
+        $productcat = Product::get();
         $adv = Advertisement::get();
-        return view('customer.index',compact('product','category', 'rating','productcat','adv'));
+        return view('customer.index',compact('product','productcat','category','adv'));
+    }
+
+    public function show($id){
+        $product = Product::where('category_id',$id)->paginate(6);
+        $category = Category::get();
+        $productcat = Product::get();
+        $adv = Advertisement::get();
+        return view('customer.index',compact('product','productcat','category','adv'));
+    }
+
+    public function pricelow(){
+        $product = Product::orderBy('product_price','asc')->paginate(6);
+        $category = Category::get();
+        $productcat = Product::get();
+        $adv = Advertisement::get();
+        return view('customer.index',compact('product','productcat','category','adv'));
+    }
+
+    public function pricehigh(){
+        $product = Product::orderBy('product_price','desc')->paginate(6);
+        $category = Category::get();
+        $productcat = Product::get();
+        $adv = Advertisement::get();
+        return view('customer.index',compact('product','productcat','category','adv'));
+    }
+
+    public function ratinghigh(){
+        $product = Product::orderBy('product_rating','desc')->paginate(6);
+        $category = Category::get();
+        $productcat = Product::get();
+        $adv = Advertisement::get();
+        return view('customer.index',compact('product','productcat','category','adv'));
     }
 
     public function AddToCart(Request $request, $product_id){
@@ -179,12 +210,4 @@ class CustomerController extends Controller
         Order::findOrFail($id)->update($request->all());
         return redirect('/orderhistory');
     }
-public function show($id)
-{
-    return view('show');
-}
-
-
-
-
 }
