@@ -9,7 +9,6 @@
 		</div>
 
 		<div class="panel-body"> 
-			@include('error.flash-message')
 			<ul>
 				@foreach($errors->all() as $key)
 				<li>{{ $key }}</li>
@@ -58,6 +57,7 @@
 									@if($p->order_id == $q->order_id)
 										@foreach($product as $key => $r)
 											@if($q->product_id == $r->product_id)
+
 											@if($q->rating_id==null)
 											<form class="form-horizontal" method="POST" action="{{ route('customer.sendRating',[$p->order_id, $q->product_id])}}">
 												{{csrf_field()}}
@@ -115,71 +115,8 @@
 		</div>
 	</div>
 </div>
-
-@foreach($order as $key => $p)
-@if($p->cust_id == Auth::user()->user_id)
-@if($p->order_status=='Completed')
-<div class="modal fade" id="rateModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-				
-				<h4 class="modal-title" id="myModalLabel"><strong>Rate This Product</strong></h4>
-			</div>
-			
-			<div class="modal-body">
-				<form id="frmRating" name="frmRating" class="form-horizontal" action="{{route('customer.sendRating', $q->product_id)}}" method="POST">
-					{{csrf_field()}}
-					<div class="form-group">
-						<div class="col-sm-9">
-							<input type="hidden" id="product_id" name="product_id" value="{{$q->product_id}}">
-						</div>
-					</div>
-					
-					<div class="form-group">
-						<label for="inputName" class="col-sm-3 control-label">Product Name</label>
-						<label class="control-label" id="product_name"></label>
-					</div>
-
-					<div class="form-group">
-						<label for="inputRating" class="col-sm-3 control-label">Rating</label>
-						<div class="col-sm-9">
-							<input class="rating rating-loading" id="product_rating" name="product_rating" min="0.5" max="5" data-step=0.5 data-size="sm">
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="submit" class="btn btn-warning btn-rate" value="{{$q->product_id}}">Rate!</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+<div class="col-md-offset-4 col-md-4">
+	<a href="/" class="btn btn-success btn-block" role="button">Back to Home</a></li>
 </div>
-@endif
-@endif
-@endforeach
-
-<meta name="_token" content="{!! csrf_token() !!}" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="{{asset('js/ajaxscript.js')}}"></script>
-<script src="{{asset('js/jquery.confirm.js')}}"></script>
-
-</body>
-</html>
-<script>
-	$('.btn-primary').click(function (e) {
-		e.preventDefault();
-		var id = $(this).attr('data-id');
-		var name = $(this).attr('data-value');
-		// var product_id = id;
-		console.log(id);
-		console.log(name);
-		$('#product_id').val(id);
-		$('#product_name').text(name);
-		$('#frmRating').trigger("reset");
-		$('#rateModal').modal('show');
-	});
-</script>
 
 @endsection

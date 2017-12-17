@@ -97,6 +97,14 @@ class UserSeeder extends Seeder
                     'isAdmin' => '0'
                 ],
 
+                [
+                    'user_id' => 'admin1',
+                    'user_name' => 'Bro Panjang',
+                    'password' => bcrypt(123456),
+                    'isAdmin' => '1'
+               
+                ],
+
                 
         ]);
 
