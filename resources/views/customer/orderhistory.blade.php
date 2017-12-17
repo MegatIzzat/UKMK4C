@@ -66,13 +66,17 @@
 													<input type="number" name="product_rating" min="0" max="5" step="0.5"><button type="submit"> Rate</button>
 												</div>
 											</form>
-											@else
+												@else
 
 												@foreach($rating as $key => $z)
-												@if($q->rating_id == $z->rating_id)
-													You rated {{$z->product_rating}} star<br>
-												@endif
-												@endforeach
+													@if($q->rating_id == $z->rating_id)
+												<div class="ratings">
+												<p>
+													<input id="input-3" name="input-3" value="{{$z->product_rating}}" class="rating" data-size="xs" data-show-clear="false" data-show-caption="false" readonly>
+												</p>
+											</div>
+															@endif
+															@endforeach
 
 											@endif
 											@endif
