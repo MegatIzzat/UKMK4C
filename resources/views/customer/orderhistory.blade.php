@@ -62,14 +62,20 @@
 												{{csrf_field()}}
 												{{ method_field('POST') }}
 												<div>
-													<input type="number" name="product_rating" min="0" max="5" step="0.5"><button type="submit"> Rate</button>
+													<table><td>
+			<input type="number" class="rating rating-loading" id="product_rating" name="product_rating" data-step=0.5 data-size="xs" data-show-caption="false"></td>
+										<td><button type="submit"> Rate</button></td></table>
 												</div>
 											</form>
 											@else
 
 												@foreach($rating as $key => $z)
 												@if($q->rating_id == $z->rating_id)
-													You rated {{$z->product_rating}} star<br>
+													<div class="ratings">
+									<p>
+										<input id="input-3" name="input-3" value="{{$z->product_rating}}" class="rating" data-size="xs" data-show-clear="false" data-show-caption="false" readonly>
+									</p>
+								</div>
 												@endif
 												@endforeach
 
