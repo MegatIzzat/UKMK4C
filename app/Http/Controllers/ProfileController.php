@@ -117,9 +117,10 @@ class ProfileController extends Controller
 
         User::findOrFail($user)->update([
             'user_id' => $user,
-            'name' => $request->name,
+            'user_name' => $request->name,
             'password' => $password
             ]);
+
         Customer::findOrFail($user)->update([
             'cust_email' => $request->email
             ]);
