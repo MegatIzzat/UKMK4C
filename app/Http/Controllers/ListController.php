@@ -13,7 +13,7 @@ class ListController extends Controller
     {
 
         $user = User::get();
-        $customer = Customer::paginate(30);
+        $customer = Customer::paginate(20);
         
         return view('staff.list.customerlist',compact('user','customer'));
     }
@@ -22,7 +22,7 @@ class ListController extends Controller
     {
 
         $user = User::get();
-        $staff = Staff::paginate(30);
+        $staff = Staff::paginate(20);
         
         return view('staff.list.stafflist',compact('user','staff'));
     }

@@ -37,6 +37,7 @@
                    
                 </div>
             </div>
+            <center>{{$customer->links()}}</center>
         </div>
     </div>
 </div>

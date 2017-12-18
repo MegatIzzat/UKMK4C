@@ -31,6 +31,8 @@
                    
                 </div>
             </div>
+
+            <center>{{$staff->links()}}</center>
         </div>
     </div>
 </div>
