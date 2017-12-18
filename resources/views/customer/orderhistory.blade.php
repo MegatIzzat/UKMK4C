@@ -118,6 +118,7 @@
 
 		</div>
 	</div>
+	<center>{{$order->links()}}</center>
 </div>
 <div class="col-md-offset-4 col-md-4">
 	<a href="/" class="btn btn-success btn-block" role="button">Back to Home</a></li>

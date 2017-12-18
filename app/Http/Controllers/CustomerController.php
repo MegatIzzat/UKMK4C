@@ -118,12 +118,6 @@ class CustomerController extends Controller
         return view('customer.cart',['products'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
     }
 
-        public function manageprofile(){
-        return view('customer.profile');
-        }
-
-
-
     public function checkout(Request $request, $user){
         $customer = Customer::find($user); 
         $category = Category::get(); 
@@ -173,7 +167,7 @@ class CustomerController extends Controller
     
     public function orderHistory()
     {
-        $order = Order::where('order_date', '>=', Carbon::now()->subDay())->get();
+        $order = Order::where('order_date', '>=', Carbon::now()->subDay())->paginate(10);
         $orderline = Orderline::get();
         $product = Product::get();
         $notify = Notify::get();
