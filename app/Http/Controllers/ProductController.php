@@ -12,82 +12,81 @@ use Validator;
 class ProductController extends Controller
 {
 
-    public function index()
-    {
-        $products = Product::all();
-        $category=Category::all();
-        return view('staff.product.index', compact('category'))->with('products',$products);
-        // return view('product.index')->with('products',$products);
-    }
+	public function index()
+	{
+		$product = Product::Paginate(10);
+		$category=Category::all();
+		return view('staff.product.index', compact('category','product'));
+	}
 
-    public function show($product_id)
-    {
-        $product = Product::find($product_id);
-        return response()->json($product);  
-    }
+	public function create(){
+		$category = Category::all();
+		return view('staff.product.create',compact('category'));
+	}
 
+	public function store(Request $request){
+		Validator::make($request->all(), [
+			'product_id' => 'required|string',
+			'product_name' => 'required|string',
+			'product_price' => 'required',
+			'category_id' => 'required|string',
+			'product_img' => 'image|mimes:jpeg,png,jpg,gif,svg',
+			'product_rating' => 'required',
+			])->validate();
 
-    public function create(Request $request)
-    {
-        $product = Product::create($request->input());
-        return response()->json($product);
-    }
+		$data = new Product($request->input());
 
-    public function update(Request $request,$product_id)
-    {
-        // $product = Product::find($product_id)->update([
-        // $product->product_name = $request->upproduct_name,
-        // $product->product_price= $request->upproduct_price,
-        // $product->category_id= $request->upcategory_id,
-        // $product->product_img= $request->upproduct_img,
-        // $product->product_rating= $request->upproduct_rating,
-     //    ]);
-
-        // $product->save();
-        // return response()->json($product);
-        Validator::make($request->all(), [
-            'upproduct_id' => 'required',
-            'upproduct_name' => 'required',
-            'upproduct_price' => 'required',
-            'upproduct_img' => '',
-            'upcategory_id' => 'required',
-            'upproduct_rating' => 'required',
-            ])->validate();
-
-        $id = $request->upproduct_id;
-
-        Product::findOrFail($id)->update([
-            'product_id' => $id,
-            'product_name' => $request->upproduct_name,
-            'product_price' => $request->upproduct_price,
-            'product_img' => "",
-            'category_id' => $request->upcategory_id,
-            'product_rating' => $request->upproduct_rating,
-
-            ]);
-        
-        return redirect()->route('staff.product.index')->with('success', $id.' has been successfully updated!');
-    }
-
-    public function destroy(Request $request, $product_id)
-    {
-        $id = $request->deproduct_id;
-
-        $product = Product::destroy($id);
-        return redirect()->route('staff.product.index')->with('success', $id.' has been successfully deleted!');
-    }
-
-    public function upload(Request $request)
-    {
-        $product_id = $request->fileproduct_id;
-        $file = $request->file('fileproduct_img');
-        $filename = $file->getClientOriginalName();
-        $product = \DB::table('product')->where('product_id', $product_id)->update(['product_img' => $filename]);
-        if (!empty($file)){
-            Storage::disk('upload')->put($file->getClientOriginalName(), file_get_contents($file));
+		if ($request->hasFile('product_img')){
+            $file = $request->file('product_img');
+            $name = $file->getClientOriginalName();
+            $data->product_img = $name;
+            $file->move(public_path().'/img/', $name);                   
         }
 
-        return redirect()->route('staff.product.index')->with('success', $filename.' has been successfully uploaded!');
-    }
+        $data->save();
+
+		return redirect()->route('staff.product.index')->with('success','Product has been added!');
+	}
+
+	public function edit($id){
+		$category = Category::all();
+		$product = Product::findOrfail($id);
+        return view('staff.product.edit', compact('product','category'));
+	}
+
+	public function update(Request $request,$id)
+	{
+		Validator::make($request->all(), [
+			'product_id' => 'required|string',
+			'product_name' => 'required|string',
+			'product_price' => 'required',
+			'category_id' => 'required|string',
+			'product_img' => 'image|mimes:jpeg,png,jpg,gif,svg',
+			'product_rating' => 'required',
+			])->validate();
+
+		$data = Product::findOrFail($id);
+
+		$data->update($request->all());
+
+        if ($request->hasFile('product_img')){
+            $file = $request->file('product_img');
+            $name = $file->getClientOriginalName();
+            $data->product_img = $name;
+            $file->move(public_path().'/img/', $name);   
+            $data->save();                  
+        }  
+		
+		return redirect()->route('staff.product.index')->with('success', $id.' has been successfully updated!');
+	}
+
+	public function destroy(Request $request, $id)
+	{
+		if(Product::destroy($id)) {
+            return redirect()->route('staff.product.index')->with('success', $id.' has been successfully deleted!');
+        } else {
+            return redirect()->route('staff.product.index')->with('error', 'Please try again!');
+        }
+	}
 
 }

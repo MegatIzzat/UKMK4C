@@ -82,16 +82,15 @@ Route::group(['prefix'=>'staff', 'as'=>'staff.', 'middleware' => ['auth','admin'
 		Route::delete('delete/{id}', 'AdverController@destroy')->name('delete');
 	});
 
-
-
 	/*------------------------------------ PRODUCT MANAGEMENT ----------------------------------*/
 	Route::group(['prefix' => 'product','as'=>'product.','name'=>'product'],function(){
+		/*----------- biasa----------------*/
 		Route::get('/', 'ProductController@index')->name('index');
-		Route::get('{product_id?}', 'ProductController@show')->name('show');
-		Route::post('/', 'ProductController@create')->name('create');
-		Route::put('{product_id?}', 'ProductController@update')->name('update');
-		Route::delete('{product_id?}', 'ProductController@destroy')->name('delete');
-		Route::post('upload', 'ProductController@upload')->name('upload');
+		Route::get('create', 'ProductController@create')->name('create');
+		Route::post('store', 'ProductController@store')->name('store');
+		Route::get('{id}', 'ProductController@edit')->name('edit');
+		Route::put('update/{id}','ProductController@update')->name('update');
+		Route::delete('delete/{id}', 'ProductController@destroy')->name('delete');
 	});
 
 	/*------------------------------------ ORDER MANAGEMENT ----------------------------------*/
@@ -126,5 +125,4 @@ Route::post('orderhistory/{order_id}/{product_id}', [
 
 Route::group(['prefix'=>'/orderhistory/', 'as'=>'customer.', 'name'=>'customer' ], function(){
 	Route::put('sendFeedback/{id}','CustomerController@sendFeedback')->name('sendFeedback');
-
 });

@@ -15,7 +15,7 @@ class Product extends Model
     public $timestamps = false;
 
     public function Category(){
-    	return $this->belongsTo('App\CategoryModel','category_id');
+    	return $this->belongsTo('App\Category','category_id');
     }
 
     public function Rating(){

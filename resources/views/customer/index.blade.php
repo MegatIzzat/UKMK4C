@@ -4,11 +4,10 @@
 
 @section('content')
 
-<!-- Page Content -->
+	<!-- Page Content -->
 	<div class="container">
 		
-
-	  <!-- Content Row -->
+		<!-- Content Row -->
 		<div class="row">
 
 			<div class="col-md-3">
@@ -45,7 +44,6 @@
 				<!-- Content Column -->
 				@foreach($errors->all() as $key)
 					<li>{{ $key }}</li>
-
 				@endforeach
 
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -75,9 +73,6 @@
 		  <span class="sr-only">Next</span>
 		</a>
   </div><br><br>
-
-			
-
 				@foreach($product as $p)
 					<div class="col-md-4 col-xs-12 ">
 						<div class="thumbnail">
@@ -92,13 +87,8 @@
 									</p>
 								</div>
 								<div class="footer">
-									<p class="pull-left">Rated {{$p->Rating()->count()}} times</p>
-
-									
+									<p class="pull-left">Rated {{$p->Rating()->count()}} times</p>		
 										<a href="{{route('cust.addcart',['product_id' => $p->product_id])}}" class="btn btn-success pull-right" role="button">Add to Cart</a>
-									
-								
-									
 								</div>
 						</div>
 					</div>
@@ -107,9 +97,6 @@
 		</div>		
 	</div>
 	<!-- /.container -->
-	
-
-	
 
 	<br><center>{{$product->links()}}</center><br><br>
 @endsection
