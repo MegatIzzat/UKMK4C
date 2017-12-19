@@ -68,16 +68,12 @@
 														@endif
 														<br>
 											
-
 												@endif
 											@endforeach
 										@endif
 									@endforeach
 								</div>
-							</td>
-
-							
-
+							</td>					
 
 							<td>RM {{number_format($p->total_price, 2)}}</td>
 
@@ -106,6 +102,7 @@
 						</tr>
 						@endif
 					@endif
+
 				@endforeach
 			</table>
 
