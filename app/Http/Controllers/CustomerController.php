@@ -167,7 +167,7 @@ class CustomerController extends Controller
     
     public function orderHistory()
     {
-        $order = Order::Paginate(10);
+        $order = Order::orderBy('order_date', 'desc')->paginate(5);
         $orderline = Orderline::get();
         $product = Product::get();
         $notify = Notify::get();
@@ -175,9 +175,6 @@ class CustomerController extends Controller
         return view('customer.orderhistory',compact('order','orderline','product','notify','rating'));
     }
     public function sendRating(Request $request, $order_id, $product_id){
-        // $this->user_id = Auth::user()->user_id;
-        // $rating = $this->notSpam()->approved();
-
         $rating = new Rating;
         $rating->product_id = $product_id;
         $rating->product_rating = $request->input('product_rating');
@@ -189,13 +186,6 @@ class CustomerController extends Controller
         $r = number_format(\DB::table('rating')->where('product_id', $product_id)->average('product_rating'),2);
         $product = \DB::table('product')->where('product_id', $product_id)->update(['product_rating' => $r]);
         return redirect('/orderhistory');
-
-        // $rating = Rating::create($request->input());
-        // $id = $request->product_id;
-        // $r = number_format(\DB::table('rating')->where('product_id', $id)->average('product_rating'),1);
-        // $product = \DB::table('product')->where('product_id', $id)->update(['product_rating' => $r]);
-        // return redirect()->route('customer.orderHistory')->with('success','Thank you for your rating!');
-
     }
 
     public function sendFeedback(Request $request, $id)
