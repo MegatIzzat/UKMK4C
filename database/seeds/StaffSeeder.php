@@ -14,9 +14,8 @@ class StaffSeeder extends Seeder
     	 App\Staff::insert([
 
                 [
-                    'staff_id' => 'admin1',
+                    'staff_id' => 'admin',
                     'staff_email' => 'admin@gmail.com',
-               
                 ],
 	]);    
     }

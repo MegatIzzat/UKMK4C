@@ -22,8 +22,8 @@ class Staff extends Model
     	return $this->hasMany('App\Order','order_id');
     }
 
-        public function User(){
-    	return $this->hasOne('App\User', 'user_id', 'staff_id');
+    public function User(){
+    	return $this->hasOne('App\User', 'user_id');
 
     }
 }

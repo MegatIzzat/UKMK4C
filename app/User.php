@@ -30,6 +30,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    public function Staff(){
+        return $this->hasOne('App\Staff','staff_id');
+    }
 
     public function Customer(){
         return $this->hasOne('App\Customer','cust_id');
