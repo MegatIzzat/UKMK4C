@@ -16,7 +16,6 @@ class StaffSeeder extends Seeder
                 [
                     'staff_id' => 'admin',
                     'staff_email' => 'admin@gmail.com',
-               
                 ],
 	]);    
     }
