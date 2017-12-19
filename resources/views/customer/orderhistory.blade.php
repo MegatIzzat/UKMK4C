@@ -35,7 +35,7 @@
 							<td>
 								{{date('d-M-Y', strtotime($p->order_date))}}<br>
 								{{date('h:i A', strtotime($p->order_date))}}
-							</td><!-- Display in Malaysia time -->
+							</td>
 							<td>{{$p->order_id}}</td>
 							
 							<td>
@@ -69,14 +69,14 @@
 												@else
 
 												@foreach($rating as $key => $z)
-													@if($q->rating_id == $z->rating_id)
+												@if($q->rating_id == $z->rating_id)
 												<div class="ratings">
 												<p>
 													<input id="input-3" name="input-3" value="{{$z->product_rating}}" class="rating" data-size="xs" data-show-clear="false" data-show-caption="false" readonly>
 												</p>
-											</div>
-															@endif
-															@endforeach
+												</div>
+												@endif
+												@endforeach
 
 											@endif
 											@endif
