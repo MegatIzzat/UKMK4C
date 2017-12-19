@@ -75,10 +75,10 @@
 								</ul>
 							</li>
 						@else
-
+					
 						@endif
 					@endauth
-
+					</ul>
 					<!-- Right Side Of Navbar -->
 					<ul class="nav navbar-nav navbar-right">
 						@foreach($topup as $t)
