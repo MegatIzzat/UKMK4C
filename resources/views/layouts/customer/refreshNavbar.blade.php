@@ -21,32 +21,42 @@
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
 
-                <li><a href=" {{route('cust.home')}} "><span class="glyphicon glyphicon-home"></span> &nbsp;Home</a></li>
+                @guest
+                    <li><a href=" {{route('cust.home')}} "><span class="glyphicon glyphicon-home"></span> &nbsp;Home</a></li>
+                @else
+                    @if(Auth::user()->isAdmin == '0')
+                    <li><a href=" {{route('cust.home')}} "><span class="glyphicon glyphicon-home"></span> &nbsp;Home</a></li>
+                    @else
+                    <li><a href=" {{route('staff.index')}} "><span class="glyphicon glyphicon-home"></span> &nbsp;Home</a></li>
+                    @endif
+                @endguest
            
                 @auth
+                    @if(Auth::user()->isAdmin == '0')
 
-                <?php $unseen=0 ?><!-- Count unseen notification -->
-                 @foreach($notify as $n)
-                     @if(Auth::user()->user_id==$n->user_id && $n->is_seen == 0)
-                        <?php ++$unseen ?>
-                    @endif
-                @endforeach
+                    <?php $unseen=0 ?><!-- Count unseen notification -->
+                     @foreach($notify as $n)
+                         @if(Auth::user()->user_id==$n->user_id && $n->is_seen == 0)
+                            <?php ++$unseen ?>
+                        @endif
+                    @endforeach
 
                 <li class="dropdown">
                     <a href="notification#" class="dropdown-toggle" data-toggle="dropdown">
                     @if($unseen==0)
                         <span class="glyphicon glyphicon-envelope"></span> &nbsp;Notification
                     @else
-                        <span style="color:blue" class="glyphicon glyphicon-envelope"></span> &nbsp;Notification
+                        <span style="color:blue" class="glyphicon glyphicon-envelope"></span> 
+                        <span style="color:blue">&nbsp;Notification</span>
                         <span style="background-color:red" class="badge">{{$unseen}}</span>                   
                     @endif
                     </a>
 
-                    <ul class="dropdown-menu" style="width:300px">
+                    <ul class="dropdown-menu" style="width:350px">
                         <form class="form-horizontal" method="POST" action="{{ route('cust.isNotifiedAll',Auth::user()->user_id)}}">
                             {{csrf_field()}}
                             {{ method_field('PUT') }}
-                            <p style="text-align:left;"><b>Notification</b> <span style="float:right;"><a href="#" onclick="$(this).closest('form').submit()"> Mark All as Read </a></span></p>
+                            <p style="text-align:left; padding: 10px;"><b>Notification</b> <span style="float:right;"><a href="#" onclick="$(this).closest('form').submit()"> Mark All as Read </a></span></p>
                         </form>                   
                                 
                                      
@@ -57,10 +67,10 @@
                         <form class="form-horizontal" method="POST" action="{{ route('cust.isNotified',$n->id)}}">
                             {{csrf_field()}}
                             {{ method_field('PUT') }}
-                            <button style="width:100%" class="btn-info" type="submit">{{$n->notification}}<span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                            <button style="width:98%;margin-left: 3px;" class="btn-info" type="submit">{{$n->notification}}<span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
                         </form>                   
                     @else
-                        <button style="width:100%" class="btn-default" disabled>{{$n->notification}}<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>
+                        <button style="width:98%;margin-left: 3px;" class="btn-default" disabled>{{$n->notification}}<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></button>
                         @endif
                     @endif
                     </li>
@@ -68,6 +78,9 @@
 
                 
             </ul>
+            @else
+
+            @endif
         @endauth
 
     </ul>
@@ -84,11 +97,26 @@
         </li>
         @endif
         @endforeach
+
+        <!-- Cart -->
+        @guest
         <li>
             <a href="{{route('cust.getcart')}}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart 
                 <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty: ''}}</span>
             </a>
         </li>
+        @else
+            @if(Auth::user()->isAdmin == '0')
+                <li>
+                    <a href="{{route('cust.getcart')}}">
+                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart 
+                        <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty: ''}}</span>
+                    </a>
+                </li>
+            @else
+
+            @endif
+        @endguest
 
         <!-- Authentication Links -->
         @guest
@@ -102,6 +130,7 @@
            </a>
            
             <ul class="dropdown-menu">
+                @if(Auth::user()->isAdmin == '0')
                 <li>
                     <a href="{{route('cust.profile.edit',['user' => Auth::user()->user_id])}}"><span class="glyphicon glyphicon-edit"></span> Manage Profile</a>
                 </li>
@@ -110,6 +139,9 @@
                 </li>
 
                 <li role="separator" class="divider"></li>
+                @else
+
+                @endif
 
             <li>
                 <a href="{{ route('logout') }}"
