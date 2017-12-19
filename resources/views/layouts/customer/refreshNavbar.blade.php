@@ -75,7 +75,6 @@
 								</ul>
 							</li>
 						@else
-					
 						@endif
 					@endauth
 					</ul>
