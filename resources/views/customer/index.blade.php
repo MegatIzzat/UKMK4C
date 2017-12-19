@@ -76,7 +76,7 @@
 				@foreach($product as $p)
 					<div class="col-md-4 col-xs-12 ">
 						<div class="thumbnail">
-								<a href="#"><img src="{{asset('img/'.$p->product_img)}}" alt="Image not available"></a>
+								<center><div class="img-contain" style="background-image: url('{{asset('img/'.$p->product_img)}}');"></div></center>
 								<div class="caption">
 									<h4><a href="#">{{$p->product_name}}</a></h4>
 									<h4><strong>RM {{ number_format($p->product_price, 2)}}</strong></h4>

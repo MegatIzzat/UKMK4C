@@ -87,3 +87,13 @@ a {
   background: linear-gradient(to bottom,  #267c99 50%,#007299 50%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#267c99', endColorstr='#007299',GradientType=0 ); /* IE6-9 */
 }
+
+.img-contain{
+  background-position:bottom center;
+  background-repeat:no-repeat;
+  width: 230px;
+  height:131px;
+  max-width:100%;
+  max-height:auto;
+  background-size: 100%;
+}
