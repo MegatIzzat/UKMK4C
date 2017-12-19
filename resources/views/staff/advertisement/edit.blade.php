@@ -19,12 +19,8 @@
 				@endforeach
 
 	<div class="panel panel-default">
-		
 		<div class="panel-heading">New Advertisement</div>
-		
-		
 		<div class="panel-body">
-			
 				<div class="form-group">
 					<label class="col-md-4 control-label">Advertisement ID</label>
 					<div class="col-md-6">
