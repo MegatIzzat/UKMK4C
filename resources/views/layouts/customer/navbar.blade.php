@@ -24,15 +24,7 @@
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
 
-                @guest
-                    <li><a href=" {{route('cust.home')}} "><span class="glyphicon glyphicon-home"></span> &nbsp;Home</a></li>
-                @else
-                    @if(Auth::user()->isAdmin == '0')
-                    <li><a href=" {{route('cust.home')}} "><span class="glyphicon glyphicon-home"></span> &nbsp;Home</a></li>
-                    @else
-                    <li><a href=" {{route('staff.index')}} "><span class="glyphicon glyphicon-home"></span> &nbsp;Home</a></li>
-                    @endif
-                @endguest
+                <li><a href=" {{route('cust.home')}} "><span class="glyphicon glyphicon-home"></span> &nbsp;Home</a></li>
            
               
 
@@ -40,26 +32,11 @@
 
     <!-- Right Side Of Navbar -->
     <ul class="nav navbar-nav navbar-right">
-        
-        <!-- Cart -->
-        @guest
         <li>
             <a href="{{route('cust.getcart')}}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart 
                 <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty: ''}}</span>
             </a>
         </li>
-        @else
-            @if(Auth::user()->isAdmin == '0')
-                <li>
-                    <a href="{{route('cust.getcart')}}">
-                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart 
-                        <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty: ''}}</span>
-                    </a>
-                </li>
-            @else
-
-            @endif
-        @endguest
 
         <!-- Authentication Links -->
         @guest
@@ -71,8 +48,8 @@
                <span class="glyphicon glyphicon-user"></span> {{ Auth::user()->user_name }} <span class="caret"></span>
            </a>
 
+           
             <ul class="dropdown-menu">
-                @if(Auth::user()->isAdmin == '0')
                 <li>
                     <a href="{{route('cust.profile.edit',['user' => Auth::user()->user_id])}}"><span class="glyphicon glyphicon-edit"></span> Manage Profile</a>
                 </li>
@@ -81,9 +58,6 @@
                 </li>
 
                 <li role="separator" class="divider"></li>
-                @else
-
-                @endif
 
             <li>
                 <a href="{{ route('logout') }}"
