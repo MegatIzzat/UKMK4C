@@ -21,7 +21,6 @@
 						<th>Order Time</th>
 						<th>Order ID</th>
 						<th>Product Purchased</th>
-						<th>Rating</th>         
 						<th>Paid</th>
 						<th>Waiting Time</th>
 						<th>Feedback</th>
@@ -44,7 +43,32 @@
 										@if($p->order_id == $q->order_id)
 											@foreach($product as $key => $r)
 												@if($q->product_id == $r->product_id)
-													<div>{{$r->product_name}}</div>
+													{{$r->product_name}}<br>
+								
+
+														@if($q->rating_id==null)
+														<form class="form-horizontal" method="POST" action="{{ route('customer.sendRating',[$p->order_id, $q->product_id])}}">
+															{{csrf_field()}}
+															{{ method_field('POST') }}
+															<div>
+																<input type="number" name="product_rating" min="0" max="5" step="0.5"><button type="submit"> Rate</button>
+															</div>
+														</form>
+														@else
+
+														@foreach($rating as $key => $z)
+														@if($q->rating_id == $z->rating_id)
+														<div class="ratings">
+															<p>
+																<input id="input-3" name="input-3" value="{{$z->product_rating}}" class="rating" data-size="xxs" data-show-clear="false" data-show-caption="false" readonly>
+															</p>
+														</div>
+														@endif
+														@endforeach
+														@endif
+														<br>
+											
+
 												@endif
 											@endforeach
 										@endif
@@ -52,38 +76,7 @@
 								</div>
 							</td>
 
-							<td>
-								@foreach($orderline as $key => $q)
-									@if($p->order_id == $q->order_id)
-										@foreach($product as $key => $r)
-											@if($q->product_id == $r->product_id)
-
-											@if($q->rating_id==null)
-											<form class="form-horizontal" method="POST" action="{{ route('customer.sendRating',[$p->order_id, $q->product_id])}}">
-												{{csrf_field()}}
-												{{ method_field('POST') }}
-												<div>
-													<input type="number" name="product_rating" min="0" max="5" step="0.5"><button type="submit"> Rate</button>
-												</div>
-											</form>
-												@else
-
-												@foreach($rating as $key => $z)
-												@if($q->rating_id == $z->rating_id)
-												<div class="ratings">
-												<p>
-													<input id="input-3" name="input-3" value="{{$z->product_rating}}" class="rating" data-size="xs" data-show-clear="false" data-show-caption="false" readonly>
-												</p>
-												</div>
-												@endif
-												@endforeach
-
-											@endif
-											@endif
-										@endforeach
-									@endif
-								@endforeach
-							</td>
+							
 
 
 							<td>RM {{number_format($p->total_price, 2)}}</td>
