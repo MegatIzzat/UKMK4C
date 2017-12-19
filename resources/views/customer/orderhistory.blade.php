@@ -51,7 +51,14 @@
 															{{csrf_field()}}
 															{{ method_field('POST') }}
 															<div>
-																<input type="number" name="product_rating" min="0" max="5" step="0.5"><button type="submit"> Rate</button>
+																<table>
+																	<td>
+																	<input type="number" class="rating" id="product_rating" name="product_rating" data-step=1 data-size="xxs" data-show-clear="false" data-show-caption="false" required>
+																	</td>
+																	<td>
+																		<button class="btn-info" type="submit"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Rate</button>
+																	</td>
+																</table>
 															</div>
 														</form>
 														@else
@@ -59,9 +66,7 @@
 														@foreach($rating as $key => $z)
 														@if($q->rating_id == $z->rating_id)
 														<div class="ratings">
-															<p>
 																<input id="input-3" name="input-3" value="{{$z->product_rating}}" class="rating" data-size="xxs" data-show-clear="false" data-show-caption="false" readonly>
-															</p>
 														</div>
 														@endif
 														@endforeach
@@ -90,7 +95,7 @@
 							{{csrf_field()}}
 							{{ method_field('PUT') }}
 							<td>
-								<textarea name="order_feedback" style="width:100%" rows="3"></textarea>
+								<textarea name="order_feedback" style="width:100%" rows="3" required></textarea>
 								<br>
 								<button style="width:100%" class="btn btn-success" type="submit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Send Feedback</button>
 							</td>
