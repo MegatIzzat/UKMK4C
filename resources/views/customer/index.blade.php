@@ -87,8 +87,16 @@
 									</p>
 								</div>
 								<div class="footer">
-									<p class="pull-left">Rated {{$p->Rating()->count()}} times</p>		
+									<p class="pull-left">Rated {{$p->Rating()->count()}} times</p>
+									@guest
 										<a href="{{route('cust.addcart',['product_id' => $p->product_id])}}" class="btn btn-success pull-right" role="button">Add to Cart</a>
+									@else
+										@if(Auth::user()->isAdmin == '0')
+											<a href="{{route('cust.addcart',['product_id' => $p->product_id])}}" class="btn btn-success pull-right" role="button">Add to Cart</a>
+										@else	
+											
+										@endif
+									@endguest
 								</div>
 						</div>
 					</div>
