@@ -41,7 +41,7 @@ class CustomerController extends Controller
         $category = Category::get();
         $productcat = Product::get();
         $adv = Advertisement::get();
-        return view('customer.index',compact('product','productcat','category','adv'));
+        return redirect()->route('cust.index');
     }
 
     public function pricehigh(){
@@ -49,7 +49,7 @@ class CustomerController extends Controller
         $category = Category::get();
         $productcat = Product::get();
         $adv = Advertisement::get();
-        return view('customer.index',compact('product','productcat','category','adv'));
+        return redirect()->route('cust.index');
     }
 
     public function ratinghigh(){
@@ -57,7 +57,7 @@ class CustomerController extends Controller
         $category = Category::get();
         $productcat = Product::get();
         $adv = Advertisement::get();
-        return view('customer.index',compact('product','productcat','category','adv'));
+        return redirect()->route('cust.index');
     }
 
     public function AddToCart(Request $request, $product_id){
