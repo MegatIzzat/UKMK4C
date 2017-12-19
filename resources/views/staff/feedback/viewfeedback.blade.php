@@ -4,11 +4,6 @@
 
 @section('content')
 
-<html>
-<head>
- <title>View Feedback K4C</title>  
-</head>
-<body>
   <div class="container">
     <div class="panel panel-primary">
      <div class="panel-heading">Feedback
@@ -19,8 +14,6 @@
         <li>{{ $key }}</li>
         @endforeach
       </ul>
-
-
 
       <table class="table">
         <thead>
@@ -80,11 +73,12 @@
     </div>
   </div>
 </div>
+
+<center>{{$order->links()}}</center>
+
 <div class="col-md-offset-4 col-md-4">
   <a href="/" class="btn btn-success btn-block" role="button">Back to Home</a></li>
 </div>
 
-</body>
-</html>
 
 @endsection
