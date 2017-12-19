@@ -167,7 +167,7 @@ class CustomerController extends Controller
     
     public function orderHistory()
     {
-        $order = Order::Paginate(10);
+        $order = Order::where('order_date', '>=', Carbon::now()->subDay())->paginate(10);
         $orderline = Orderline::get();
         $product = Product::get();
         $notify = Notify::get();

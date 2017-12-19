@@ -21,6 +21,7 @@
 						<th>Order Time</th>
 						<th>Order ID</th>
 						<th>Product Purchased</th>
+						<th>Rating</th>         
 						<th>Paid</th>
 						<th>Waiting Time</th>
 						<th>Feedback</th>
@@ -34,7 +35,7 @@
 							<td>
 								{{date('d-M-Y', strtotime($p->order_date))}}<br>
 								{{date('h:i A', strtotime($p->order_date))}}
-							</td>
+							</td><!-- Display in Malaysia time -->
 							<td>{{$p->order_id}}</td>
 							
 							<td>
@@ -43,42 +44,47 @@
 										@if($p->order_id == $q->order_id)
 											@foreach($product as $key => $r)
 												@if($q->product_id == $r->product_id)
-													{{$r->product_name}}<br>
-								
-
-														@if($q->rating_id==null)
-														<form class="form-horizontal" method="POST" action="{{ route('customer.sendRating',[$p->order_id, $q->product_id])}}">
-															{{csrf_field()}}
-															{{ method_field('POST') }}
-															<div>
-																<table>
-																	<td>
-																	<input type="number" class="rating" id="product_rating" name="product_rating" data-step=1 data-size="xxs" data-show-clear="false" data-show-caption="false" required>
-																	</td>
-																	<td>
-																		<button class="btn-info" type="submit"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Rate</button>
-																	</td>
-																</table>
-															</div>
-														</form>
-														@else
-
-														@foreach($rating as $key => $z)
-														@if($q->rating_id == $z->rating_id)
-														<div class="ratings">
-																<input id="input-3" name="input-3" value="{{$z->product_rating}}" class="rating" data-size="xxs" data-show-clear="false" data-show-caption="false" readonly>
-														</div>
-														@endif
-														@endforeach
-														@endif
-														<br>
-											
+													<div>{{$r->product_name}}</div>
 												@endif
 											@endforeach
 										@endif
 									@endforeach
 								</div>
-							</td>					
+							</td>
+
+							<td>
+								@foreach($orderline as $key => $q)
+									@if($p->order_id == $q->order_id)
+										@foreach($product as $key => $r)
+											@if($q->product_id == $r->product_id)
+
+											@if($q->rating_id==null)
+											<form class="form-horizontal" method="POST" action="{{ route('customer.sendRating',[$p->order_id, $q->product_id])}}">
+												{{csrf_field()}}
+												{{ method_field('POST') }}
+												<div>
+													<input type="number" name="product_rating" min="0" max="5" step="0.5"><button type="submit"> Rate</button>
+												</div>
+											</form>
+												@else
+
+												@foreach($rating as $key => $z)
+													@if($q->rating_id == $z->rating_id)
+												<div class="ratings">
+												<p>
+													<input id="input-3" name="input-3" value="{{$z->product_rating}}" class="rating" data-size="xs" data-show-clear="false" data-show-caption="false" readonly>
+												</p>
+											</div>
+															@endif
+															@endforeach
+
+											@endif
+											@endif
+										@endforeach
+									@endif
+								@endforeach
+							</td>
+
 
 							<td>RM {{number_format($p->total_price, 2)}}</td>
 
@@ -95,7 +101,7 @@
 							{{csrf_field()}}
 							{{ method_field('PUT') }}
 							<td>
-								<textarea name="order_feedback" style="width:100%" rows="3" required></textarea>
+								<textarea name="order_feedback" style="width:100%" rows="3"></textarea>
 								<br>
 								<button style="width:100%" class="btn btn-success" type="submit"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Send Feedback</button>
 							</td>
@@ -107,7 +113,6 @@
 						</tr>
 						@endif
 					@endif
-
 				@endforeach
 			</table>
 

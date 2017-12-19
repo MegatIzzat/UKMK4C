@@ -17,9 +17,9 @@ class OrderlineSeeder extends Seeder
 	    $faker = Faker::create();
 	    $products = Product::all()->pluck('product_id')->all();
 	    $order = Order::all()->pluck('order_id')->all();
-	    foreach (range(1,10000) as $index) {
+	    foreach (range(1,12000) as $index) {
 	      DB::table('orderline')->insert([
-	          'order_id' => $faker->unique()->randomElement($order),
+	          'order_id' => $faker->randomElement($order),
 	          'product_id' => $faker->randomElement($products),
 	          'quantity' => $faker->numberBetween($min = 1, $max = 3),
 	      ]);
