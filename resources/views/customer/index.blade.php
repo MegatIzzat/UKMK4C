@@ -33,7 +33,7 @@
 					<a href="#" class="list-group-item"><strong>Sort</strong></a>
 					<a href="{{ route('cust.pricelow') }}" class="list-group-item">Price : Low to High</a>
 					<a href="{{ route('cust.pricehigh') }}" class="list-group-item">Price : High to Low</a>
-					<a href="{{ route('cust.ratinghigh') }}" class="list-group-item">Rating : Low to High</a>
+					<a href="{{ route('cust.ratinghigh') }}" class="list-group-item">Rating : High to Low</a>
 				</div>
 			</div>	
 
