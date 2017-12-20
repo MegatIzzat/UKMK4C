@@ -22,12 +22,9 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true"> Menu <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href=" {{route('staff.index')}} ">Order</a></li>
-                                <li><a href=" {{route('staff.topup.index')}} ">Top Up</a></li>
                                 <li><a href=" {{route('staff.product.index')}}">Product</a></li>
                                 <li><a href=" {{route('staff.viewfeedback')}} ">Feedback</a></li>
                                 <li><a href=" {{route('staff.advertisement.index')}} ">Advertisement</a></li>
-                                <li><a href=" {{route('staff.topup.index')}} ">Top Up</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -37,6 +34,7 @@
                                 <li><a href=" {{url('staff/register')}} ">Staff</a></li>
                             </ul>
                         </li>
+                        <li><a href=" {{route('staff.topup.index')}} ">Top Up</a></li>
                         <li><a href="{{route('staff.report')}}">Sales Report</a></li>
                     </ul>
 

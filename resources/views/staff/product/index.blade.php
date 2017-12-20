@@ -13,9 +13,13 @@
 				</li>
 			@endforeach
 		</ul>
-		<div class="panel panel-primary">
+		<div class="col-md-12">
+			<div class="panel panel-primary">
 			<div class="panel-heading">Product Management
-				<a role="button" href="{{route('staff.product.create')}}" class="btn btn-success pull-right">Add New Product</a>
+				<div class="pull-right">
+					<a role="button" href="{{route('staff.product.create')}}" class="btn btn-success ">Add New Product</a>
+				</div>
+				
 			</div>
 			<div class="panel-body">
 				<table class="table" style="table-layout: fixed;">
@@ -55,7 +59,7 @@
 			</div>
 		</div>
 		<center> {{$product->links()}} </center>
-
+		</div>
 	</div>
 
 @endsection

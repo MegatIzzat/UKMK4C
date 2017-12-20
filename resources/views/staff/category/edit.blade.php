@@ -1,6 +1,6 @@
 @extends('layouts.admin.admin')
 
-@section('title','Add Category')
+@section('title','Edit Category')
 
 @section('content')
 	<div class="container">
@@ -18,23 +18,24 @@
 						Add New Category
 					</div>
 					<div class="panel-body">
-						<form class="form-horizontal" method="POST" action="{{route('staff.category.store')}}" >
-						{{ csrf_field() }}
+						<form class="form-horizontal" method="POST" action="{{route('staff.category.update',$category->category_id)}}" >
+						{{csrf_field()}}
+						{{ method_field('PUT') }}
 						<div class="form-group">
 							<label class="col-md-4 control-label">Category ID</label>
 							<div class="col-md-6">
-								<input class="form-control" type="text" name="category_id" placeholder="Enter Category ID" required>
+								<input class="form-control" type="text" name="category_id" placeholder="Enter Category ID" value="{{$category->category_id}}" readonly>
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="col-md-4 control-label">Category Name</label>
 							<div class="col-md-6">
-								<input class="form-control" type="text" name="category_name" placeholder="Enter Category Name" required>
+								<input class="form-control" type="text" name="category_name" placeholder="Enter Category Name" value="{{$category->category_name}}">
 							</div>
 						</div>
 
 						<div class="col-md-6 col-md-offset-4">
-							<button type="submit" class="btn btn-primary">Add Category</button>
+							<button type="submit" class="btn btn-primary">Update Category</button>
 						</div>
 						</form>	
 					</div>

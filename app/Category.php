@@ -13,6 +13,8 @@ class Category extends Model
     protected $primaryKey = ['category_id'];
     public $incrementing = false;
 
+    public $timestamps = false;
+
     public function Product(){
     	return $this -> hasMany('App\Product','category_id');
     }

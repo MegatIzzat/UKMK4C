@@ -13,7 +13,7 @@ class Order extends Model
 	public const UPDATED_AT = 'order_feedbacktime';
 
 	public function Customer(){
-		return $this->belongTo('App\Customer');
+		return $this->belongTo('App\Customer','cust_id');
 	}
 
 	public function Orderline(){

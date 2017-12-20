@@ -76,7 +76,20 @@ Route::group(['prefix'=>'staff', 'as'=>'staff.', 'middleware' => ['auth','admin'
 	Route::get('viewfeedback',  'StaffController@viewFeedback')->name('viewfeedback');
 	Route::get('report',  'StaffController@report')->name('report');
 	Route::get('customerlist','ListController@customerlist')->name('customerlist');
-	Route::get('stafflist','ListController@stafflist')->name('stafflist'); 
+	Route::get('stafflist','ListController@stafflist')->name('stafflist');
+	Route::get('orderlist','ListController@orderlist')->name('orderlist'); 
+
+	/*------------------------------------ CATEGORY ----------------------------------*/
+	Route::group(['prefix'=>'category','as'=>'category.','name'=>'category'],function(){
+		Route::get('/','StaffController@catindex')->name('index');
+		Route::get('create', function(){
+			return view('staff.category.create');
+		})->name('create');
+		Route::post('store','StaffController@store')->name('store');
+		Route::get('{id}','StaffController@edit')->name('edit');
+		Route::put('update/{id}','StaffController@update')->name('update');
+		Route::delete('delete/{id}','StaffController@delete')->name('delete');
+	});
 
 	/*------------------------------------ ADVERTISEMENT ----------------------------------*/
 	Route::group(['prefix' => 'advertisement', 'as'=>'advertisement.','name'=>'advertisement'], function(){

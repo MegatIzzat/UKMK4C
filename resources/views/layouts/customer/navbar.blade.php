@@ -24,17 +24,26 @@
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-
+            	@guest
                 <li><a href=" {{route('cust.home')}} "><span class="glyphicon glyphicon-home"></span> &nbsp;Home</a></li>
+                @else
+                	@if(Auth::user()->isAdmin())
+                		<li><a href=" {{route('staff.index')}} "><span class="glyphicon glyphicon-home"></span> &nbsp;Home</a></li>
+                	@else
+                		<li><a href=" {{route('cust.home')}} "><span class="glyphicon glyphicon-home"></span> &nbsp;Home</a></li>
+                	@endif
+                @endguest
            
                 @auth
+                	@if(Auth::user()->isAdmin())
 
-                <?php $unseen=0 ?><!-- Count unseen notification -->
-                 @foreach($notify as $n)
-                     @if(Auth::user()->user_id==$n->user_id && $n->is_seen == 0)
-                        <?php ++$unseen ?>
-                    @endif
-                @endforeach
+                	@else
+		                <?php $unseen=0 ?><!-- Count unseen notification -->
+		                 @foreach($notify as $n)
+		                     @if(Auth::user()->user_id==$n->user_id && $n->is_seen == 0)
+		                        <?php ++$unseen ?>
+		                    @endif
+		                @endforeach
 
                 <li class="dropdown">
                     <a href="notification#" class="dropdown-toggle" data-toggle="dropdown">
@@ -68,10 +77,9 @@
                         @endif
                     @endif
                     </li>
-                    @endforeach
-
-                
+                    @endforeach    
             </ul>
+            @endif
         @endauth
 
     </ul>
@@ -80,21 +88,38 @@
     <!-- Right Side Of Navbar -->
     <ul class="nav navbar-nav navbar-right">
         @auth
-        @foreach($topup as $t)
-        @if($t->cust_id==Auth::user()->user_id)
-        <li>
-            <a href="#balance">
-                <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> RM {{number_format((float)$t->cust_balance, 2, '.', '')}}
-            </a>
-        </li>
-        @endif
-        @endforeach
+        	@if(Auth::user()->isAdmin())
+
+        	@else
+		        @foreach($topup as $t)
+		        @if($t->cust_id==Auth::user()->user_id)
+		        <li>
+		            <a href="#balance">
+		                <span class="glyphicon glyphicon-usd" aria-hidden="true"></span> RM {{number_format((float)$t->cust_balance, 2, '.', '')}}
+		            </a>
+		        </li>
+		        @endif
+		        @endforeach
+		    @endif
         @endauth
+
+        @guest
         <li>
             <a href="{{route('cust.getcart')}}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart 
                 <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty: ''}}</span>
             </a>
         </li>
+        @else
+        	@if(Auth::user()->isAdmin())
+
+        	@else
+        	<li>
+            <a href="{{route('cust.getcart')}}"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart 
+                <span class="badge">{{ Session::has('cart') ? Session::get('cart')->totalQty: ''}}</span>
+            </a>
+        	</li>
+        	@endif
+        @endguest
 
         <!-- Authentication Links -->
         @guest
