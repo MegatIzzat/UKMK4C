@@ -9,16 +9,14 @@
 			<!-- Alert -->
 				@include('error.flash-message')
 			
-
-			<div class="col-md-6">
-				<h3>Advertisement</h3>
-			</div>
-			<div class="col-md-3 col-md-offset-3">
+			<div class="panel panel-primary">
+				<div class="panel-heading"> Advertisement
 				<a class="btn btn-success pull-right" role="button" href="{{route('staff.advertisement.create')}}">New Advertisement</a>
-			</div><br><br>
+			</div>
+				<div class="panel-body">
 			
-			<hr>
-			<table class="table table-bordered">
+	
+			<table class="table">
 				<thead>
 					<tr>
 						<th>ID</th>
@@ -53,6 +51,8 @@
 					@endforeach	
 				</tbody>
 			</table>
+			</div>
+			</div>
 		</div>
 	</div>
 
