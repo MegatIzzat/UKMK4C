@@ -77,7 +77,9 @@ Route::group(['prefix'=>'staff', 'as'=>'staff.', 'middleware' => ['auth','admin'
 	Route::get('report',  'StaffController@report')->name('report');
 	Route::get('customerlist','ListController@customerlist')->name('customerlist');
 	Route::get('stafflist','ListController@stafflist')->name('stafflist');
-	Route::get('orderlist','ListController@orderlist')->name('orderlist'); 
+	Route::get('orderlist','ListController@orderlist')->name('orderlist');
+	Route::post('customerlist/resetpassword/{id}', 'ListController@resetpassword')->name('resetPassword');
+ 
 
 	/*------------------------------------ CATEGORY ----------------------------------*/
 	Route::group(['prefix'=>'category','as'=>'category.','name'=>'category'],function(){
