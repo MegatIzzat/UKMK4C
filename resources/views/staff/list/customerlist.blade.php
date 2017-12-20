@@ -3,6 +3,15 @@
 @section('title','Customer List')
 
 @section('content')
+<div class="col-md-8 col-md-offset-2">
+                <!-- Alert -->
+                @include('error.flash-message')
+                
+                <!-- Content Column -->
+                @foreach($errors->all() as $key)
+                    <li>{{ $key }}</li>
+                @endforeach
+</div>
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">

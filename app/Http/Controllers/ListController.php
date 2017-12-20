@@ -32,7 +32,7 @@ class ListController extends Controller
     {
         //
         $password = \DB::table('users')->where('user_id', $id)->update(['password' => bcrypt(123456)]);
-        return redirect()->route('staff.customerlist');
+        return redirect()->route('staff.customerlist')->with('success',$id.' password has been reset to 123456.');;
     }
 
 
