@@ -48,7 +48,6 @@ Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 		Route::get('checkout/{user}', 'CustomerController@checkout')->name('checkout');
 		Route::put('isNotified/{id}','NotifyController@isNotified')->name('isNotified');
 		Route::put('isNotifiedAll/{id}','NotifyController@isNotifiedAll')->name('isNotifiedAll');
-		Route::get('refreshNavbar','NotifyController@refreshNavbar')->name('refreshNavbar');
 
 		Route::group(['prefix'=>'profile', 'name'=>'profile', 'as'=>'profile.'], function(){
 			Route::get('create', 'ProfileController@create')->name('create');
@@ -58,6 +57,13 @@ Route::group(['prefix'=>'/','as'=>'cust.', 'name'=>'cust' ], function(){
 			Route::get('show/{user}', 'ProfileController@show')->name('show');
 			Route::put('update/{user}','ProfileController@update')->name('update');
 		});
+
+		Route::group(['prefix'=>'orderhistory'], function(){
+			Route::get('', 'CustomerController@orderHistory')->name('orderHistory');
+			Route::put('sendFeedback/{id}','CustomerController@sendFeedback')->name('sendFeedback');
+			Route::post('{order_id}/{product_id}', 'CustomerController@sendRating')->name('sendRating');
+		});
+
 	});
 });
 
@@ -108,21 +114,5 @@ Route::group(['prefix'=>'staff', 'as'=>'staff.', 'middleware' => ['auth','admin'
 
 /*--------------------------------------------------------------------------------------------*/
 
-Route::get('orderhistory', [
-	'uses' => 'CustomerController@orderHistory',
-	'as' => 'customer.orderHistory'
-]);
 
-Route::get('orderhistory/{product_id}',function($product_id){
-	$rating = App\Rating::where('product_id', $product_id)->get();
-	return response()->json($r);
-});
 
-Route::post('orderhistory/{order_id}/{product_id}', [
-	'uses' => 'CustomerController@sendRating',
-	'as' => 'customer.sendRating'
-]);
-
-Route::group(['prefix'=>'/orderhistory/', 'as'=>'customer.', 'name'=>'customer' ], function(){
-	Route::put('sendFeedback/{id}','CustomerController@sendFeedback')->name('sendFeedback');
-});

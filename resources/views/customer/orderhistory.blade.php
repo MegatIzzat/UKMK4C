@@ -47,7 +47,7 @@
 								
 
 														@if($q->rating_id==null)
-														<form class="form-horizontal" method="POST" action="{{ route('customer.sendRating',[$p->order_id, $q->product_id])}}">
+														<form class="form-horizontal" method="POST" action="{{ route('cust.sendRating',[$p->order_id, $q->product_id])}}">
 															{{csrf_field()}}
 															{{ method_field('POST') }}
 															<div>
@@ -91,7 +91,7 @@
 							</td>
 
 							@if($p->order_feedback==null)
-							<form class="form-horizontal" method="POST" action="{{ route('customer.sendFeedback',$p->order_id)}}">
+							<form class="form-horizontal" method="POST" action="{{ route('cust.sendFeedback',$p->order_id)}}">
 							{{csrf_field()}}
 							{{ method_field('PUT') }}
 							<td>

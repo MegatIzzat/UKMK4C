@@ -10,14 +10,6 @@ use App\Customer;
 class NotifyController extends Controller
 {
     //
-    public function refreshNavbar()
-    {
-        //
-        $notify = Notify::get();
-        $topup = Customer::get();
-        return view('layouts.customer.refreshNavbar',compact('notify','topup'));
-    }
-
     public function isNotified(Request $request, $id)
     {
         //
