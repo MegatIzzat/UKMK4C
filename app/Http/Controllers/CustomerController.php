@@ -19,13 +19,22 @@ use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
+
+    public function __construct()
+    {
+        $notify = Notify::get();
+        $topup = Customer::get();    
+    }
+
     public function index()
     {
         $product = Product::paginate(6);
         $category = Category::get();
         $productcat = Product::get();
         $adv = Advertisement::get();
-        return view('customer.index',compact('product','productcat','category','adv'));
+        $notify = Notify::get();
+        $topup = Customer::get();
+        return view('customer.index',compact('product','productcat','category','adv','notify','topup'));
     }
 
     public function show($id){
@@ -33,7 +42,9 @@ class CustomerController extends Controller
         $category = Category::get();
         $productcat = Product::get();
         $adv = Advertisement::get();
-        return redirect()->route('cust.index');
+        $notify = Notify::get();
+        $topup = Customer::get();
+        return view('customer.index',compact('product','productcat','category','adv','notify','topup'));
     }
 
     public function pricelow(){
@@ -41,7 +52,9 @@ class CustomerController extends Controller
         $category = Category::get();
         $productcat = Product::get();
         $adv = Advertisement::get();
-        return redirect()->route('cust.index');
+        $notify = Notify::get();
+        $topup = Customer::get();
+        return view('customer.index',compact('product','productcat','category','adv','notify','topup'));
     }
 
     public function pricehigh(){
@@ -49,7 +62,9 @@ class CustomerController extends Controller
         $category = Category::get();
         $productcat = Product::get();
         $adv = Advertisement::get();
-        return redirect()->route('cust.index');
+        $notify = Notify::get();
+        $topup = Customer::get();
+        return view('customer.index',compact('product','productcat','category','adv','notify','topup'));
     }
 
     public function ratinghigh(){
@@ -57,7 +72,9 @@ class CustomerController extends Controller
         $category = Category::get();
         $productcat = Product::get();
         $adv = Advertisement::get();
-        return redirect()->route('cust.index');
+                $notify = Notify::get();
+        $topup = Customer::get();
+        return view('customer.index',compact('product','productcat','category','adv','notify','topup'));
     }
 
     public function AddToCart(Request $request, $product_id){
@@ -110,12 +127,15 @@ class CustomerController extends Controller
     }
 
     public function getCart(){
+        $notify = Notify::get();
+        $topup = Customer::get();
         if (!Session::has('cart')){
-            return view('customer.cart',['products' => null]);
+            return view('customer.cart',['products' => null], compact('notify','topup'));
         }
         $oldCart = Session::get('cart');
         $cart = new Cart($oldCart);
-        return view('customer.cart',['products'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
+        
+        return view('customer.cart',['products'=>$cart->items, 'totalPrice'=>$cart->totalPrice], compact('notify','topup'));
     }
 
     public function checkout(Request $request, $user){
@@ -172,7 +192,9 @@ class CustomerController extends Controller
         $product = Product::get();
         $notify = Notify::get();
         $rating = Rating::get();
-        return view('customer.orderhistory',compact('order','orderline','product','notify','rating'));
+        $notify = Notify::get();
+        $topup = Customer::get();
+        return view('customer.orderhistory',compact('order','orderline','product','rating', 'notify', 'topup'));
     }
     public function sendRating(Request $request, $order_id, $product_id){
         $rating = new Rating;

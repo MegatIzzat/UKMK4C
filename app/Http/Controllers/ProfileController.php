@@ -21,8 +21,9 @@ class ProfileController extends Controller
        $user = User::all();
        $customer = Customer::all();
        $notify = Notify::get();
+       $topup = Customer::get();
 
-       return view('customer.profile',compact('user','customer','notify'));
+       return view('customer.profile',compact('user','customer','notify','topup'));
     
     }
 
@@ -74,9 +75,10 @@ class ProfileController extends Controller
         $user = User::findOrfail($id);
         $customer = Customer::findOrfail($id);
         $notify = Notify::get();
+        $topup = Customer::get();
 
 
-        return view('customer.profile', compact('user','customer','notify'));
+        return view('customer.profile', compact('user','customer','notify','topup'));
 
     }
 
