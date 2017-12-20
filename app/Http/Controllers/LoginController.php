@@ -26,6 +26,6 @@ class LoginController extends Controller
     		return redirect()->route('cust.index');
     	}
 
-    	return redirect()->back();
+    	return redirect()->back()->with('error','Invalid User ID or Password! Please go to counter if you forgot your password.');
     }
 }

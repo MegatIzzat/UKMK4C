@@ -6,9 +6,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+            @include('error.flash-message')
             <ul>
                 @foreach($errors->all() as $key)
-                    <li>{{ $key }}</li>
+                    <li>
+                        {{ $key }}
+                    </li>
                 @endforeach
             </ul>
             <div class="panel panel-default">

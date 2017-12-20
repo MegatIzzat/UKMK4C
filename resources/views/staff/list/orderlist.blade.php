@@ -6,7 +6,7 @@
 
   <div class="container">
     <div class="panel panel-primary">
-     <div class="panel-heading">Feedback
+     <div class="panel-heading">Order List
      </div>
      <div class="panel-body"> 
       <ul>
@@ -27,7 +27,7 @@
         </thead>
 
         @foreach($order->reverse() as $key => $p)
-        @if($p->order_status=='Completed' && $p->order_feedback!=null)
+        @if($p->order_status=='Completed')
         <tr>
           <td>
             {{date('d-M-Y', strtotime($p->order_completed.' + 8 hours'))}}<br>

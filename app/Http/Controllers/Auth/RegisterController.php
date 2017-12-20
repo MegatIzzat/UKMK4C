@@ -48,7 +48,7 @@ class RegisterController extends Controller
 
         event(new Registered($user = $this->create($request->all())));
 
-        return redirect()->route('staff.index')->with('success','New customer has been added!');
+        return redirect()->route('staff.customerlist')->with('success','New customer has been added!');
     }
 
     public function showRegistrationForm()

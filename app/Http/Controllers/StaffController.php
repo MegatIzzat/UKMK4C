@@ -49,7 +49,7 @@ class StaffController extends Controller
 
         Category::create($request->all());
 
-        return redirect()->route('staff.product.index')->with('success','Category '.$request->category_name.' has been added!');
+        return redirect()->route('staff.category.index')->with('success','Category '.$request->category_name.' has been added!');
     }
 
     public function edit($id){
@@ -69,10 +69,14 @@ class StaffController extends Controller
     }
 
     public function delete(Request $request, $id){
-        if(Category::where('category_id','=',$id)->delete()) {
+        try{
+            Category::where('category_id','=',$id)->delete();
             return redirect()->route('staff.category.index')->with('success', $id.' has been successfully deleted!');
-        } else {
-            return redirect()->route('staff.category.index')->with('error', 'Please try again!');
+        } catch (\Exception $e){
+            return redirect()->route('staff.category.index')->with('error', 'Please delete the products in this category first!');
         }
+        
+            
+        
     }
 }

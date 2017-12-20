@@ -18,7 +18,7 @@ class ListController extends Controller
     {
 
         $user = User::get();
-        $customer = Customer::paginate(20);
+        $customer = Customer::paginate(10);
         
         return view('staff.list.customerlist',compact('user','customer'));
     }

@@ -1,9 +1,12 @@
 @extends('layouts.customer.customer')
 
+@section('title','Login')
+
 @section('content')
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+            @include('error.flash-message')
             <ul>
                 @foreach($errors->all() as $key)
                     {{ $key }}

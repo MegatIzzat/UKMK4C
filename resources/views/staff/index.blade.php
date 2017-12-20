@@ -5,15 +5,17 @@
 @section('content')
 {{-- <meta http-equiv="refresh" content="10" > --}}
   <div class="container">
-	<div class="panel panel-primary">
-	 <div class="panel-heading">Order In Progress
-	 </div>
-	 <div class="panel-body"> 
+  	@include('error.flash-message')
 	  <ul>
 		@foreach($errors->all() as $key)
 		<li>{{ $key }}</li>
 		@endforeach
 	  </ul>
+	<div class="panel panel-primary">
+	 <div class="panel-heading">Order In Progress
+	 </div>
+	 <div class="panel-body"> 
+
 	  <table class="table" id="tableOrder">
 		<thead>
 		  <tr>
