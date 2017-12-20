@@ -45,6 +45,8 @@
                             <ul class="dropdown-menu">
                                 <li><a href=" {{url('/staff/customerlist')}} "> Customer</a></li>
                                 <li><a href="{{url('/staff/stafflist')}} ">Staff</a></li>
+                                <li><a href="{{url('/staff/orderlist')}} ">Order</a></li>
+
                             </ul>
                         </li>
 
