@@ -31,8 +31,9 @@ class ListController extends Controller
     public function resetpassword(Request $request, $id)
     {
         //
-        $password = \DB::table('users')->where('user_id', $id)->update(['password' => bcrypt(123456)]);
-        return redirect()->route('staff.customerlist')->with('success',$id.' password has been reset to 123456.');;
+        $newpassword='123456';
+        $password = \DB::table('users')->where('user_id', $id)->update(['password' => bcrypt($newpassword)]);
+        return redirect()->route('staff.customerlist')->with('success',$id.' password has been reset to '.$newpassword.'.');;
     }
 
 
