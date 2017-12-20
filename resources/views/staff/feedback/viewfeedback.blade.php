@@ -29,8 +29,8 @@
           </tr>
         </thead>
 
-        @foreach($order as $key => $p)
-        @if($p->order_status=='Completed')
+        @foreach($order->reverse() as $key => $p)
+        @if($p->order_status=='Completed' && $p->order_feedback!=null)
         <tr>
           <td>
             {{date('d-M-Y', strtotime($p->order_date.' + 8 hours'))}}<br>
