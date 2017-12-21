@@ -30,8 +30,8 @@
         @if($p->order_status=='Completed')
         <tr>
           <td>
-            {{date('d-M-Y', strtotime($p->order_completed.' + 8 hours'))}}<br>
-            {{date('h:i A', strtotime($p->order_completed.' + 8 hours'))}}
+            {{date('d-M-Y', strtotime($p->order_completed))}}<br>
+            {{date('h:i A', strtotime($p->order_completed))}}
           </td><!-- Display in Malaysia time -->
           <td>{{$p->order_id}}</td>
 
