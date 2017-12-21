@@ -24,7 +24,7 @@ class StaffController extends Controller
 
     public function viewFeedback()
     {
-        $order = Order::Paginate(20);
+        $order = Order::where('order_feedback', '!=', null)->paginate(20);
         $orderline = Orderline::get();
         $product = Product::get();
 
