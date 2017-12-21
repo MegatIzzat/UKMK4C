@@ -34,7 +34,7 @@ class ListController extends Controller
 
     public function orderlist()
     {
-        $order = Order::Paginate(20);
+        $order = Order::orderBy('order_completed', 'desc')->paginate(20);
         $orderline = Orderline::get();
         $product = Product::get();
 
